@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ode SYSTEM "content.dtd">
+<ode xmlns="http://www.intef.es/xsd/ode" version="2.0">
+<userPreferences>
+  <userPreference>
+    <key>theme</key>
+    <value>scumm</value>
+  </userPreference>
+</userPreferences>
+<odeResources>
+  <odeResource>
+    <key>odeId</key>
+    <value>20260419111227SCUMM01</value>
+  </odeResource>
+  <odeResource>
+    <key>odeVersionId</key>
+    <value>20260419111227SCUMM02</value>
+  </odeResource>
+  <odeResource>
+    <key>exe_version</key>
+    <value>3.0</value>
+  </odeResource>
+</odeResources>
+<odeProperties>
+  <odeProperty>
+    <key>pp_title</key>
+    <value>El Ciclo del Agua — Aventura Gráfica Educativa</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_author</key>
+    <value>Área de Tecnología Educativa</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_description</key>
+    <value>Recurso educativo sobre el ciclo del agua (evaporación, condensación, precipitación e infiltración), maquetado con el tema SCUMM Adventure como escena de aventura gráfica clásica de LucasArts. Elaborado por el Área de Tecnología Educativa.</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_lang</key>
+    <value>es</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_theme</key>
+    <value>scumm</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_modified</key>
+    <value>2026-04-19T11:12:27.000Z</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_addExeLink</key>
+    <value>true</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_addPagination</key>
+    <value>true</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_addSearchBox</key>
+    <value>true</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_addAccessibilityToolbar</key>
+    <value>false</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_addMathJax</key>
+    <value>false</value>
+  </odeProperty>
+  <odeProperty>
+    <key>exportSource</key>
+    <value>true</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_globalFont</key>
+    <value>default</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_license</key>
+    <value>creative commons: attribution - share alike 4.0</value>
+  </odeProperty>
+</odeProperties>
+<odeNavStructures>
+
+<!-- PÁGINA 1: Inicio -->
+<odeNavStructure>
+  <odePageId>page-scumm-01-inicio</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>Inicio</pageName>
+  <odeNavStructureOrder>0</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Inicio</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>highlight</key><value>false</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>hidePageTitle</key><value>false</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>Inicio</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleHtml</key><value>El Ciclo del Agua</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>description</key><value>Cartel introductorio de la aventura.</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-01-inicio</odePageId>
+      <odeBlockId>block-scumm-01-info</odeBlockId>
+      <blockName>Bienvenido, aventurero</blockName>
+      <iconName>icon_info</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>teacherOnly</key><value>false</value></odePagStructureProperty>
+        <odePagStructureProperty><key>allowToggle</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>minimized</key><value>false</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-info</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-01-inicio</odePageId>
+          <odeBlockId>block-scumm-01-info</odeBlockId>
+          <odeIdeviceId>idevice-scumm-01-info</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>El agua del planeta nunca se detiene. Viaja del <strong>océano</strong>
+a las <strong>nubes</strong>, de las nubes a la <strong>tierra</strong>,
+y de la tierra de vuelta al mar. A este viaje infinito lo llamamos el
+<em>Ciclo del Agua</em>.</p>
+<p>En esta aventura descubrirás las cuatro fases del ciclo. Usa el panel
+inferior para interactuar con los objetos de la escena, y el inventario
+para guardar pistas.</p>
+<blockquote class="styled-qc">Cada gota que ves caer hoy, ya cayó hace
+millones de años.<cite>Narrador del ciclo</cite></blockquote>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 2: Evaporación -->
+<odeNavStructure>
+  <odePageId>page-scumm-02-evaporacion</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>1. Evaporación</pageName>
+  <odeNavStructureOrder>1</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Fase 1 — Evaporación</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>1. Evaporación</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-02-evaporacion</odePageId>
+      <odeBlockId>block-scumm-02-observe</odeBlockId>
+      <blockName>Fase 1 — Evaporación</blockName>
+      <iconName>icon_observe</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>allowToggle</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-observe</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-02-evaporacion</odePageId>
+          <odeBlockId>block-scumm-02-observe</odeBlockId>
+          <odeIdeviceId>idevice-scumm-02-observe</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>El <strong>Sol</strong> calienta la superficie de mares, ríos y lagos.
+El agua líquida absorbe energía y se transforma en <em>vapor de agua</em>,
+un gas invisible que asciende hacia la atmósfera.</p>
+<p><img src="content/img/sun.png" alt="Sol pixel art" style="vertical-align:middle; width:64px; height:64px;">
+<img src="content/img/ocean.png" alt="Océano pixel art" style="vertical-align:middle; width:256px; height:auto;"></p>
+<p>En una playa tropical, un charco pequeño puede evaporarse en minutos.
+El océano entero tarda mucho más, pero cada día envía al cielo millones
+de toneladas de vapor.</p>
+<div class="exe-block-info"><p><strong>Dato curioso:</strong> el agua
+ya es vapor a partir de los 0 °C si hay suficiente energía. No hace
+falta que hierva.</p></div>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 3: Condensación -->
+<odeNavStructure>
+  <odePageId>page-scumm-03-condensacion</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>2. Condensación</pageName>
+  <odeNavStructureOrder>2</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Fase 2 — Condensación</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>2. Condensación</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-03-condensacion</odePageId>
+      <odeBlockId>block-scumm-03-think</odeBlockId>
+      <blockName>Fase 2 — Condensación</blockName>
+      <iconName>icon_think</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-think</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-03-condensacion</odePageId>
+          <odeBlockId>block-scumm-03-think</odeBlockId>
+          <odeIdeviceId>idevice-scumm-03-think</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>Al subir, el vapor encuentra aire cada vez más frío. Las moléculas
+pierden energía y vuelven a unirse formando
+<strong>gotitas microscópicas</strong> que se agrupan alrededor de
+partículas de polvo.</p>
+<p><img src="content/img/cloud.png" alt="Nube pixel art" style="width:240px; height:auto;"></p>
+<p>El resultado son las <em>nubes</em>. Una nube no es humo: son
+millones de gotas de agua líquida flotando juntas.</p>
+<table class="exe-table"><caption>Tipos de nubes según altura</caption>
+<thead><tr><th>Tipo</th><th>Altura</th><th>Aspecto</th></tr></thead>
+<tbody>
+<tr><td>Cirros</td><td>Alta (&gt;6 km)</td><td>Finos, blancos</td></tr>
+<tr><td>Cúmulos</td><td>Media (2–6 km)</td><td>Algodonosos</td></tr>
+<tr><td>Estratos</td><td>Baja (&lt;2 km)</td><td>Grises y planas</td></tr>
+</tbody></table>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 4: Precipitación -->
+<odeNavStructure>
+  <odePageId>page-scumm-04-precipitacion</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>3. Precipitación</pageName>
+  <odeNavStructureOrder>3</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Fase 3 — Precipitación</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>3. Precipitación</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-04-precipitacion</odePageId>
+      <odeBlockId>block-scumm-04-activity</odeBlockId>
+      <blockName>Fase 3 — Precipitación</blockName>
+      <iconName>icon_activity</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-activity</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-04-precipitacion</odePageId>
+          <odeBlockId>block-scumm-04-activity</odeBlockId>
+          <odeIdeviceId>idevice-scumm-04-activity</odeIdeviceId>
+          <odeIdeviceTypeName>textActivity</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>Cuando las gotas son demasiado pesadas para flotar, <strong>caen</strong>
+por gravedad. Pueden hacerlo como lluvia, nieve o granizo, según la
+temperatura que encuentren al bajar.</p>
+<p><img src="content/img/rain.png" alt="Lluvia pixel art" style="width:144px; height:auto;"></p>
+<div class="exe-block-warning"><p>¡No confundir! Granizo no es lo mismo
+que nieve. El granizo se forma en nubes de tormenta con corrientes
+verticales muy fuertes.</p></div>
+<div class="exe-text-activity">
+  <p>Rellena los huecos: «La <input type="text" data-answer="lluvia"
+  style="min-width:120px" aria-label="tipo de precipitación">
+  cae cuando las nubes ya no pueden sostener las gotas, y se forma a
+  temperaturas superiores a <input type="text" data-answer="0"
+  style="min-width:60px" aria-label="temperatura mínima"> °C».</p>
+  <div class="idevice-buttons">
+    <button type="button" class="idevice-btn" onclick="checkBlanks(this)">Comprobar</button>
+    <button type="button" class="idevice-btn" onclick="resetBlanks(this)">Reiniciar</button>
+  </div>
+</div>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 5: Infiltración -->
+<odeNavStructure>
+  <odePageId>page-scumm-05-infiltracion</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>4. Infiltración</pageName>
+  <odeNavStructureOrder>4</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Fase 4 — Infiltración</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>4. Infiltración</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-05-infiltracion</odePageId>
+      <odeBlockId>block-scumm-05-reflection</odeBlockId>
+      <blockName>Fase 4 — Infiltración</blockName>
+      <iconName>icon_reflection</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-reflection</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-05-infiltracion</odePageId>
+          <odeBlockId>block-scumm-05-reflection</odeBlockId>
+          <odeIdeviceId>idevice-scumm-05-reflection</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>El agua que cae al suelo sigue uno de estos caminos:</p>
+<ul>
+<li>Se <strong>infiltra</strong> entre las rocas hasta formar acuíferos.</li>
+<li>Corre por la superficie como <em>ríos</em> hacia el mar.</li>
+<li>Es absorbida por las <em>plantas</em> y devuelta al aire al respirar.</li>
+</ul>
+<p><img src="content/img/river.png" alt="Río pixel art" style="width:384px; height:auto;"></p>
+<p>Y así, el ciclo vuelve a empezar.</p>
+<div class="exe-block-success"><p>Has completado el recorrido. El agua
+que acaba de caer ya está comenzando un nuevo viaje hacia el cielo.</p></div>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 6: Para debatir en clase -->
+<odeNavStructure>
+  <odePageId>page-scumm-06-debate</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>Para debatir en clase</pageName>
+  <odeNavStructureOrder>5</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Para debatir en clase</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>Para debatir en clase</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-06-debate</odePageId>
+      <odeBlockId>block-scumm-06-discuss</odeBlockId>
+      <blockName>Para debatir en clase</blockName>
+      <iconName>icon_discuss</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-discuss</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-06-debate</odePageId>
+          <odeBlockId>block-scumm-06-discuss</odeBlockId>
+          <odeIdeviceId>idevice-scumm-06-discuss</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>Si el ciclo del agua es cerrado, ¿por qué existe
+<strong>escasez de agua potable</strong> en muchas partes del mundo?
+Pensad en la diferencia entre <em>cantidad total</em> y <em>agua
+accesible y limpia</em>.</p>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+<!-- PÁGINA 7: Créditos y descargas -->
+<odeNavStructure>
+  <odePageId>page-scumm-07-creditos</odePageId>
+  <odeParentPageId></odeParentPageId>
+  <pageName>Créditos y descargas</pageName>
+  <odeNavStructureOrder>6</odeNavStructureOrder>
+  <odeNavStructureProperties>
+    <odeNavStructureProperty><key>titlePage</key><value>Créditos y descargas</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>visibility</key><value>true</value></odeNavStructureProperty>
+    <odeNavStructureProperty><key>titleNode</key><value>Créditos y descargas</value></odeNavStructureProperty>
+  </odeNavStructureProperties>
+  <odePagStructures>
+    <odePagStructure>
+      <odePageId>page-scumm-07-creditos</odePageId>
+      <odeBlockId>block-scumm-07-credits</odeBlockId>
+      <blockName>Créditos</blockName>
+      <iconName>icon_info</iconName>
+      <odePagStructureOrder>1</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-info</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-07-creditos</odePageId>
+          <odeBlockId>block-scumm-07-credits</odeBlockId>
+          <odeIdeviceId>idevice-scumm-07-credits</odeIdeviceId>
+          <odeIdeviceTypeName>freeText</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>Recurso educativo sobre el <strong>ciclo del agua</strong> y tema
+visual <em>SCUMM Adventure</em> para eXeLearning.</p>
+<h3>Autoría</h3>
+<ul><li><strong>Área de Tecnología Educativa</strong> — diseño del
+tema, integración con eXeLearning, contenidos y maquetación.</li></ul>
+<h3>Tipografías</h3>
+<ul>
+<li>LucasArts SCUMM (OTF) — fuente:
+<a href="https://scummbar.com/fonts/" target="_blank" rel="noopener">scummbar.com</a>.
+Uso no comercial, homenaje a LucasArts.</li>
+<li>Fallback: <em>Courier New</em> y monoespaciadas del sistema.</li>
+</ul>
+<h3>Licencia</h3>
+<p>Todo el material se distribuye bajo
+<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"><strong>Creative Commons BY-SA 4.0</strong></a>,
+con los reconocimientos a las tipografías LucasArts originales.</p>
+          ]]></htmlView>
+          <odeComponentsOrder>1</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+    <odePagStructure>
+      <odePageId>page-scumm-07-creditos</odePageId>
+      <odeBlockId>block-scumm-07-download</odeBlockId>
+      <blockName>Descarga el código fuente</blockName>
+      <iconName>icon_activity</iconName>
+      <odePagStructureOrder>2</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty><key>visibility</key><value>true</value></odePagStructureProperty>
+        <odePagStructureProperty><key>cssClass</key><value>iDevice-activity exe-download-package-link</value></odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-scumm-07-creditos</odePageId>
+          <odeBlockId>block-scumm-07-download</odeBlockId>
+          <odeIdeviceId>idevice-scumm-07-download</odeIdeviceId>
+          <odeIdeviceTypeName>downloadPackage</odeIdeviceTypeName>
+          <htmlView><![CDATA[
+<p>Este recurso es <strong>abierto</strong>. Puedes descargarlo,
+editarlo y redistribuirlo respetando la licencia CC BY-SA 4.0.</p>
+<h3>Paquetes disponibles</h3>
+<ul>
+<li><strong>Recurso educativo (.elpx)</strong> — proyecto completo del
+ciclo del agua.<br>
+<a class="idevice-btn" href="https://github.com/ateeducacion/exelearning-style-scumm/releases/latest/download/el-ciclo-del-agua.elpx" download>⬇ Descargar .elpx</a></li>
+<li><strong>Tema SCUMM Adventure (.zip)</strong> — para importar desde
+<em>Herramientas → Gestor de estilos → Importar estilo</em>.<br>
+<a class="idevice-btn" href="https://github.com/ateeducacion/exelearning-style-scumm/releases/latest" target="_blank" rel="noopener">⬇ Descargar tema .zip</a></li>
+<li><strong>Código fuente completo</strong> — repositorio Git.<br>
+<a class="idevice-btn" href="https://github.com/ateeducacion/exelearning-style-scumm" target="_blank" rel="noopener">⬇ Repositorio en GitHub</a></li>
+</ul>
+<h3>Abrir directamente en el navegador</h3>
+<div class="exe-block-info">
+<p><a href="https://static.exelearning.dev/?url=https://github.com/ateeducacion/exelearning-style-scumm/releases/latest/download/el-ciclo-del-agua.elpx" target="_blank" rel="noopener">
+static.exelearning.dev/?url=…/el-ciclo-del-agua.elpx</a></p>
+</div>
+<div class="exe-block-success"><p>Si reutilizas el recurso o el tema,
+mantén el crédito al <strong>Área de Tecnología Educativa</strong> y
+enlaza a este repositorio. ¡Gracias!</p></div>
+          ]]></htmlView>
+          <odeComponentsOrder>2</odeComponentsOrder>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+  </odePagStructures>
+</odeNavStructure>
+
+</odeNavStructures>
+</ode>

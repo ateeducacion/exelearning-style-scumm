@@ -1,0 +1,85 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build theme ZIP and sample .elpx
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: ver
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build theme ZIP (exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip)
+        run: |
+          cd theme
+          # demo.html and README.md stay in-tree for dev, but don't ship in the
+          # style ZIP — eXeLearning only needs config.xml + style.css + style.js
+          # + assets. The style ZIP's root is the contents of theme/ itself.
+          zip -r "../exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip" . \
+            -x "demo.html" "*.DS_Store" "__MACOSX/*"
+
+      - name: Build sample .elpx (el-ciclo-del-agua.elpx)
+        run: |
+          # eXeLearning 3.x ODE .elpx = ZIP with content.xml + content.dtd at
+          # the root plus the content/ media folder. No theme is embedded;
+          # when the user opens the .elpx, they select the SCUMM theme in
+          # "Propiedades → Estilo".
+          zip -r "el-ciclo-del-agua.elpx" \
+            content.xml content.dtd content \
+            -x "*.DS_Store" "__MACOSX/*"
+
+      - name: Publish release assets
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: SCUMM Adventure ${{ steps.ver.outputs.version }}
+          body: |
+            ## SCUMM Adventure — tema eXeLearning
+
+            Tema visual para eXeLearning 3.x inspirado en las aventuras
+            gráficas clásicas de LucasArts (Monkey Island, Maniac Mansion).
+
+            **Artefactos de esta release:**
+
+            - `exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip`
+              Contenido de `theme/` listo para importar desde *Herramientas
+              → Gestor de estilos → Importar estilo*.
+            - `el-ciclo-del-agua.elpx`
+              Recurso de ejemplo sobre el ciclo del agua. Se abre
+              directamente en el runtime estático:
+
+              https://static.exelearning.dev/?url=https://github.com/ateeducacion/exelearning-style-scumm/releases/latest/download/el-ciclo-del-agua.elpx
+
+            Elaborado por el **Área de Tecnología Educativa**.
+          files: |
+            exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip
+            el-ciclo-del-agua.elpx
+          draft: false
+          prerelease: false
+
+      - name: Upload CI artefacts (non-tag builds)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: scumm-${{ steps.ver.outputs.version }}
+          path: |
+            exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip
+            el-ciclo-del-agua.elpx
+          if-no-files-found: error

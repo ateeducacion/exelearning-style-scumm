@@ -1,0 +1,1496 @@
+/*!
+ * =================================================================
+ * SCUMM Adventure — eXeLearning theme
+ * -----------------------------------------------------------------
+ * Autor:        Área de Tecnología Educativa
+ * Versión:      1.0.0
+ * Licencia:     Creative Commons BY-SA 4.0
+ *               http://creativecommons.org/licenses/by-sa/4.0/
+ *
+ * Inspirado en las aventuras gráficas clásicas de LucasArts con
+ * motor SCUMM (Monkey Island, Maniac Mansion). Toda la paleta, los
+ * sprites y las tipografías están empaquetados localmente. Sin CDN,
+ * sin fuentes remotas, sin scripts externos.
+ *
+ * Convenciones (alineadas con los temas "flux" y "universal"):
+ * - Las clases eXeLearning estándar (.exe-content, .box, .box-head,
+ *   .iDevice_buttons, .fx-accordion, .package-header, #siteNav,
+ *   .nav-buttons, #siteFooter, etc.) están estilizadas para encajar
+ *   con el envoltorio de aventura gráfica.
+ * - Modo claro por defecto ("SCUMM de día"). El modo oscuro
+ *   ("SCUMM de noche") se activa añadiendo ".exe-dark-mode" al
+ *   elemento <html> — exactamente como hace el tema universal.
+ * - El botón de cambio (icono de sol) se inyecta desde style.js
+ *   dentro de .package-header con id="darkModeToggler".
+ * =================================================================
+ */
+
+/* ---------------------------------------------------------------- */
+/* TIPOGRAFÍAS SCUMM (100% locales, sin @import remoto)             */
+/* ---------------------------------------------------------------- */
+@font-face {
+    font-family: "ScummSolid";
+    src: url("fonts/lucasarts-scumm-solid.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "ScummMenu";
+    src: url("fonts/lucasarts-scumm-menu.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "ScummMenuSolid";
+    src: url("fonts/lucasarts-scumm-menu-solid.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "ScummRoman";
+    src: url("fonts/lucasarts-scumm-subtitle-roman.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+/* Fallback pixel con cobertura Latin-1 completa (ñ, á, í, ó, ú, ¿, ¡…).
+   Las OTF LucasArts solo cubren inglés/francés/alemán, así que el navegador
+   hace glyph-fallback a VT323 (SIL OFL 1.1) para los caracteres españoles
+   que faltan, manteniendo estética pixel. */
+@font-face {
+    font-family: "ScummPixelFallback";
+    src: url("fonts/VT323-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------------------------------------------------------------- */
+/* VARIABLES CSS — PALETA SCUMM (modo claro por defecto)            */
+/* ---------------------------------------------------------------- */
+:root {
+    /* Cielo / océano / naturaleza — paleta de día */
+    --scumm-sky-top:     #9ed1f5;
+    --scumm-sky-mid:     #74b6ea;
+    --scumm-sky-low:     #ccebff;
+    --scumm-sea-hi:      #4fa6d9;
+    --scumm-sea-mid:     #1e5fa8;
+    --scumm-sea-deep:    #0a2e5c;
+    --scumm-sand:        #e8c878;
+    --scumm-sand-dark:   #b88a3c;
+    --scumm-grass:       #3d8b2e;
+    --scumm-wood:        #6b4423;       /* marco marrón del panel */
+    --scumm-wood-dark:   #3d2710;
+    --scumm-wood-hi:     #d9a54a;       /* esquinas doradas del marco */
+
+    /* UI base (chrome) */
+    --scumm-ink:         #0a0f1a;
+    --scumm-ui-dark:     #1a2338;
+    --scumm-ui-mid:      #2a3a5c;
+    --scumm-ui-hi:       #4a6a9c;
+    --scumm-ui-text:     #132238;
+    --scumm-ui-bright:   #ffffff;
+    --scumm-paper:       #f4e9c4;       /* fondo cajas de diálogo beige */
+    --scumm-paper-dark:  #d8c88a;
+
+    /* Colores de los verbos (ref. sprite sheet pixel art) */
+    --scumm-verb-cyan:   #4ed6d6;
+    --scumm-verb-green:  #6afa6a;
+    --scumm-verb-yellow: #ffd24a;
+    --scumm-verb-idle:   var(--scumm-verb-cyan);
+    --scumm-verb-hover:  var(--scumm-verb-yellow);
+    --scumm-verb-active: var(--scumm-verb-green);
+
+    /* Acentos / feedback */
+    --scumm-accent:      #ffd24a;
+    --scumm-accent-dark: #c79317;
+    --scumm-danger:      #ff6a4a;
+    --scumm-success:     #6ab04a;
+
+    /* Diálogo */
+    --scumm-dialog-bg:     var(--scumm-paper);
+    --scumm-dialog-text:   #211806;
+    --scumm-dialog-narr:   #1e3e5a;
+    --scumm-dialog-player: #1f6b1f;
+    --scumm-dialog-npc:    #8a5a10;
+    --scumm-dialog-item:   #b53a10;
+
+    /* Tipografía. "ScummPixelFallback" (VT323) cubre los caracteres
+       españoles (ñ, á, í, ó, ú, ¿, ¡…) que faltan en las OTF LucasArts. */
+    --scumm-font:         "ScummRoman", "ScummPixelFallback", "Courier New", Courier, monospace;
+    --scumm-font-head:    "ScummSolid", "ScummMenuSolid", "ScummPixelFallback", "Courier New", monospace;
+    --scumm-font-ui:      "ScummMenu", "ScummRoman", "ScummPixelFallback", "Courier New", monospace;
+
+    /* Tamaños */
+    --scumm-fs-body:     16px;
+    --scumm-fs-small:    13px;
+    --scumm-fs-large:    20px;
+    --scumm-fs-title:    28px;
+
+    /* Layout */
+    --scumm-sidebar-w:   280px;
+    --scumm-panel-h:     180px;
+
+    /* Formas — pixel art: sin esquinas redondeadas */
+    --scumm-radius:      0;
+
+    /* Sombras duras (sin blur) */
+    --scumm-shadow-hard: 4px 4px 0 var(--scumm-ink);
+    --scumm-shadow-soft: 2px 2px 0 var(--scumm-ink);
+}
+
+/* Modo oscuro — "SCUMM de noche" (handoff original) */
+html.exe-dark-mode {
+    --scumm-sky-top:     #1a2a5c;
+    --scumm-sky-mid:     #3a6bbf;
+    --scumm-sky-low:     #8ecae6;
+    --scumm-sea-hi:      #1e5fa8;
+    --scumm-sea-mid:     #0a2e5c;
+    --scumm-sea-deep:    #050e20;
+    --scumm-paper:       #0a0f1a;
+    --scumm-paper-dark:  #1a2338;
+    --scumm-ui-text:     #d8e8ff;
+    --scumm-dialog-bg:     #000000;
+    --scumm-dialog-text:   #ffffff;
+    --scumm-dialog-narr:   #b8e3f5;
+    --scumm-dialog-player: #6afa6a;
+    --scumm-dialog-npc:    #ffd24a;
+    --scumm-dialog-item:   #ff9a6a;
+    --scumm-verb-idle:    #a8c8ff;
+    --scumm-shadow-hard: 4px 4px 0 #000;
+    --scumm-shadow-soft: 2px 2px 0 #000;
+}
+
+/* ---------------------------------------------------------------- */
+/* RESET + RENDER PIXEL                                             */
+/* ---------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--scumm-sea-deep);
+    color: var(--scumm-ui-text);
+    font-family: var(--scumm-font);
+    font-size: var(--scumm-fs-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    overflow-x: hidden;
+}
+
+/* Cursor pixel art */
+body { cursor: url("images/cursor.png") 0 0, default; }
+a, button, .nav-btn, .nav-button, .toggler, .box-toggle,
+.scumm-verb, .scumm-inv-slot, #siteNav a, .idevice-btn {
+    cursor: url("images/cursor.png") 0 0, pointer;
+}
+::selection { background: var(--scumm-accent); color: var(--scumm-ink); }
+
+/* ---------------------------------------------------------------- */
+/* ESCENA DE FONDO (cielo + océano + montaña + nubes + sol)         */
+/* ---------------------------------------------------------------- */
+body.exe-export,
+body.exe-web-site,
+body {
+    background:
+        url("images/sky.png") repeat-x 0 0 / auto 40vh,
+        linear-gradient(to bottom,
+            var(--scumm-sky-top) 0%,
+            var(--scumm-sky-mid) 30%,
+            var(--scumm-sky-low) 55%,
+            var(--scumm-sea-hi)  55%,
+            var(--scumm-sea-mid) 70%,
+            var(--scumm-sea-deep) 100%);
+    background-attachment: fixed, fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        url("images/sun.png") no-repeat 85% 8% / 96px 96px,
+        url("images/cloud.png") no-repeat 12% 15% / 240px auto,
+        url("images/cloud.png") no-repeat 62% 22% / 180px auto,
+        url("images/mountain.png") no-repeat 0 calc(55vh - 60px) / 60vw auto,
+        url("images/mountain.png") no-repeat 100% calc(55vh - 40px) / 45vw auto,
+        url("images/ocean.png") repeat-x 0 55vh / 256px auto;
+    animation: scumm-cloud-drift 90s linear infinite;
+}
+@keyframes scumm-cloud-drift {
+    0%   { background-position: 85% 8%, 12% 15%, 62% 22%, 0 calc(55vh - 60px), 100% calc(55vh - 40px), 0 55vh; }
+    100% { background-position: 85% 8%, 120% 15%, 170% 22%, 0 calc(55vh - 60px), 100% calc(55vh - 40px), -256px 55vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+}
+
+/* ---------------------------------------------------------------- */
+/* TIPOGRAFÍA                                                       */
+/* ---------------------------------------------------------------- */
+.exe-content,
+body#tinymce {
+    font-family: var(--scumm-font);
+    font-size: var(--scumm-fs-body);
+    line-height: 1.55;
+    color: var(--scumm-ui-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--scumm-font-head);
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--scumm-accent);
+    text-shadow: 2px 2px 0 var(--scumm-ink);
+    margin: 0.8em 0 0.4em;
+    line-height: 1.2;
+}
+h1 { font-size: var(--scumm-fs-title); }
+h2 { font-size: 22px; color: var(--scumm-dialog-player); }
+h3 { font-size: 19px; color: var(--scumm-dialog-npc); }
+h4 { font-size: 17px; color: var(--scumm-dialog-text); }
+
+p, li, td, th, label, dt, dd, figcaption {
+    color: var(--scumm-dialog-text);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.12);
+}
+html.exe-dark-mode p,
+html.exe-dark-mode li,
+html.exe-dark-mode td,
+html.exe-dark-mode th,
+html.exe-dark-mode label,
+html.exe-dark-mode dt,
+html.exe-dark-mode dd,
+html.exe-dark-mode figcaption {
+    color: var(--scumm-ui-text);
+    text-shadow: 1px 1px 0 var(--scumm-ink);
+}
+
+.exe-content a {
+    color: var(--scumm-dialog-item);
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 1px;
+    transition: none;
+}
+.exe-content a:hover,
+.exe-content a:focus {
+    color: var(--scumm-ink);
+    background: var(--scumm-accent);
+    outline: 2px solid var(--scumm-ink);
+    outline-offset: 0;
+}
+html.exe-dark-mode .exe-content a { color: var(--scumm-accent); }
+
+strong, b { color: var(--scumm-dialog-player); font-weight: normal; }
+em, i    { color: var(--scumm-dialog-item); font-style: normal; }
+code, pre, kbd, samp {
+    font-family: var(--scumm-font-ui);
+    background: var(--scumm-ink);
+    color: var(--scumm-accent);
+    padding: 2px 6px;
+    border: 2px solid var(--scumm-ui-hi);
+}
+
+hr {
+    border: 0;
+    height: 4px;
+    background:
+        linear-gradient(to right,
+            var(--scumm-ink) 0 4px,
+            var(--scumm-ui-hi) 4px 8px,
+            var(--scumm-ink) 8px 12px,
+            var(--scumm-ui-hi) 12px 16px) repeat-x;
+    background-size: 16px 4px;
+    margin: 24px 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* LAYOUT: ESCENA + PANEL INFERIOR                                  */
+/* ---------------------------------------------------------------- */
+.exe-content { position: relative; z-index: 1; }
+
+.exe-export .exe-content,
+.exe-web-site .exe-content,
+main, main.page, .page-content, #main, #contentv {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hueco inferior para el panel SCUMM */
+.exe-content {
+    min-height: calc(100vh - var(--scumm-panel-h));
+    padding-bottom: calc(var(--scumm-panel-h) + 40px);
+}
+
+/* Sidebar: cuando hay navegación (sitio web) */
+.exe-web-site main.page {
+    padding-left: calc(var(--scumm-sidebar-w) + 24px);
+    padding-right: 24px;
+    padding-top: 24px;
+    min-height: calc(100vh - var(--scumm-panel-h));
+}
+.exe-web-site #siteFooter {
+    padding-left: calc(var(--scumm-sidebar-w) + 24px);
+    padding-right: 24px;
+    padding-bottom: calc(var(--scumm-panel-h) + 20px);
+}
+body.siteNav-off.exe-web-site main.page,
+body.siteNav-off.exe-web-site #siteFooter {
+    padding-left: 24px;
+}
+
+/* Exports SCORM / IMS / EPUB: sin sidebar */
+body.exe-scorm main,
+body.exe-ims main,
+body.exe-epub main,
+body.exe-single-page main,
+.exe-export:not(.exe-web-site) main {
+    padding: 24px clamp(16px, 5vw, 60px);
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* CABECERA DE PROYECTO / PÁGINA (diálogo narrador)                 */
+/* ---------------------------------------------------------------- */
+.exe-content .package-header,
+.main-header {
+    background: var(--scumm-dialog-bg);
+    border: 4px solid var(--scumm-ink);
+    box-shadow:
+        inset 0 0 0 2px var(--scumm-ui-hi),
+        var(--scumm-shadow-soft);
+    padding: 18px 24px;
+    margin: 0 0 28px;
+    position: relative;
+}
+.exe-content .package-header::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border: 2px solid var(--scumm-wood-hi);
+    pointer-events: none;
+}
+.exe-content .package-title {
+    margin: 0 0 6px;
+    font-family: var(--scumm-font-head);
+    font-size: 16px;
+    color: var(--scumm-dialog-narr);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+}
+.exe-content .package-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: var(--scumm-dialog-text);
+    opacity: 0.9;
+}
+.exe-content .page-header {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 4px double var(--scumm-ui-hi);
+}
+.exe-content .page-title {
+    margin: 0;
+    font-family: var(--scumm-font-head);
+    font-size: var(--scumm-fs-title);
+    color: var(--scumm-accent);
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 var(--scumm-ink);
+    line-height: 1.15;
+}
+.exe-content .page-title::before {
+    content: "▸ ";
+    color: var(--scumm-dialog-player);
+}
+
+/* ---------------------------------------------------------------- */
+/* CAJA iDEVICE = CARTEL / DIÁLOGO SCUMM                            */
+/* ---------------------------------------------------------------- */
+.exe-content .box,
+.exe-content .iDevice,
+.exe-content article.box {
+    background: var(--scumm-dialog-bg);
+    border: 4px solid var(--scumm-ink);
+    box-shadow:
+        inset 0 0 0 2px var(--scumm-wood-hi),
+        var(--scumm-shadow-hard);
+    margin: 0 0 36px;
+    padding: 0;
+    position: relative;
+    border-radius: var(--scumm-radius);
+}
+.exe-content .box::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border: 2px solid var(--scumm-wood);
+    pointer-events: none;
+}
+/* remaches de las esquinas */
+.exe-content .box::after {
+    content: "";
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 0 0,     var(--scumm-accent) 3px, transparent 3.5px) 0 0 / 100% 100% no-repeat,
+        radial-gradient(circle at 100% 0,  var(--scumm-accent) 3px, transparent 3.5px) 0 0 / 100% 100% no-repeat,
+        radial-gradient(circle at 0 100%,  var(--scumm-accent) 3px, transparent 3.5px) 0 0 / 100% 100% no-repeat,
+        radial-gradient(circle at 100% 100%, var(--scumm-accent) 3px, transparent 3.5px) 0 0 / 100% 100% no-repeat;
+}
+
+.exe-content .box-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 50px 10px 20px;
+    background:
+        linear-gradient(to bottom,
+            var(--scumm-wood) 0 50%,
+            var(--scumm-wood-dark) 50% 100%);
+    border-bottom: 4px solid var(--scumm-ink);
+    position: relative;
+    min-height: 60px;
+}
+.exe-content .box-head.no-icon { padding-left: 20px; }
+
+.exe-content .box-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    background: var(--scumm-ink);
+    border: 2px solid var(--scumm-wood-hi);
+    padding: 2px;
+    image-rendering: pixelated;
+    display: inline-block;
+}
+.exe-content .box-icon img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    border: 0;
+    box-shadow: none;
+    scale: 1;
+}
+
+.exe-content .box-title,
+.exe-content .box-head h2 {
+    margin: 0;
+    font-family: var(--scumm-font-head);
+    font-size: var(--scumm-fs-large);
+    color: var(--scumm-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 0 var(--scumm-ink);
+    padding: 0;
+    line-height: 1.2;
+}
+.exe-content .box-title::before { content: "« "; color: var(--scumm-ui-bright); }
+.exe-content .box-title::after  { content: " »"; color: var(--scumm-ui-bright); }
+
+/* Botón plegar/desplegar iDevice */
+.exe-content .box-head .box-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: var(--scumm-accent);
+    border: 2px solid var(--scumm-ink);
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+    color: var(--scumm-ink);
+    font-family: var(--scumm-font-head);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    border-radius: 0;
+    transition: none;
+}
+.exe-content .box-head .box-toggle:hover { background: var(--scumm-ui-bright); }
+.exe-content .box-head .box-toggle:active {
+    box-shadow: inset 2px 2px 0 var(--scumm-sand-dark), inset -2px -2px 0 #fff5c2;
+    transform: translate(1px, 1px);
+}
+.exe-content .box-head .box-toggle span {
+    position: absolute; clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+.exe-content .box-head .box-toggle::after { content: "−"; display: block; }
+.exe-content .box.minimized .box-head .box-toggle::after,
+.exe-content .box.collapsed .box-head .box-toggle::after { content: "+"; }
+.exe-content .box.minimized .box-content,
+.exe-content .box.collapsed .box-content { display: none; }
+.exe-content .box.minimized { box-shadow: var(--scumm-shadow-soft); }
+.exe-content .box.minimized .box-head { border-bottom-width: 2px; }
+
+.exe-content .box-content {
+    padding: 20px 24px;
+    background: var(--scumm-dialog-bg);
+    color: var(--scumm-dialog-text);
+    font-size: var(--scumm-fs-body);
+    line-height: 1.6;
+    border: 0;
+}
+.exe-content .box-content > p:first-child,
+.exe-content .box-content > p:first-of-type { margin-top: 0; }
+.exe-content .box-content > p:last-child { margin-bottom: 0; }
+.exe-content .box-content > p:first-of-type::before {
+    content: "> ";
+    color: var(--scumm-dialog-player);
+    font-weight: bold;
+}
+
+/* iDevices sin cabecera */
+.exe-content .box.no-header:not(:has(.box-toggle)) .box-head { display: none; }
+.exe-content .box.no-header:not(:has(.box-toggle)) .box-content { border-top: 0; }
+
+/* Iconos de iDevice con estilo específico cuando no hay img */
+.exe-content article.box.iDevice-info   > .box-head .box-icon { background-image: url("images/icon_info.png"); background-size: cover; }
+.exe-content article.box.iDevice-think  > .box-head .box-icon,
+.exe-content article.box.iDevice-reflection > .box-head .box-icon { background-image: url("images/icon_think.png"); background-size: cover; }
+.exe-content article.box.iDevice-activity > .box-head .box-icon { background-image: url("images/icon_activity.png"); background-size: cover; }
+.exe-content article.box.iDevice-observe > .box-head .box-icon { background-image: url("images/icon_observe.png"); background-size: cover; }
+.exe-content article.box.iDevice-alert   > .box-head .box-icon { background-image: url("images/icon_alert.png"); background-size: cover; }
+.exe-content article.box.iDevice-discuss > .box-head .box-icon { background-image: url("images/icon_discuss.png"); background-size: cover; }
+
+/* ---------------------------------------------------------------- */
+/* BLOQUES DE AVISO                                                 */
+/* ---------------------------------------------------------------- */
+.exe-block-info, .exe-block-warning, .exe-block-danger,
+.exe-block-success, .exe-block-alert {
+    padding: 14px 18px;
+    margin: 20px 0;
+    border: 3px solid var(--scumm-ink);
+    box-shadow: var(--scumm-shadow-soft);
+    position: relative;
+    font-size: var(--scumm-fs-body);
+    color: var(--scumm-dialog-text);
+}
+.exe-block-info    { background: #dfefff; border-color: var(--scumm-sea-hi); }
+.exe-block-success { background: #e4f7d9; border-color: var(--scumm-success); }
+.exe-block-warning { background: #fff2c0; border-color: var(--scumm-accent-dark); }
+.exe-block-danger,
+.exe-block-alert   { background: #ffd8cf; border-color: var(--scumm-danger); }
+
+html.exe-dark-mode .exe-block-info    { background: #142a48; color: var(--scumm-ui-text); }
+html.exe-dark-mode .exe-block-success { background: #1e5420; color: var(--scumm-ui-text); }
+html.exe-dark-mode .exe-block-warning { background: #7a5a24; color: var(--scumm-ui-text); }
+html.exe-dark-mode .exe-block-danger,
+html.exe-dark-mode .exe-block-alert   { background: #5a1818; color: var(--scumm-ui-text); }
+
+.exe-block-info::before,
+.exe-block-warning::before,
+.exe-block-danger::before,
+.exe-block-alert::before,
+.exe-block-success::before {
+    display: block;
+    font-family: var(--scumm-font-head);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+.exe-block-info::before    { content: "⌬ INFO";      color: var(--scumm-sea-mid); }
+.exe-block-warning::before { content: "⚠ AVISO";     color: var(--scumm-accent-dark); }
+.exe-block-danger::before  { content: "☠ PELIGRO";   color: var(--scumm-danger); }
+.exe-block-alert::before   { content: "! ALERTA";    color: var(--scumm-danger); }
+.exe-block-success::before { content: "✓ LOGRADO";   color: var(--scumm-success); }
+
+/* ---------------------------------------------------------------- */
+/* CITAS                                                            */
+/* ---------------------------------------------------------------- */
+blockquote,
+.exe-content .styled-qc {
+    background: var(--scumm-dialog-bg);
+    border: 3px solid var(--scumm-dialog-narr);
+    color: var(--scumm-dialog-narr);
+    padding: 16px 22px 16px 56px;
+    margin: 24px 0;
+    font-family: var(--scumm-font);
+    font-style: normal;
+    position: relative;
+    box-shadow: var(--scumm-shadow-soft);
+}
+blockquote::before,
+.exe-content .styled-qc::before {
+    content: "\201C";
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    font-size: 48px;
+    color: var(--scumm-accent);
+    font-family: var(--scumm-font-head);
+    line-height: 1;
+}
+blockquote cite,
+.exe-content .styled-qc cite {
+    display: block;
+    text-align: right;
+    color: var(--scumm-dialog-player);
+    font-size: 13px;
+    margin-top: 8px;
+    font-style: normal;
+}
+blockquote cite::before,
+.exe-content .styled-qc cite::before { content: "— "; }
+
+/* ---------------------------------------------------------------- */
+/* TABLAS                                                           */
+/* ---------------------------------------------------------------- */
+.exe-content table,
+.exe-content .exe-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 3px solid var(--scumm-ink);
+    box-shadow: inset 0 0 0 2px var(--scumm-wood-hi);
+    background: var(--scumm-paper-dark);
+    margin: 20px 0;
+    font-size: 14px;
+}
+.exe-content .exe-table caption {
+    caption-side: top;
+    padding: 8px 0 10px;
+    color: var(--scumm-accent);
+    font-family: var(--scumm-font-head);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+}
+.exe-content .exe-table thead {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+}
+.exe-content .exe-table thead th {
+    padding: 10px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--scumm-ink);
+    text-shadow: none;
+    border: 2px solid var(--scumm-ink);
+    font-weight: normal;
+    font-family: var(--scumm-font-head);
+}
+.exe-content .exe-table td,
+.exe-content .exe-table th {
+    padding: 10px 12px;
+    border: 2px solid var(--scumm-ink);
+    color: var(--scumm-dialog-text);
+    background: var(--scumm-paper);
+}
+.exe-content .exe-table tbody tr:nth-child(2n-1) td {
+    background: var(--scumm-paper-dark);
+}
+html.exe-dark-mode .exe-content .exe-table td,
+html.exe-dark-mode .exe-content .exe-table th { color: var(--scumm-ui-text); background: var(--scumm-ui-dark); }
+html.exe-dark-mode .exe-content .exe-table tbody tr:nth-child(2n-1) td { background: var(--scumm-ui-mid); }
+
+/* ---------------------------------------------------------------- */
+/* IMÁGENES DEL CONTENIDO                                           */
+/* ---------------------------------------------------------------- */
+.exe-content .page-content img,
+.exe-content .box-content img,
+.exe-content .iDevice_content img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    border: 3px solid var(--scumm-ink);
+    box-shadow: var(--scumm-shadow-soft);
+}
+
+/* ---------------------------------------------------------------- */
+/* BOTONES iDEVICE                                                  */
+/* ---------------------------------------------------------------- */
+.exe-content .iDevice_buttons,
+.exe-content .idevice-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 2px dashed var(--scumm-ui-hi);
+}
+.exe-content .iDevice_buttons input[type="button"],
+.exe-content .iDevice_buttons input[type="submit"],
+.exe-content .iDevice_buttons button,
+.exe-content .idevice-btn,
+.exe-content button.idevice-btn {
+    font-family: var(--scumm-font-head);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--scumm-ink);
+    background: var(--scumm-accent);
+    border: 3px solid var(--scumm-ink);
+    box-shadow:
+        inset -3px -3px 0 var(--scumm-sand-dark),
+        inset  3px  3px 0 #fff5c2,
+        var(--scumm-shadow-soft);
+    padding: 10px 18px;
+    text-shadow: none;
+    transition: none;
+    border-radius: 0;
+}
+.exe-content .iDevice_buttons input[type="button"]:hover,
+.exe-content .iDevice_buttons input[type="submit"]:hover,
+.exe-content .iDevice_buttons button:hover,
+.exe-content .idevice-btn:hover {
+    background: var(--scumm-ui-bright);
+    color: var(--scumm-ink);
+}
+.exe-content .iDevice_buttons input[type="button"]:active,
+.exe-content .iDevice_buttons input[type="submit"]:active,
+.exe-content .iDevice_buttons button:active,
+.exe-content .idevice-btn:active {
+    box-shadow:
+        inset  3px  3px 0 var(--scumm-sand-dark),
+        inset -3px -3px 0 #fff5c2,
+        1px 1px 0 var(--scumm-ink);
+    transform: translate(1px, 1px);
+}
+
+/* ---------------------------------------------------------------- */
+/* FORMULARIOS                                                      */
+/* ---------------------------------------------------------------- */
+.exe-content input[type="text"],
+.exe-content input[type="number"],
+.exe-content input[type="email"],
+.exe-content input[type="password"],
+.exe-content input[type="search"],
+.exe-content textarea,
+.exe-content select {
+    font-family: var(--scumm-font-ui);
+    font-size: 14px;
+    color: var(--scumm-accent);
+    background: var(--scumm-ink);
+    border: 3px solid var(--scumm-ui-hi);
+    padding: 8px 12px;
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.5);
+    min-width: 140px;
+    border-radius: 0;
+}
+.exe-content input:focus,
+.exe-content textarea:focus,
+.exe-content select:focus {
+    outline: 0;
+    border-color: var(--scumm-accent);
+    background: var(--scumm-ui-dark);
+}
+.exe-content .exe-text-activity input.correct,
+.exe-content input.correct {
+    border-color: var(--scumm-success);
+    color: #cfffbf;
+    background: #082a10;
+}
+.exe-content .exe-text-activity input.incorrect,
+.exe-content input.incorrect {
+    border-color: var(--scumm-danger);
+    color: #ffd2c9;
+    background: #3a0a0a;
+}
+
+/* ---------------------------------------------------------------- */
+/* NAVEGACIÓN LATERAL (#siteNav) — estilo "menú SCUMM"              */
+/* ---------------------------------------------------------------- */
+#skipNav {
+    position: absolute; top: -999px; left: 0;
+    background: var(--scumm-accent); color: var(--scumm-ink);
+    padding: 8px 12px; z-index: 999;
+}
+#skipNav:focus { top: 4px; }
+
+#siteNav, nav.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--scumm-sidebar-w);
+    background: var(--scumm-wood-dark);
+    border-right: 4px solid var(--scumm-ink);
+    box-shadow: inset -4px 0 0 var(--scumm-wood-hi);
+    padding: 64px 0 calc(var(--scumm-panel-h) + 16px);
+    overflow-y: auto;
+    z-index: 30;
+    font-family: var(--scumm-font-ui);
+    transition: transform 0.15s steps(3);
+}
+#siteNav::before {
+    content: "◆ MAPA ◆";
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--scumm-accent);
+    font-family: var(--scumm-font-head);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--scumm-wood-hi);
+}
+#siteNav ul, #siteNav li { list-style: none; margin: 0; padding: 0; }
+#siteNav li { border-bottom: 2px solid var(--scumm-ink); }
+#siteNav a {
+    display: block;
+    padding: 10px 14px 10px 28px;
+    color: var(--scumm-verb-idle);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    position: relative;
+    background: var(--scumm-wood-dark);
+    text-decoration: none;
+    border: 0;
+}
+#siteNav a::before {
+    content: "›";
+    position: absolute;
+    left: 10px;
+    color: var(--scumm-wood-hi);
+    font-weight: bold;
+}
+#siteNav a:hover,
+#siteNav a:focus {
+    color: var(--scumm-verb-hover);
+    background: var(--scumm-wood);
+    outline: none;
+}
+#siteNav a.active {
+    color: var(--scumm-ink);
+    background: var(--scumm-accent);
+}
+#siteNav a.active::before { color: var(--scumm-ink); }
+#siteNav a.highlighted-link { background: var(--scumm-wood); color: var(--scumm-accent); }
+#siteNav ul ul a { padding-left: 42px; font-size: 13px; }
+#siteNav ul ul ul a { padding-left: 56px; font-size: 12px; }
+
+/* Toggle ocultar/mostrar sidebar (.siteNav-off igual que flux/universal) */
+body.siteNav-off #siteNav { transform: translateX(-100%); }
+body.siteNav-off.exe-web-site main.page,
+body.siteNav-off.exe-web-site #siteFooter { padding-left: 24px; }
+
+/* ---------------------------------------------------------------- */
+/* BOTONES FIJOS DE CABECERA (menú, anterior, siguiente, sol)       */
+/* ---------------------------------------------------------------- */
+.nav-buttons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: var(--scumm-wood-dark);
+    border-bottom: 4px solid var(--scumm-ink);
+    z-index: 40;
+}
+.nav-buttons a,
+.nav-buttons span.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    height: 34px;
+    padding: 0 14px;
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+    text-decoration: none;
+    border: 2px solid var(--scumm-ink);
+    font-family: var(--scumm-font-head);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+}
+.nav-buttons .nav-button-left  { right: 200px; }
+.nav-buttons .nav-button-right { right: 10px;  }
+.nav-buttons a:hover,
+.nav-buttons a:focus {
+    background: var(--scumm-ui-bright);
+    outline: none;
+}
+.nav-buttons span.nav-button {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+/* Toggler menú (hamburguesa) — replica la lógica del tema universal */
+button.toggler {
+    position: fixed;
+    border: 0;
+    background-color: var(--scumm-accent);
+    color: var(--scumm-ink);
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+    border: 2px solid var(--scumm-ink);
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 50;
+    image-rendering: pixelated;
+    border-radius: 0;
+}
+button.toggler span {
+    position: absolute; clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+#siteNavToggler {
+    top: 6px;
+    left: 10px;
+    background:
+        linear-gradient(to bottom,
+            var(--scumm-ink) 0 6px,
+            transparent 6px 14px,
+            var(--scumm-ink) 14px 20px,
+            transparent 20px 28px,
+            var(--scumm-ink) 28px 34px) no-repeat 8px center / 24px 34px,
+        var(--scumm-accent);
+}
+#searchBarTogger {
+    top: 6px;
+    left: 56px;
+    background: var(--scumm-accent) url("images/icon_observe.png") no-repeat center / 24px;
+}
+
+/* El botón de modo oscuro — icono de sol (inspirado en el tema universal) */
+#darkModeToggler {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--scumm-accent);
+    background-image: url("images/sun.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+    border: 2px solid var(--scumm-ink);
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+    padding: 0;
+    cursor: inherit;
+    z-index: 20;
+    image-rendering: pixelated;
+    border-radius: 0;
+}
+#darkModeToggler:hover,
+#darkModeToggler:focus { background-color: var(--scumm-ui-bright); outline: none; }
+#darkModeToggler span {
+    position: absolute; clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+/* En modo oscuro: el sol se atenúa (hay "luna") */
+html.exe-dark-mode #darkModeToggler {
+    background-color: var(--scumm-ui-dark);
+    filter: grayscale(0.5) brightness(0.95);
+}
+.exe-web-site #darkModeToggler {
+    position: fixed;
+    top: 6px;
+    right: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+/* NAVEGACIÓN INFERIOR (prev/next dentro del contenido)             */
+/* ---------------------------------------------------------------- */
+.page-content .nav-buttons,
+.exe-content > .nav-buttons {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: auto;
+    margin: 40px 0 20px;
+    padding: 18px 0;
+    background: transparent;
+    border: 0;
+    border-top: 4px double var(--scumm-wood-hi);
+    gap: 16px;
+}
+.page-content .nav-buttons a,
+.page-content .nav-buttons span.nav-button,
+.exe-content > .nav-buttons a,
+.exe-content > .nav-buttons span.nav-button {
+    position: static;
+    top: auto;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: var(--scumm-wood);
+    color: var(--scumm-paper);
+    border: 3px solid var(--scumm-ink);
+    box-shadow:
+        var(--scumm-shadow-soft),
+        inset 0 0 0 2px var(--scumm-wood-hi);
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    max-width: 48%;
+}
+.page-content .nav-buttons a:hover,
+.exe-content > .nav-buttons a:hover {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+}
+.page-content .nav-buttons .nav-button-left::before,
+.exe-content > .nav-buttons .nav-button-left::before { content: "◂  "; color: var(--scumm-accent); }
+.page-content .nav-buttons .nav-button-right::after,
+.exe-content > .nav-buttons .nav-button-right::after { content: "  ▸"; color: var(--scumm-accent); }
+
+/* ---------------------------------------------------------------- */
+/* PIE DE PÁGINA + BADGE "Creado con eXeLearning"                   */
+/* ---------------------------------------------------------------- */
+#siteFooter {
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--scumm-wood-dark);
+    border: 3px solid var(--scumm-ink);
+    box-shadow: inset 0 0 0 2px var(--scumm-wood-hi);
+    color: var(--scumm-paper);
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+#siteFooter a { color: var(--scumm-accent); border-bottom-color: var(--scumm-accent); }
+#made-with-eXe {
+    display: inline-block;
+    margin: 16px 0 0;
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+    border: 3px solid var(--scumm-ink);
+    font-family: var(--scumm-font-head);
+    font-size: 11px;
+    padding: 0;
+}
+#made-with-eXe a {
+    display: inline-block;
+    padding: 6px 10px;
+    color: var(--scumm-ink);
+    background: transparent;
+    border: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* Licencia (flux/universal usan licenses.gif; aquí lo simplificamos) */
+#packageLicense {
+    text-align: left;
+    font-size: 0.9em;
+    line-height: 1.3;
+    margin: 1em 0;
+}
+#packageLicense a { color: var(--scumm-accent); }
+#packageLicense.propietary {
+    position: absolute; overflow: hidden;
+    clip: rect(0,0,0,0); height: 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* DESCARGA DE PAQUETE (iDevice downloadPackage)                    */
+/* ---------------------------------------------------------------- */
+.exe-content .exe-download-package-link .idevice-btn,
+.exe-content .exe-download-package-link a.idevice-btn {
+    display: inline-block;
+    margin: 4px 8px 4px 0;
+    text-decoration: none;
+    border-bottom: 0;
+}
+.exe-content .exe-download-package-link a:hover,
+.exe-content .exe-download-package-link a:focus {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+    outline: 2px solid var(--scumm-ink);
+}
+.exe-content .exe-download-package-link ul {
+    list-style: none;
+    padding-left: 0;
+}
+.exe-content .exe-download-package-link ul li {
+    padding: 10px 0;
+    border-bottom: 2px dashed var(--scumm-ui-hi);
+}
+.exe-content .exe-download-package-link ul li:last-child { border-bottom: 0; }
+
+/* ---------------------------------------------------------------- */
+/* EFECTOS (acordeón, pestañas, paginación) — reinterpretados       */
+/* ---------------------------------------------------------------- */
+.exe-content .exe-accordion {
+    border: 3px solid var(--scumm-ink);
+    box-shadow: inset 0 0 0 2px var(--scumm-wood-hi);
+    margin: 20px 0;
+}
+.exe-content .fx-accordion-title {
+    background: var(--scumm-wood);
+    color: var(--scumm-paper);
+    padding: 12px 16px;
+    border: 0;
+    border-bottom: 3px solid var(--scumm-ink);
+    font-family: var(--scumm-font-head);
+    text-transform: uppercase;
+    position: relative;
+    cursor: inherit;
+}
+.exe-content .fx-accordion-title::after {
+    content: "▾";
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    color: var(--scumm-accent);
+    font-family: var(--scumm-font-head);
+    transition: none;
+}
+.exe-content .fx-accordion-title.active::after { content: "▴"; }
+.exe-content .fx-accordion-title.active {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+}
+.exe-content .fx-accordion-title h2 {
+    color: inherit;
+    text-shadow: none;
+    margin: 0;
+    font-size: 16px;
+}
+.exe-content .fx-accordion-content {
+    background: var(--scumm-paper);
+    color: var(--scumm-dialog-text);
+    padding: 16px;
+}
+
+.exe-content .fx-pagination .fx-current a,
+.exe-content .fx-pagination a[aria-current="page"] {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+}
+.exe-content .fx-pagination a {
+    background: var(--scumm-wood);
+    color: var(--scumm-paper);
+    border: 2px solid var(--scumm-ink);
+    padding: 4px 10px;
+    margin: 2px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* PANEL SCUMM: VERBOS + FRASE + INVENTARIO + BRÚJULA               */
+/* (inyectado desde style.js — ver buildScummPanel)                 */
+/* ---------------------------------------------------------------- */
+.scumm-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--scumm-panel-h);
+    max-height: var(--scumm-panel-h);
+    z-index: 35;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background: var(--scumm-wood-dark);
+    border-top: 4px solid var(--scumm-ink);
+    box-shadow:
+        inset 0 4px 0 var(--scumm-wood-hi),
+        inset 0 8px 0 var(--scumm-ink);
+    font-family: var(--scumm-font-ui);
+    user-select: none;
+    color: var(--scumm-paper);
+}
+
+/* Verbos */
+.scumm-verbs {
+    padding: 14px 14px 12px 20px;
+    border-right: 4px solid var(--scumm-wood-hi);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: min-content;
+    gap: 4px 12px;
+    align-content: start;
+    background: var(--scumm-ink);
+    position: relative;
+}
+.scumm-verbs::before {
+    content: "";
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 2px solid var(--scumm-wood-hi);
+    pointer-events: none;
+}
+.scumm-verb {
+    background: transparent;
+    color: var(--scumm-verb-idle);
+    border: 0;
+    box-shadow: none;
+    font-family: var(--scumm-font-head);
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 3px 2px;
+    letter-spacing: 0.04em;
+    cursor: inherit;
+    text-shadow: 2px 2px 0 var(--scumm-ink);
+    line-height: 1.15;
+}
+.scumm-verb:hover {
+    color: var(--scumm-verb-hover);
+    background: transparent;
+    box-shadow: none;
+}
+.scumm-verb.is-active {
+    color: var(--scumm-verb-active);
+}
+.scumm-verb.is-active::before {
+    content: "▸ ";
+    color: var(--scumm-verb-active);
+}
+
+/* Frase + inventario */
+.scumm-middle {
+    display: flex;
+    flex-direction: column;
+    border-right: 4px solid var(--scumm-wood-hi);
+    background: var(--scumm-ink);
+}
+.scumm-sentence {
+    padding: 10px 16px;
+    background: var(--scumm-ink);
+    color: var(--scumm-accent);
+    border-bottom: 2px solid var(--scumm-wood-hi);
+    font-family: var(--scumm-font-head);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+.scumm-sentence .verb   { color: var(--scumm-verb-active); }
+.scumm-sentence .target { color: var(--scumm-verb-hover); margin-left: 8px; }
+.scumm-sentence .prep   { color: var(--scumm-verb-idle);  margin: 0 8px; }
+.scumm-sentence .blink::after {
+    content: "_";
+    animation: scumm-blink 0.8s steps(2) infinite;
+    color: var(--scumm-accent);
+}
+@keyframes scumm-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .scumm-sentence .blink::after { animation: none; }
+}
+
+.scumm-inventory {
+    flex: 1;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    overflow-y: auto;
+    min-height: 0;
+    background: var(--scumm-wood-dark);
+}
+.scumm-inv-slot {
+    background: url("images/inventory_slot.png") no-repeat center / 100% 100%;
+    background-color: var(--scumm-wood);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 40px;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: inherit;
+    position: relative;
+    image-rendering: pixelated;
+    border-radius: 0;
+}
+.scumm-inv-slot img {
+    width: 70%;
+    height: 70%;
+    image-rendering: pixelated;
+    border: 0;
+    box-shadow: none;
+}
+.scumm-inv-slot:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--scumm-ink);
+    color: var(--scumm-accent);
+    font-size: 11px;
+    padding: 3px 6px;
+    white-space: nowrap;
+    border: 2px solid var(--scumm-wood-hi);
+}
+.scumm-inv-slot.is-selected {
+    outline: 2px solid var(--scumm-accent);
+    outline-offset: -2px;
+}
+
+/* Brújula (flechas) */
+.scumm-compass {
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    align-items: center;
+    justify-items: center;
+    background: var(--scumm-ink);
+}
+.scumm-compass .arrow {
+    background: var(--scumm-wood);
+    color: var(--scumm-accent);
+    border: 2px solid var(--scumm-ink);
+    width: 100%;
+    height: 100%;
+    font-family: var(--scumm-font-head);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: inherit;
+    min-height: 28px;
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-wood-dark),
+        inset  2px  2px 0 var(--scumm-wood-hi);
+    border-radius: 0;
+}
+.scumm-compass .arrow:hover {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+}
+.scumm-compass .arrow.spacer {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* ---------------------------------------------------------------- */
+/* BARRA DE BÚSQUEDA                                                */
+/* ---------------------------------------------------------------- */
+#exe-client-search {
+    max-width: 1280px;
+    margin: 10px auto 0;
+    padding: 12px;
+    background: var(--scumm-wood);
+    border: 3px solid var(--scumm-ink);
+    box-shadow: inset 0 0 0 2px var(--scumm-wood-hi);
+    display: none;
+    text-align: center;
+}
+.exe-search-on #exe-client-search { display: block; }
+#exe-client-search-text {
+    display: inline-block;
+    max-width: 600px;
+    width: calc(100% - 120px);
+}
+
+/* ---------------------------------------------------------------- */
+/* IFRAME (embebido en LMS)                                         */
+/* ---------------------------------------------------------------- */
+body.in-iframe .scumm-panel { position: sticky; }
+body.in-iframe #darkModeToggler { position: absolute; }
+
+/* ---------------------------------------------------------------- */
+/* RESPONSIVE                                                       */
+/* ---------------------------------------------------------------- */
+@media (max-width: 992px) {
+    :root { --scumm-panel-h: 220px; }
+    .nav-buttons .nav-button-left  { right: 180px; }
+}
+
+@media (max-width: 768px) {
+    :root { --scumm-sidebar-w: 0px; --scumm-panel-h: 240px; }
+    .exe-web-site main.page,
+    .exe-web-site #siteFooter,
+    .exe-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    #siteNav { transform: translateX(-100%); width: 260px; }
+    body.siteNav-on #siteNav { transform: translateX(0); }
+    .scumm-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+        max-height: 60vh;
+    }
+    .scumm-verbs {
+        border-right: 0;
+        border-bottom: 3px solid var(--scumm-wood-hi);
+    }
+    .scumm-middle { border-right: 0; border-bottom: 3px solid var(--scumm-wood-hi); }
+    .scumm-inventory { grid-template-columns: repeat(6, 1fr); max-height: 120px; }
+    .scumm-compass { display: none; }
+}
+
+@media (max-width: 560px) {
+    :root { --scumm-fs-body: 15px; --scumm-fs-title: 22px; --scumm-panel-h: 260px; }
+    .scumm-verbs { grid-template-columns: repeat(2, 1fr); font-size: 13px; }
+    .scumm-inventory { grid-template-columns: repeat(5, 1fr); }
+    .exe-content .box-head { flex-wrap: wrap; padding: 12px 14px; }
+    .exe-content .box-title { font-size: 17px; }
+}
+
+/* ---------------------------------------------------------------- */
+/* IMPRESIÓN                                                        */
+/* ---------------------------------------------------------------- */
+@media print {
+    body { background: #fff !important; color: #000 !important; }
+    body::before,
+    .scumm-panel,
+    #siteNav,
+    .nav-buttons,
+    .toggler,
+    #darkModeToggler,
+    #made-with-eXe,
+    #exe-client-search { display: none !important; }
+    .exe-content { padding: 0 !important; min-height: auto; }
+    .exe-content .box,
+    .exe-content .iDevice {
+        background: #fff !important;
+        color: #000 !important;
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+    .exe-content .box::before,
+    .exe-content .box::after { display: none !important; }
+    .exe-content .box-head { background: #eee !important; }
+    .exe-content .box-title,
+    .exe-content .page-title,
+    .exe-content h1, .exe-content h2, .exe-content h3 {
+        color: #000 !important;
+        text-shadow: none !important;
+    }
+    .exe-content p, .exe-content li { color: #000 !important; text-shadow: none !important; }
+}

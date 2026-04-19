@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Ciclo del Agua — Aventura Gráfica Educativa</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="images/sun.png">
+</head>
+<body class="exe-export exe-web-site">
+
+<!-- Top-right nav buttons (prev/next/menu) -->
+<div class="nav-fixed nav-fixed-tl">
+    <button class="nav-btn" type="button" id="btnMenu" title="Menú">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none"><path d="M4 6h16M4 12h16M4 18h16"/></g>
+        </svg>
+    </button>
+</div>
+<div class="nav-fixed nav-fixed-tr">
+    <button class="nav-btn" type="button" title="Anterior" onclick="goToPage(-1)">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 6l-6 6 6 6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <button class="nav-btn" type="button" title="Siguiente" onclick="goToPage(1)">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</div>
+
+<!-- Sidebar navigation -->
+<nav id="siteNav" aria-label="Mapa del ciclo">
+    <ul>
+        <li><a href="#inicio" class="no-ch active" data-page="inicio">Inicio</a></li>
+        <li><a href="#evaporacion" class="daddy" data-page="evaporacion">1. Evaporación</a>
+            <ul>
+                <li><a href="#evap-sol" class="no-ch" data-page="evap-sol">1.1 El Sol</a></li>
+                <li><a href="#evap-mar" class="no-ch" data-page="evap-mar">1.2 Mares y océanos</a></li>
+            </ul>
+        </li>
+        <li><a href="#condensacion" class="no-ch" data-page="condensacion">2. Condensación</a></li>
+        <li><a href="#precipitacion" class="no-ch" data-page="precipitacion">3. Precipitación</a></li>
+        <li><a href="#infiltracion" class="no-ch" data-page="infiltracion">4. Infiltración</a></li>
+        <li><a href="#glosario" class="no-ch" data-page="glosario">Glosario</a></li>
+        <li><a href="#actividad" class="no-ch" data-page="actividad">Actividad final</a></li>
+    </ul>
+</nav>
+
+<!-- Main scene -->
+<main class="page" id="mainScene">
+
+    <header class="main-header">
+        <div class="package-header">
+            <p class="package-title">LECCIÓN 03 · CIENCIAS DE LA NATURALEZA</p>
+        </div>
+        <div class="page-header">
+            <h1 class="page-title" id="pageTitle">El Ciclo del Agua</h1>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <!-- Cartel introductorio (diálogo narrador) -->
+        <article class="box iDevice-info">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_info.png" alt="">
+                <h2 class="box-title">Bienvenido, aventurero</h2>
+                <button class="box-toggle" type="button" title="Alternar"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>El agua del planeta nunca se detiene. Viaja del <strong>océano</strong> a las
+                <strong>nubes</strong>, de las nubes a la <strong>tierra</strong>, y de la tierra
+                de vuelta al mar. A este viaje infinito lo llamamos el <em>Ciclo del Agua</em>.</p>
+                <p>En esta aventura descubrirás las cuatro fases del ciclo. Usa el panel
+                inferior para interactuar con los objetos de la escena, y el inventario
+                para guardar pistas.</p>
+                <blockquote class="styled-qc">
+                    Cada gota que ves caer hoy, ya cayó hace millones de años.
+                    <cite>Narrador del ciclo</cite>
+                </blockquote>
+            </div>
+        </article>
+
+        <!-- Evaporación -->
+        <article class="box iDevice-observe">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_observe.png" alt="">
+                <h2 class="box-title">Fase 1 — Evaporación</h2>
+                <button class="box-toggle" type="button"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>El <strong>Sol</strong> calienta la superficie de mares, ríos y lagos.
+                El agua líquida absorbe energía y se transforma en <em>vapor de agua</em>,
+                un gas invisible que asciende hacia la atmósfera.</p>
+                <p>En una playa tropical, un charco pequeño puede evaporarse en minutos.
+                El océano entero tarda mucho más, pero cada día envía al cielo
+                millones de toneladas de vapor.</p>
+
+                <div class="exe-block-info">
+                    <p><strong>Dato curioso:</strong> el agua ya es vapor a partir de los
+                    0 °C si hay suficiente energía. No hace falta que hierva.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Condensación -->
+        <article class="box iDevice-think">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_think.png" alt="">
+                <h2 class="box-title">Fase 2 — Condensación</h2>
+                <button class="box-toggle" type="button"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>Al subir, el vapor encuentra aire cada vez más frío. Las moléculas
+                pierden energía y vuelven a unirse formando <strong>gotitas microscópicas</strong>
+                que se agrupan alrededor de partículas de polvo.</p>
+                <p>El resultado son las <em>nubes</em>. Una nube no es humo: son
+                millones de gotas de agua líquida flotando juntas.</p>
+
+                <table class="exe-table">
+                    <caption>Tipos de nubes según altura</caption>
+                    <thead><tr><th>Tipo</th><th>Altura</th><th>Aspecto</th></tr></thead>
+                    <tbody>
+                        <tr><td>Cirros</td><td>Alta (>6 km)</td><td>Finos, blancos</td></tr>
+                        <tr><td>Cúmulos</td><td>Media (2–6 km)</td><td>Algodonosos</td></tr>
+                        <tr><td>Estratos</td><td>Baja (<2 km)</td><td>Grises y planas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Precipitación (actividad rellenar huecos) -->
+        <article class="box iDevice-activity">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_activity.png" alt="">
+                <h2 class="box-title">Fase 3 — Precipitación</h2>
+                <button class="box-toggle" type="button"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>Cuando las gotas son demasiado pesadas para flotar, <strong>caen</strong>
+                por gravedad. Pueden hacerlo como lluvia, nieve o granizo, según la
+                temperatura que encuentren al bajar.</p>
+
+                <div class="exe-block-warning">
+                    <p>¡No confundir! Granizo no es lo mismo que nieve. El granizo se
+                    forma en nubes de tormenta con corrientes verticales muy fuertes.</p>
+                </div>
+
+                <div class="exe-text-activity">
+                    <p>
+                        Rellena los huecos:
+                        «La <input type="text" data-answer="lluvia" style="min-width:120px"> cae cuando las nubes ya no pueden sostener las
+                        gotas, y se forma a temperaturas superiores a <input type="text" data-answer="0" style="min-width:60px"> °C».
+                    </p>
+                    <div class="idevice-buttons">
+                        <button type="button" class="idevice-btn" onclick="checkBlanks(this)">Comprobar</button>
+                        <button type="button" class="idevice-btn" onclick="resetBlanks(this)">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Infiltración -->
+        <article class="box iDevice-reflection">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_reflection.png" alt="">
+                <h2 class="box-title">Fase 4 — Infiltración</h2>
+                <button class="box-toggle" type="button"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>El agua que cae al suelo sigue uno de estos caminos:</p>
+                <ul>
+                    <li>Se <strong>infiltra</strong> entre las rocas hasta formar acuíferos.</li>
+                    <li>Corre por la superficie como <em>ríos</em> hacia el mar.</li>
+                    <li>Es absorbida por las <em>plantas</em> y devuelta al aire al respirar.</li>
+                </ul>
+                <p>Y así, el ciclo vuelve a empezar.</p>
+
+                <div class="exe-block-success">
+                    <p>Has completado el recorrido. El agua que acaba de caer ya está
+                    comenzando un nuevo viaje hacia el cielo.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Discusión -->
+        <article class="box iDevice-discuss">
+            <header class="box-head">
+                <img class="box-icon" src="images/icon_discuss.png" alt="">
+                <h2 class="box-title">Para debatir en clase</h2>
+                <button class="box-toggle" type="button"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>Si el ciclo del agua es cerrado, ¿por qué existe <a href="#">escasez
+                de agua potable</a> en muchas partes del mundo? Pensad en la diferencia
+                entre <strong>cantidad total</strong> y <strong>agua accesible y limpia</strong>.</p>
+            </div>
+        </article>
+
+        <!-- Bottom nav -->
+        <div class="nav-buttons">
+            <a href="#" class="nav-button nav-button-left"><span>Anterior capítulo</span></a>
+            <a href="#" class="nav-button nav-button-right"><span>Siguiente capítulo</span></a>
+        </div>
+
+        <footer id="siteFooter">
+            Licencia CC BY-SA 4.0 · Creado con eXeLearning · Tema SCUMM Adventure
+        </footer>
+    </div>
+
+</main>
+
+<p id="made-with-eXe">
+    <a href="https://exelearning.net/" target="_blank" rel="noopener">
+        Creado con eXeLearning
+    </a>
+</p>
+
+<!-- The SCUMM panel is injected by style.js (production theme script) -->
+<script src="style.js"></script>
+
+<script>
+/* Minimal demo glue — not needed for real eXeLearning exports */
+document.getElementById('btnMenu').addEventListener('click', function () {
+    document.body.classList.toggle('siteNav-hidden');
+});
+
+// Collapse toggles for iDevice boxes
+document.querySelectorAll('.box-toggle').forEach(function (t) {
+    t.addEventListener('click', function () {
+        t.closest('.box').classList.toggle('collapsed');
+    });
+});
+
+// Sidebar active state
+document.querySelectorAll('#siteNav a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelectorAll('#siteNav a').forEach(function (x) { x.classList.remove('active'); });
+        a.classList.add('active');
+        document.getElementById('pageTitle').textContent = a.textContent.replace(/^\d+\.?\s*/, '');
+    });
+});
+
+function goToPage(dir) {
+    var links = Array.prototype.slice.call(document.querySelectorAll('#siteNav a'));
+    var idx = links.findIndex(function (l) { return l.classList.contains('active'); });
+    var next = Math.max(0, Math.min(links.length - 1, idx + dir));
+    links[next].click();
+}
+
+function checkBlanks(btn) {
+    var container = btn.closest('.exe-text-activity');
+    container.querySelectorAll('input').forEach(function (inp) {
+        var ok = inp.value.trim().toLowerCase() === (inp.dataset.answer || '').toLowerCase();
+        inp.classList.remove('correct', 'incorrect');
+        inp.classList.add(ok ? 'correct' : 'incorrect');
+    });
+}
+function resetBlanks(btn) {
+    var container = btn.closest('.exe-text-activity');
+    container.querySelectorAll('input').forEach(function (inp) {
+        inp.value = '';
+        inp.classList.remove('correct', 'incorrect');
+    });
+}
+</script>
+
+</body>
+</html>

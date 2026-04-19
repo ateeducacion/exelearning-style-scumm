@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 3 — Precipitación | El Ciclo del Agua</title>
+<link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/png" href="../theme/images/sun.png">
+</head>
+<body class="exe-export exe-web-site">
+<a id="skipNav" href="#main">Saltar al contenido</a>
+<div class="nav-buttons">
+    <a href="condensacion.html" class="nav-button nav-button-left"><span>Anterior</span></a>
+    <a href="infiltracion.html" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<nav id="siteNav" aria-label="Mapa del ciclo del agua">
+    <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="evaporacion.html">1. Evaporación</a></li>
+        <li><a href="condensacion.html">2. Condensación</a></li>
+        <li><a href="precipitacion.html" class="active">3. Precipitación</a></li>
+        <li><a href="infiltracion.html">4. Infiltración</a></li>
+        <li><a href="debate.html">Para debatir en clase</a></li>
+        <li><a href="creditos.html">Créditos y descargas</a></li>
+    </ul>
+</nav>
+<main class="page" id="main">
+    <header class="main-header">
+        <div class="package-header">
+            <p class="package-title">LECCIÓN 03 · CIENCIAS DE LA NATURALEZA</p>
+            <p class="package-subtitle">Área de Tecnología Educativa</p>
+        </div>
+        <div class="page-header">
+            <h1 class="page-title">Fase 3 — Precipitación</h1>
+        </div>
+    </header>
+    <div class="page-content">
+        <article class="box iDevice-activity">
+            <header class="box-head">
+                <img class="box-icon" src="../theme/images/icon_activity.png" alt="">
+                <h2 class="box-title">Precipitación</h2>
+                <button class="box-toggle"><span>Alternar</span></button>
+            </header>
+            <div class="box-content">
+                <p>Cuando las gotas son demasiado pesadas para flotar,
+                <strong>caen</strong> por gravedad. Pueden hacerlo como
+                lluvia, nieve o granizo, según la temperatura que
+                encuentren al bajar.</p>
+                <p><img src="../theme/images/rain.png" alt="Lluvia pixel art" style="width:144px;height:auto;"></p>
+                <div class="exe-block-warning">
+                    <p>¡No confundir! Granizo no es lo mismo que nieve. El
+                    granizo se forma en nubes de tormenta con corrientes
+                    verticales muy fuertes.</p>
+                </div>
+                <div class="exe-text-activity">
+                    <p>Rellena los huecos: «La
+                    <input type="text" data-answer="lluvia" style="min-width:120px" aria-label="tipo de precipitación">
+                    cae cuando las nubes ya no pueden sostener las gotas,
+                    y se forma a temperaturas superiores a
+                    <input type="text" data-answer="0" style="min-width:60px" aria-label="temperatura mínima"> °C».</p>
+                    <div class="idevice-buttons">
+                        <button type="button" class="idevice-btn" onclick="checkBlanks(this)">Comprobar</button>
+                        <button type="button" class="idevice-btn" onclick="resetBlanks(this)">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div class="nav-buttons">
+            <a href="condensacion.html" class="nav-button nav-button-left"><span>Anterior: Condensación</span></a>
+            <a href="infiltracion.html" class="nav-button nav-button-right"><span>Siguiente: Infiltración</span></a>
+        </div>
+        <footer id="siteFooter">
+            <div id="packageLicense" class="cc cc-by-sa"><p><a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> — Área de Tecnología Educativa</p></div>
+            <p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener">Creado con eXeLearning</a></p>
+        </footer>
+    </div>
+</main>
+<script src="../theme/style.js"></script>
+<script>
+document.querySelectorAll('.box-toggle').forEach(function (t) {
+    t.addEventListener('click', function () { t.closest('.box').classList.toggle('minimized'); });
+});
+function checkBlanks(btn){ var c=btn.closest('.exe-text-activity'); c.querySelectorAll('input').forEach(function(inp){ var ok=inp.value.trim().toLowerCase()===(inp.dataset.answer||'').toLowerCase(); inp.classList.remove('correct','incorrect'); inp.classList.add(ok?'correct':'incorrect'); }); }
+function resetBlanks(btn){ var c=btn.closest('.exe-text-activity'); c.querySelectorAll('input').forEach(function(inp){ inp.value=''; inp.classList.remove('correct','incorrect'); }); }
+</script>
+</body>
+</html>
