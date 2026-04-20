@@ -321,7 +321,14 @@ hr {
 /* ---------------------------------------------------------------- */
 /* LAYOUT: ESCENA + PANEL INFERIOR                                  */
 /* ---------------------------------------------------------------- */
-.exe-content { position: relative; z-index: 1; }
+.exe-content {
+    position: relative;
+    z-index: 1;
+    /* content/css/base.css declara `.exe-content { background: #fff }` y
+       eso tapaba la escena animada de cielo/mar/montaña/nubes del tema.
+       La forzamos transparente para que body::before sea visible detrás. */
+    background: transparent !important;
+}
 
 .exe-export .exe-content,
 .exe-web-site .exe-content,
@@ -355,12 +362,15 @@ body.siteNav-off.exe-web-site #siteFooter {
     margin-left: 0;
 }
 
-/* Exports SCORM / IMS / EPUB: sin sidebar */
+/* Exports SCORM / IMS / EPUB: sin sidebar. Importante: la última
+   selectora DEBE empezar por `body` — el wrapper .exe-content también
+   lleva la clase .exe-export (sin .exe-web-site) y disparaba esta regla
+   en el sitio web, resetando el margin-left del main. */
 body.exe-scorm main,
 body.exe-ims main,
 body.exe-epub main,
 body.exe-single-page main,
-.exe-export:not(.exe-web-site) main {
+body.exe-export:not(.exe-web-site) main {
     padding: 24px clamp(16px, 5vw, 60px);
     max-width: 1280px;
     margin: 0 auto;
@@ -903,6 +913,13 @@ body.siteNav-off.exe-web-site #siteFooter { padding-left: 24px; }
     background: var(--scumm-wood-dark);
     border-bottom: 4px solid var(--scumm-ink);
     z-index: 40;
+    transition: left 0.15s steps(3);
+}
+/* Cuando el sidebar está desplegado en escritorio, la barra superior
+   (y por tanto los chevrons Anterior/Siguiente que viven en ella) se
+   recoloca a la derecha del menú para no solaparse con él. */
+body.exe-web-site:not(.siteNav-off) .nav-buttons {
+    left: var(--scumm-sidebar-w);
 }
 .nav-buttons a,
 .nav-buttons span.nav-button {
