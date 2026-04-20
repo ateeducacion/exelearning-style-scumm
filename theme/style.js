@@ -382,14 +382,27 @@
     }
 
     /* --------------- Plegar/Desplegar iDevice --------------- */
+    // eXeLearning (libs/exe_export.js) ya gestiona .box-toggle con slideUp/
+    // slideDown. Sólo cableamos nuestro handler si ese código no está
+    // presente (p. ej. en theme/demo.html, que no carga libs/).
+    function exeHandlesBoxToggles() {
+        return !!(global.$exeExport &&
+                  typeof global.$exeExport.addBoxToggleEvent === 'function');
+    }
     function wireBoxToggles() {
-        document.querySelectorAll('.box-toggle').forEach(function (t) {
-            if (t.__scummToggle) return;
-            t.__scummToggle = true;
-            t.addEventListener('click', function (e) {
+        if (exeHandlesBoxToggles()) return;
+        document.querySelectorAll('.box-toggle').forEach(function (btn) {
+            if (btn.__scummToggle) return;
+            btn.__scummToggle = true;
+            btn.addEventListener('click', function (e) {
                 e.preventDefault();
-                var box = t.closest('.box, article.box, .iDevice');
-                if (box) box.classList.toggle('minimized');
+                e.stopPropagation();
+                var box = btn.closest('article.box, .box, .iDevice');
+                if (!box) return;
+                var willMin = !box.classList.contains('minimized');
+                box.classList.toggle('minimized', willMin);
+                var content = box.querySelector(':scope > .box-content');
+                if (content) content.style.display = willMin ? 'none' : '';
             });
         });
     }

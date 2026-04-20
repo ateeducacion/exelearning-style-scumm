@@ -537,8 +537,8 @@ body.exe-single-page main,
 .box-head .box-toggle::after { content: "−"; display: block; }
 .box.minimized .box-head .box-toggle::after,
 .box.collapsed .box-head .box-toggle::after { content: "+"; }
-.box.minimized .box-content,
-.box.collapsed .box-content { display: none !important; }
+.box.minimized > .box-content,
+.box.collapsed > .box-content { display: none; }
 .box.minimized { box-shadow: var(--scumm-shadow-soft); }
 .box.minimized .box-head { border-bottom-width: 2px; }
 
