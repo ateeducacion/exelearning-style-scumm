@@ -1,0 +1,7 @@
+# OMC (oh-my-claudecode) local telemetry / session state
+.omc/
+
+# macOS / editor cruft
+.DS_Store
+*.swp
+*~
