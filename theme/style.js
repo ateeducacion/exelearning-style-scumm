@@ -125,16 +125,26 @@
     function readTweaks() {
         var out = {};
         for (var k in TWEAKS_DEFAULTS) out[k] = TWEAKS_DEFAULTS[k];
-        if (!isLocalStorageAvailable()) return out;
-        try {
-            var raw = localStorage.getItem(TWEAKS_KEY);
-            if (raw) {
-                var parsed = JSON.parse(raw);
-                for (var k2 in parsed) {
-                    if (typeof parsed[k2] === 'boolean') out[k2] = parsed[k2];
+        // En móvil, el panel SCUMM arranca desactivado por defecto (ocupa
+        // demasiado en viewports estrechos). Si el usuario lo activa desde
+        // el panel de tweaks, su elección queda en localStorage y manda.
+        if (isLowRes()) out.panel = false;
+        var panelFromUser = false;
+        if (isLocalStorageAvailable()) {
+            try {
+                var raw = localStorage.getItem(TWEAKS_KEY);
+                if (raw) {
+                    var parsed = JSON.parse(raw);
+                    for (var k2 in parsed) {
+                        if (typeof parsed[k2] === 'boolean') {
+                            out[k2] = parsed[k2];
+                            if (k2 === 'panel') panelFromUser = true;
+                        }
+                    }
                 }
-            }
-        } catch (e) {}
+            } catch (e) {}
+        }
+        if (!panelFromUser) out.panel = !isLowRes();
         // Reconciliar con exeDarkMode (fuente de verdad del tema oscuro)
         try {
             if (isLocalStorageAvailable()) {
