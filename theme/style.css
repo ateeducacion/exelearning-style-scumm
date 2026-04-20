@@ -336,21 +336,23 @@ main, main.page, .page-content, #main, #contentv {
     padding-bottom: calc(var(--scumm-panel-h) + 40px);
 }
 
-/* Sidebar: cuando hay navegación (sitio web) */
+/* Sidebar: cuando hay navegación (sitio web). Usamos margin-left (no
+   padding-left) para que el bloque entero — fondo del header incluido —
+   se desplace limpio junto al sidebar y no se le monte detrás. */
 .exe-web-site main.page {
-    padding-left: calc(var(--scumm-sidebar-w) + 24px);
-    padding-right: 24px;
-    padding-top: 24px;
+    margin-left: var(--scumm-sidebar-w);
+    padding: 24px 24px 0;
     min-height: calc(100vh - var(--scumm-panel-h));
+    transition: margin-left 0.15s steps(3);
 }
 .exe-web-site #siteFooter {
-    padding-left: calc(var(--scumm-sidebar-w) + 24px);
-    padding-right: 24px;
-    padding-bottom: calc(var(--scumm-panel-h) + 20px);
+    margin-left: var(--scumm-sidebar-w);
+    padding: 20px 24px calc(var(--scumm-panel-h) + 20px);
+    transition: margin-left 0.15s steps(3);
 }
 body.siteNav-off.exe-web-site main.page,
 body.siteNav-off.exe-web-site #siteFooter {
-    padding-left: 24px;
+    margin-left: 0;
 }
 
 /* Exports SCORM / IMS / EPUB: sin sidebar */
@@ -962,12 +964,22 @@ button.toggler span {
     left: 10px;
     background: var(--scumm-accent) url("images/icon_hamburger.svg") no-repeat center / 26px 26px;
     image-rendering: pixelated;
+    transition: left 0.15s steps(3);
 }
 #searchBarToggler {
     top: 6px;
     left: 56px;
     background: var(--scumm-accent) url("images/icon_search.svg") no-repeat center / 26px 26px;
     image-rendering: pixelated;
+    transition: left 0.15s steps(3);
+}
+/* En escritorio, cuando el sidebar está visible, los togglers se
+   desplazan junto al menú para no solaparse con su contenido. */
+body.exe-web-site:not(.siteNav-off) #siteNavToggler {
+    left: calc(var(--scumm-sidebar-w) + 10px);
+}
+body.exe-web-site:not(.siteNav-off) #searchBarToggler {
+    left: calc(var(--scumm-sidebar-w) + 56px);
 }
 #searchBarToggler[aria-pressed="true"] {
     background-color: var(--scumm-verb-cyan);
