@@ -1,167 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" id="exe-index">
 <head>
 <meta charset="utf-8">
+<meta name="generator" content="eXeLearning">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El Ciclo del Agua — Aventura Gráfica Educativa</title>
-<meta name="description" content="Recurso educativo sobre el ciclo del agua maquetado con el tema SCUMM Adventure para eXeLearning. Elaborado por el Área de Tecnología Educativa.">
-<meta name="author" content="Área de Tecnología Educativa">
-<link rel="stylesheet" href="theme/style.css">
-<link rel="icon" type="image/png" href="theme/images/sun.png">
+<title>El ciclo del agua · SCUMM Adventure</title>
+<link rel="icon" type="image/x-icon" href="libs/favicon.ico">
+<meta name="description" content="Unidad didáctica de ejemplo sobre el ciclo del agua, presentada con el estilo retro SCUMM Adventure.">
+<script>document.querySelector("html").classList.add("js");</script><script src="libs/jquery/jquery.min.js"> </script><script src="libs/common_i18n.js"> </script><script src="libs/common.js"> </script><script src="libs/exe_export.js"> </script><script src="search_index.js"> </script><script src="libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+<script src="idevices/text/text.js"></script><link rel="stylesheet" href="idevices/text/text.css">
+<link rel="stylesheet" href="content/css/base.css"><script src="theme/style.js"> </script><link rel="stylesheet" href="theme/style.css">
 </head>
 <body class="exe-export exe-web-site">
-
-<a id="skipNav" href="#main">Saltar al contenido</a>
-
-<!-- Barra superior: navegación previa/siguiente -->
-<div class="nav-buttons">
-    <a href="html/evaporacion.html" class="nav-button nav-button-right" title="Primera página"><span>Empezar aventura</span></a>
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mo5oqoel-2p2mblkd2" id="skipNav">Saltar al contenido</a> <nav id="siteNav">
+<ul>
+<li class="active"> <a href="index.html" class="active main-node no-ch">Inicio</a>
+</li>
+<li> <a href="html/el-ciclo-del-agua.html" class="daddy">El ciclo del agua</a>
+<ul class="other-section">
+<li> <a href="html/evaporacion.html" class="no-ch">Evaporación</a>
+</li>
+<li> <a href="html/condensacion.html" class="no-ch">Condensación</a>
+</li>
+<li> <a href="html/precipitacion.html" class="no-ch">Precipitación</a>
+</li>
+<li> <a href="html/recogida.html" class="no-ch">Recogida</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/actividades.html" class="daddy">Actividades</a>
+<ul class="other-section">
+<li> <a href="html/ordena-las-fases.html" class="no-ch">Ordena las fases</a>
+</li>
+<li> <a href="html/verdadero-o-falso.html" class="no-ch">¿Verdadero o falso?</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/recursos.html" class="no-ch">Recursos</a>
+</li>
+<li> <a href="html/creditos-y-descargas.html" class="no-ch">Créditos y descargas</a>
+</li>
+</ul>
+</nav><main id="page-mo5oqoel-2p2mblkd2" class="page"> <div id="exe-client-search" data-block-order-string="Caja %e" data-no-results-string="Sin resultados.">
 </div>
+<header class="main-header"> <p class="page-counter"> <span class="page-counter-label">Página </span><span class="page-counter-content"> <strong class="page-counter-current-page">1</strong><span class="page-counter-sep">/</span><strong class="page-counter-total">11</strong></span></p>
 
-<!-- Sidebar (mapa del ciclo) -->
-<nav id="siteNav" aria-label="Mapa del ciclo del agua">
-    <ul>
-        <li><a href="index.html" class="active">Inicio</a></li>
-        <li><a href="html/evaporacion.html">1. Evaporación</a></li>
-        <li><a href="html/condensacion.html">2. Condensación</a></li>
-        <li><a href="html/precipitacion.html">3. Precipitación</a></li>
-        <li><a href="html/infiltracion.html">4. Infiltración</a></li>
-        <li><a href="html/debate.html">Para debatir en clase</a></li>
-        <li><a href="html/creditos.html">Créditos y descargas</a></li>
-    </ul>
-</nav>
-
-<!-- Escena principal -->
-<main class="page" id="main">
-
-    <header class="main-header">
-        <div class="package-header">
-            <p class="package-title">LECCIÓN 03 · CIENCIAS DE LA NATURALEZA</p>
-            <p class="package-subtitle">Área de Tecnología Educativa — Recurso de ejemplo</p>
-        </div>
-        <div class="page-header">
-            <h1 class="page-title" id="pageTitle">El Ciclo del Agua</h1>
-        </div>
-    </header>
-
-    <div class="page-content">
-
-        <!-- Cartel introductorio -->
-        <article class="box iDevice-info">
-            <header class="box-head">
-                <img class="box-icon" src="theme/images/icon_info.png" alt="">
-                <h2 class="box-title">Bienvenido, aventurero</h2>
-                <button class="box-toggle" type="button" title="Alternar"><span>Alternar</span></button>
-            </header>
-            <div class="box-content">
-                <p>El agua del planeta nunca se detiene. Viaja del
-                <strong>océano</strong> a las <strong>nubes</strong>, de las
-                nubes a la <strong>tierra</strong>, y de la tierra de vuelta
-                al mar. A este viaje infinito lo llamamos el
-                <em>Ciclo del Agua</em>.</p>
-                <p>En esta aventura descubrirás las cuatro fases del ciclo.
-                Usa el panel inferior para interactuar con los objetos de la
-                escena, y el inventario para guardar pistas.</p>
-                <blockquote class="styled-qc">
-                    Cada gota que ves caer hoy, ya cayó hace millones de años.
-                    <cite>Narrador del ciclo</cite>
-                </blockquote>
-            </div>
-        </article>
-
-        <!-- Resumen de las 4 fases -->
-        <article class="box iDevice-observe">
-            <header class="box-head">
-                <img class="box-icon" src="theme/images/icon_observe.png" alt="">
-                <h2 class="box-title">Las 4 fases del ciclo</h2>
-                <button class="box-toggle" type="button" title="Alternar"><span>Alternar</span></button>
-            </header>
-            <div class="box-content">
-                <table class="exe-table">
-                    <caption>Recorrido del agua a través del planeta</caption>
-                    <thead>
-                        <tr><th>#</th><th>Fase</th><th>Qué pasa</th><th>Objeto escena</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td><a href="html/evaporacion.html">Evaporación</a></td><td>El Sol convierte el agua líquida en vapor.</td><td>Sol + océano</td></tr>
-                        <tr><td>2</td><td><a href="html/condensacion.html">Condensación</a></td><td>El vapor frío se reagrupa en gotas: nubes.</td><td>Nube</td></tr>
-                        <tr><td>3</td><td><a href="html/precipitacion.html">Precipitación</a></td><td>Las gotas caen como lluvia, nieve o granizo.</td><td>Lluvia</td></tr>
-                        <tr><td>4</td><td><a href="html/infiltracion.html">Infiltración</a></td><td>El agua se filtra al suelo o corre hacia el mar.</td><td>Río</td></tr>
-                    </tbody>
-                </table>
-                <p>Haz clic en cualquier fase para abrir su cartel completo.</p>
-            </div>
-        </article>
-
-        <!-- Datos curiosos -->
-        <article class="box iDevice-think">
-            <header class="box-head">
-                <img class="box-icon" src="theme/images/icon_think.png" alt="">
-                <h2 class="box-title">Dato curioso</h2>
-                <button class="box-toggle" type="button" title="Alternar"><span>Alternar</span></button>
-            </header>
-            <div class="box-content">
-                <div class="exe-block-info">
-                    <p>El agua del planeta ha permanecido prácticamente
-                    <strong>constante</strong> en cantidad durante miles
-                    de millones de años — solo cambia de forma y de
-                    lugar.</p>
-                </div>
-                <div class="exe-block-warning">
-                    <p>Pero el agua <em>accesible y limpia</em> sí
-                    escasea: es menos del 1 % del total del planeta.</p>
-                </div>
-            </div>
-        </article>
-
-        <!-- Navegación inferior -->
-        <div class="nav-buttons">
-            <span class="nav-button nav-button-left" aria-disabled="true"><span>Anterior</span></span>
-            <a href="html/evaporacion.html" class="nav-button nav-button-right"><span>Siguiente: Evaporación</span></a>
-        </div>
-
-        <footer id="siteFooter">
-            <div id="packageLicense" class="cc cc-by-sa">
-                <p><span class="license-label">Licencia:</span>
-                <a href="http://creativecommons.org/licenses/by-sa/4.0/"
-                   target="_blank" rel="noopener">Creative Commons BY-SA 4.0</a></p>
-                <p>Elaborado por el <strong>Área de Tecnología Educativa</strong>.</p>
-            </div>
-            <p id="made-with-eXe">
-                <a href="https://exelearning.net/" target="_blank" rel="noopener">Creado con eXeLearning</a>
-            </p>
-        </footer>
-    </div>
-
-</main>
-
-<!-- Script del tema: inyecta panel SCUMM, toggle de sol, togglers responsive -->
-<script src="theme/style.js"></script>
-
-<script>
-/* Glue mínimo para la demo — en un export real de eXeLearning esto lo
-   gestionan los handlers de jQuery/exe_export.js. Lo dejamos aquí para
-   que index.html funcione de forma autónoma al abrirlo directamente. */
-document.querySelectorAll('.box-toggle').forEach(function (t) {
-    t.addEventListener('click', function () {
-        t.closest('.box').classList.toggle('minimized');
-    });
-});
-function checkBlanks(btn) {
-    var c = btn.closest('.exe-text-activity');
-    c.querySelectorAll('input').forEach(function (inp) {
-        var ok = inp.value.trim().toLowerCase() === (inp.dataset.answer || '').toLowerCase();
-        inp.classList.remove('correct', 'incorrect');
-        inp.classList.add(ok ? 'correct' : 'incorrect');
-    });
-}
-function resetBlanks(btn) {
-    var c = btn.closest('.exe-text-activity');
-    c.querySelectorAll('input').forEach(function (inp) {
-        inp.value = '';
-        inp.classList.remove('correct', 'incorrect');
-    });
-}
-</script>
+<div class="package-header"><p class="package-title">El ciclo del agua · SCUMM Adventure</p></div>
+<div class="page-header"><h1 class="page-title">Inicio</h1></div>
+</header><div id="page-content-page-mo5oqoel-2p2mblkd2" class="page-content">
+<article id="SP00000002" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="theme/icons/book.svg" alt="">
+</div>
+<h1 class="box-title">Bienvenida</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="SP00000003" class="idevice_node text" data-idevice-path="idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;SP00000003&quot;}">
+<div class="exe-text-template"><div class="textIdeviceContent"><div class="exe-text-activity"><div><figure style="text-align:center;margin:10px 0 18px;"><img src="content/resources/SP00000003/01-inicio.png" alt="Paisaje del ciclo del agua en estilo SCUMM Adventure" style="max-width:320px;width:100%;height:auto;image-rendering:pixelated;border:3px solid #D700D7;" /><figcaption style="font-family:'VT323',monospace;font-size:16px;color:#707078;margin-top:6px;">Paisaje del ciclo del agua en estilo SCUMM Adventure</figcaption></figure><p><strong>Bienvenido</strong> a esta unidad didáctica sobre el <em>ciclo del agua</em>, preparada por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias.</p>
+        <p>Aquí aprenderás las cuatro fases principales del ciclo — <strong>evaporación</strong>, <strong>condensación</strong>, <strong>precipitación</strong> y <strong>recogida</strong> — y podrás poner a prueba lo aprendido con un par de actividades.</p>
+        <p>El estilo visual retro está inspirado en las <strong>aventuras gráficas clásicas de LucasArts</strong>. Activa el modo oscuro con el botón del sol y explora la interfaz SCUMM desde el engranaje de la derecha.</p><p style="text-align:center;margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+    <a href="https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-scumm&amp;branch=main" target="_blank" rel="noopener"
+       style="display:inline-block;background:#D7D700;color:#000;padding:10px 18px;border:3px solid #000;box-shadow:4px 4px 0 #D700D7;font-family:'VT323',monospace;font-size:22px;text-decoration:none;letter-spacing:0.5px;">
+      ▶ abrir en eXeLearning
+    </a>
+    <a href="https://github.com/ateeducacion/exelearning-style-scumm/releases/latest" target="_blank" rel="noopener"
+       style="display:inline-block;background:#00D7D7;color:#000;padding:10px 18px;border:3px solid #000;box-shadow:4px 4px 0 #D700D7;font-family:'VT323',monospace;font-size:22px;text-decoration:none;letter-spacing:0.5px;">
+      ↓ descargar estilo
+    </a>
+    </p><p class="clearfix"> </p></div></div></div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<span class="nav-button nav-button-left" aria-hidden="true"><span>Anterior</span></span>
+<a href="html/el-ciclo-del-agua.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"></div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
 </body>
 </html>

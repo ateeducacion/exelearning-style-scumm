@@ -1462,16 +1462,457 @@ body.in-iframe #darkModeToggler { position: absolute; }
 }
 
 /* ---------------------------------------------------------------- */
+/* CRT SCANLINES — overlay opt-in (body.scumm-scanlines)            */
+/* ---------------------------------------------------------------- */
+/* Un tapiz fino sobre toda la escena para recordar al monitor CRT
+   de una cabina de arcade. La franja oscura es sutil (rgba 0.18) y
+   la densidad es 3px (2 transparentes + 1 oscura) para mantener la
+   lectura cómoda. Activado por defecto en <body class="scumm-scanlines">. */
+@media screen {
+    body.scumm-scanlines::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9997;
+        background: repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 2px,
+            rgba(0, 0, 0, 0.18) 2px,
+            rgba(0, 0, 0, 0.18) 3px
+        );
+        mix-blend-mode: multiply;
+    }
+    /* En modo oscuro añadimos una viñeta radial para vender más el CRT. */
+    html.exe-dark-mode body.scumm-scanlines::after {
+        background:
+            repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 2px,
+                rgba(0, 0, 0, 0.32) 2px,
+                rgba(0, 0, 0, 0.32) 3px
+            ),
+            radial-gradient(
+                ellipse at center,
+                transparent 55%,
+                rgba(0, 0, 0, 0.5) 100%
+            );
+    }
+}
+@media print {
+    body.scumm-scanlines::after { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    /* Las scanlines ya son estáticas; solo garantizamos que no se anime nada */
+    body.scumm-scanlines::after { animation: none !important; }
+}
+
+/* ---------------------------------------------------------------- */
+/* TWEAKS PANEL — caja de diálogo SCUMM con tres toggles            */
+/* ---------------------------------------------------------------- */
+/* Botón engranaje (cerca del sol). En single-page lo alineamos con
+   el #darkModeToggler, y en sitio web (barra superior) se ancla al
+   lado del botón oscuro. */
+#scummTweaksToggler {
+    position: absolute;
+    top: 12px;
+    right: 62px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--scumm-accent);
+    color: var(--scumm-ink);
+    border: 2px solid var(--scumm-ink);
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+    padding: 0;
+    cursor: inherit;
+    z-index: 20;
+    image-rendering: pixelated;
+    border-radius: 0;
+    font-family: var(--scumm-font-head);
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#scummTweaksToggler::before {
+    content: "\2699"; /* ⚙ */
+    display: block;
+    line-height: 1;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+}
+#scummTweaksToggler:hover,
+#scummTweaksToggler:focus {
+    background-color: var(--scumm-ui-bright);
+    outline: none;
+}
+#scummTweaksToggler:active {
+    box-shadow:
+        inset  2px  2px 0 var(--scumm-sand-dark),
+        inset -2px -2px 0 #fff5c2;
+    transform: translate(1px, 1px);
+}
+#scummTweaksToggler span {
+    position: absolute; clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+.exe-web-site #scummTweaksToggler {
+    position: fixed;
+    top: 6px;
+    right: 60px;
+}
+html.exe-dark-mode #scummTweaksToggler {
+    background-color: var(--scumm-ui-dark);
+    color: var(--scumm-accent);
+    filter: grayscale(0.3) brightness(0.95);
+}
+
+/* El panel flotante — caja de diálogo con marco madera + papel beige */
+#scummTweaks {
+    position: fixed;
+    right: 16px;
+    top: 56px;
+    width: 280px;
+    background: var(--scumm-paper);
+    color: var(--scumm-dialog-text);
+    border: 4px solid var(--scumm-ink);
+    box-shadow:
+        inset 0 0 0 2px var(--scumm-wood-hi),
+        var(--scumm-shadow-hard);
+    font-family: var(--scumm-font-ui);
+    z-index: 200;
+    display: none;
+    border-radius: 0;
+}
+#scummTweaks.open { display: block; }
+#scummTweaks::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border: 2px solid var(--scumm-wood);
+    pointer-events: none;
+}
+
+#scummTweaks .tw-head {
+    background:
+        linear-gradient(to bottom,
+            var(--scumm-wood) 0 50%,
+            var(--scumm-wood-dark) 50% 100%);
+    color: var(--scumm-accent);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--scumm-font-head);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 4px solid var(--scumm-ink);
+    text-shadow: 2px 2px 0 var(--scumm-ink);
+}
+#scummTweaks .tw-head::before {
+    content: "◆ ";
+    color: var(--scumm-verb-hover);
+    margin-right: 4px;
+}
+#scummTweaks .tw-close {
+    background: var(--scumm-accent);
+    color: var(--scumm-ink);
+    border: 2px solid var(--scumm-ink);
+    box-shadow:
+        inset -2px -2px 0 var(--scumm-sand-dark),
+        inset  2px  2px 0 #fff5c2;
+    font-family: var(--scumm-font-head);
+    font-size: 14px;
+    line-height: 1;
+    cursor: inherit;
+    padding: 2px 8px;
+    text-shadow: none;
+    border-radius: 0;
+}
+#scummTweaks .tw-close:hover,
+#scummTweaks .tw-close:focus {
+    background: var(--scumm-ui-bright);
+    outline: none;
+}
+
+#scummTweaks .tw-body {
+    padding: 14px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--scumm-paper);
+}
+html.exe-dark-mode #scummTweaks .tw-body { background: var(--scumm-paper); color: var(--scumm-dialog-text); }
+
+#scummTweaks .tw-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 0;
+    border-bottom: 2px dashed var(--scumm-wood-hi);
+}
+#scummTweaks .tw-row:last-child { border-bottom: 0; }
+#scummTweaks .tw-label {
+    font-family: var(--scumm-font-head);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--scumm-dialog-npc);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+#scummTweaks .tw-toggle {
+    background: transparent;
+    border: 2px solid var(--scumm-ink);
+    font-family: var(--scumm-font-head);
+    font-size: 13px;
+    padding: 4px 10px;
+    cursor: inherit;
+    color: var(--scumm-verb-idle);   /* cyan = off */
+    background-color: var(--scumm-ink);
+    min-width: 74px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: var(--scumm-shadow-soft);
+    border-radius: 0;
+}
+#scummTweaks .tw-toggle[data-on="true"] {
+    color: var(--scumm-verb-active);  /* green = on */
+}
+#scummTweaks .tw-toggle:hover { color: var(--scumm-verb-hover); } /* yellow on hover */
+#scummTweaks .tw-toggle::before {
+    content: "[ ";
+    color: var(--scumm-accent);
+}
+#scummTweaks .tw-toggle::after {
+    content: " ]";
+    color: var(--scumm-accent);
+}
+
+/* Oculta el panel SCUMM cuando el tweak lo desactiva */
+body.scumm-panel-off .scumm-panel { display: none; }
+body.scumm-panel-off .exe-content {
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+body.scumm-panel-off.exe-web-site #siteFooter {
+    padding-bottom: 20px;
+}
+body.scumm-panel-off #siteNav {
+    padding-bottom: 16px;
+}
+
+/* ---------------------------------------------------------------- */
+/* DAY OF THE TENTACLE FADE OVERLAY — transición entre páginas     */
+/* ---------------------------------------------------------------- */
+.scumm-fade-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: opacity 400ms linear;
+}
+.scumm-fade-overlay.is-entering,
+.scumm-fade-overlay.is-leaving {
+    opacity: 1;
+    pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+    .scumm-fade-overlay { transition: none; }
+}
+@media print {
+    .scumm-fade-overlay { display: none !important; }
+}
+
+/* ---------------------------------------------------------------- */
+/* INTRO LUCASARTS-STYLE — #scummIntro (una vez por sesión)         */
+/* ---------------------------------------------------------------- */
+/* Cuando el intro está visible bloqueamos el scroll y ocultamos el
+   panel para evitar flashes antes del fade. */
+body.scumm-intro-on { overflow: hidden; }
+body.scumm-intro-on .scumm-panel,
+body.scumm-intro-on .nav-buttons,
+body.scumm-intro-on #siteNav { visibility: hidden; }
+
+#scummIntro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+    /* Campo de estrellas procedural con radial-gradients de puntos blancos.
+       Cada gradient es una estrella de 1px; la variedad en luminosidad +
+       posición da sensación de cielo profundo. Ligero (CSS puro). */
+    background-image:
+        radial-gradient(1px 1px at 12% 18%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 78% 9%,  #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 23% 77%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 88% 63%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 45% 35%, #d8e8ff 100%, transparent 100%),
+        radial-gradient(1px 1px at 62% 82%, #d8e8ff 100%, transparent 100%),
+        radial-gradient(1px 1px at 8% 54%,  #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 33% 8%,  #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 94% 28%, #ffd8a8 100%, transparent 100%),
+        radial-gradient(1px 1px at 52% 62%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 70% 48%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 38% 90%, #ffffff 100%, transparent 100%),
+        radial-gradient(1px 1px at 18% 42%, #a8c8ff 100%, transparent 100%),
+        radial-gradient(1px 1px at 82% 75%, #ffffff 100%, transparent 100%),
+        radial-gradient(2px 2px at 6% 22%,  #ffffff 100%, transparent 100%),
+        radial-gradient(2px 2px at 64% 16%, #ffe1b8 100%, transparent 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#scummIntro.is-visible { opacity: 1; }
+#scummIntro.is-leaving {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+}
+
+/* Composición central: planeta + logo + subtítulo. */
+#scummIntro .intro-stage {
+    position: relative;
+    width: min(860px, 92vw);
+    height: min(520px, 72vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Planeta/luna gris detrás del logo, con cráteres */
+#scummIntro .intro-planet {
+    position: absolute;
+    left: -8%;
+    top: 18%;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    /* Superficie con ligero sombreado y cráteres en radial-gradients */
+    background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,0.12) 0 6px, transparent 8px),
+        radial-gradient(circle at 62% 40%, rgba(0,0,0,0.35) 0 10px, transparent 14px),
+        radial-gradient(circle at 42% 68%, rgba(0,0,0,0.3) 0 14px, transparent 18px),
+        radial-gradient(circle at 74% 72%, rgba(0,0,0,0.28) 0 6px, transparent 9px),
+        radial-gradient(circle at 20% 55%, rgba(0,0,0,0.25) 0 8px, transparent 12px),
+        radial-gradient(circle at 35% 35%,
+            #bcbcbc 0%,
+            #8c8c8c 55%,
+            #4a4a4a 100%);
+    box-shadow:
+        inset -20px -20px 40px rgba(0,0,0,0.55),
+        inset 10px 10px 30px rgba(255,255,255,0.08),
+        0 0 60px rgba(180,190,210,0.12);
+    image-rendering: auto;   /* la luna no debe ser pixelada */
+}
+@media (max-width: 768px) {
+    #scummIntro .intro-planet { width: 180px; height: 180px; top: 10%; left: -4%; }
+}
+
+/* Silueta del personaje con la linterna — SVG inline pintado por el JS */
+#scummIntro .intro-figure {
+    position: absolute;
+    left: calc(-8% + 90px);  /* centrado sobre la luna */
+    top: calc(18% + 80px);
+    width: 72px;
+    height: 104px;
+    z-index: 2;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.6));
+    animation: scumm-intro-lamp 1800ms ease-in-out infinite;
+}
+@keyframes scumm-intro-lamp {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 200, 120, 0.55)); }
+    50%      { filter: drop-shadow(0 0 14px rgba(255, 220, 160, 0.95)); }
+}
+@media (prefers-reduced-motion: reduce) {
+    #scummIntro .intro-figure { animation: none; filter: drop-shadow(0 0 8px rgba(255,210,130,0.7)); }
+}
+@media (max-width: 768px) {
+    #scummIntro .intro-figure { left: calc(-4% + 60px); top: calc(10% + 60px); width: 54px; height: 78px; }
+}
+
+/* Wordmark "eXeLearning" — usamos ScummSolid (la fuente retro LucasArts)
+   con italic sintético para evocar el logo manuscrito original. */
+#scummIntro .intro-wordmark {
+    font-family: "ScummSolid", "ScummMenuSolid", "Brush Script MT", "Segoe Script", cursive;
+    font-style: italic;
+    font-size: clamp(52px, 10vw, 120px);
+    color: #f6f0e0;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin: 0;
+    text-shadow:
+        3px 3px 0 #000,
+        0 0 24px rgba(255, 230, 180, 0.35);
+    transform: skewX(-8deg);
+    position: relative;
+    z-index: 3;
+    user-select: none;
+}
+
+#scummIntro .intro-subtitle {
+    margin: 28px 0 0;
+    font-family: var(--scumm-font-head, "ScummSolid"), "Courier New", monospace;
+    font-size: clamp(12px, 1.8vw, 18px);
+    color: #ffffff;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 #000;
+    position: relative;
+    z-index: 3;
+}
+
+/* "Click en cualquier sitio para saltar" — pista discreta abajo */
+#scummIntro .intro-skip {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--scumm-font-ui, monospace);
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: scumm-intro-skip-blink 1.6s steps(2) infinite 1s;
+}
+@keyframes scumm-intro-skip-blink { 50% { opacity: 0.15; } }
+@media (prefers-reduced-motion: reduce) {
+    #scummIntro .intro-skip { animation: none; }
+    #scummIntro { transition: none; }
+    #scummIntro.is-leaving { transition: none; }
+}
+
+/* ---------------------------------------------------------------- */
 /* IMPRESIÓN                                                        */
 /* ---------------------------------------------------------------- */
 @media print {
     body { background: #fff !important; color: #000 !important; }
     body::before,
+    body::after,
     .scumm-panel,
     #siteNav,
     .nav-buttons,
     .toggler,
     #darkModeToggler,
+    #scummTweaksToggler,
+    #scummTweaks,
+    #scummIntro,
+    .scumm-fade-overlay,
     #made-with-eXe,
     #exe-client-search { display: none !important; }
     .exe-content { padding: 0 !important; min-height: auto; }

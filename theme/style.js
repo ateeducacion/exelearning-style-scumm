@@ -3,7 +3,7 @@
  * SCUMM Adventure — eXeLearning theme script
  * -----------------------------------------------------------------
  * Autor:    Área de Tecnología Educativa
- * Versión:  1.0.0
+ * Versión:  1.1.0
  * Licencia: Creative Commons BY-SA 4.0
  *
  * Responsabilidades del script:
@@ -14,6 +14,14 @@
  *      en <html>, persistida en localStorage como `exeDarkMode`.
  *   3. Reproduce el comportamiento del menú lateral y de los
  *      togglers responsive (clase `.siteNav-off` en <body>).
+ *   4. Panel "tweaks" con engranaje (#scummTweaks / #scummTweaksToggler):
+ *      toggles para Panel SCUMM, Scanlines CRT y Modo noche, persistido
+ *      en localStorage.exeScummTweaks (JSON).
+ *   5. Overlay CRT de scanlines (body.scumm-scanlines, por defecto on).
+ *   6. Transición fade tipo "Day of the Tentacle" entre páginas del mismo
+ *      sitio (.scumm-fade-overlay).
+ *   7. Intro tipo "LucasArts Entertainment Company" una vez por sesión
+ *      (#scummIntro, sessionStorage.scummIntroShown).
  *
  * Diseño defensivo:
  *   - Funciona con o sin jQuery (eXeLearning carga jQuery en sus
@@ -101,6 +109,66 @@
 
     function isLowRes() { return global.innerWidth <= 768; }
 
+    function prefersReducedMotion() {
+        try {
+            return global.matchMedia &&
+                global.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        } catch (e) { return false; }
+    }
+
+    /* --------------- Tweaks: estado y aplicación temprana ---------------
+       Leemos localStorage.exeScummTweaks lo antes posible para evitar FOUC
+       (la clase body.scumm-scanlines se aplica antes del primer paint). */
+    var TWEAKS_KEY = 'exeScummTweaks';
+    var TWEAKS_DEFAULTS = { panel: true, scanlines: true, dark: false };
+
+    function readTweaks() {
+        var out = {};
+        for (var k in TWEAKS_DEFAULTS) out[k] = TWEAKS_DEFAULTS[k];
+        if (!isLocalStorageAvailable()) return out;
+        try {
+            var raw = localStorage.getItem(TWEAKS_KEY);
+            if (raw) {
+                var parsed = JSON.parse(raw);
+                for (var k2 in parsed) {
+                    if (typeof parsed[k2] === 'boolean') out[k2] = parsed[k2];
+                }
+            }
+        } catch (e) {}
+        // Reconciliar con exeDarkMode (fuente de verdad del tema oscuro)
+        try {
+            if (isLocalStorageAvailable()) {
+                out.dark = localStorage.getItem('exeDarkMode') === 'on';
+            }
+        } catch (e2) {}
+        return out;
+    }
+
+    function saveTweaks(state) {
+        if (!isLocalStorageAvailable()) return;
+        try { localStorage.setItem(TWEAKS_KEY, JSON.stringify(state)); }
+        catch (e) {}
+    }
+
+    function applyTweaksToBody(state) {
+        var body = document.body;
+        if (!body) return;
+        // Scanlines
+        if (state.scanlines) body.classList.add('scumm-scanlines');
+        else body.classList.remove('scumm-scanlines');
+        // Panel visible u oculto
+        if (state.panel) body.classList.remove('scumm-panel-off');
+        else body.classList.add('scumm-panel-off');
+        // Modo noche (usamos la misma llave que darkMode para compatibilidad)
+        if (state.dark) document.documentElement.classList.add('exe-dark-mode');
+        else document.documentElement.classList.remove('exe-dark-mode');
+    }
+
+    // Si <body> ya existe (script al final del <body>), aplica inmediatamente.
+    // Si no, espera a DOMContentLoaded en init() para aplicar y evitar FOUC.
+    var __earlyState = readTweaks();
+    if (document.body) applyTweaksToBody(__earlyState);
+
     /* --------------- Modo oscuro (sol) --------------- */
     var darkMode = {
         init: function () {
@@ -110,6 +178,8 @@
             btn.addEventListener('click', function () {
                 var active = document.documentElement.classList.contains('exe-dark-mode') ? 'off' : 'on';
                 darkMode.setMode(active);
+                // Sincroniza con el panel tweaks si existe
+                tweaks.syncFromDom();
             });
         },
         setMode: function (active) {
@@ -307,9 +377,362 @@
         });
     }
 
+    /* --------------- Tweaks: botón engranaje + panel flotante --------- */
+    var tweaks = {
+        state: __earlyState,
+
+        injectToggler: function () {
+            if (document.getElementById('scummTweaksToggler')) return;
+            var btn = el('button', {
+                type: 'button',
+                id: 'scummTweaksToggler',
+                class: 'toggler',
+                title: t('scumm_tweaks', 'Ajustes SCUMM'),
+                'aria-label': t('scumm_tweaks', 'Ajustes SCUMM')
+            }, el('span', null, t('scumm_tweaks', 'Ajustes SCUMM')));
+
+            // Colocación: .package-header (single-page) o flotante (exe-web-site)
+            var host = document.querySelector('.package-header')
+                    || document.querySelector('.main-header')
+                    || document.querySelector('.exe-content')
+                    || document.body;
+            if (host === document.body || document.body.classList.contains('exe-web-site')) {
+                document.body.appendChild(btn);
+            } else {
+                host.appendChild(btn);
+            }
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                tweaks.togglePanel();
+            });
+        },
+
+        buildPanel: function () {
+            if (document.getElementById('scummTweaks')) return;
+            var panel = el('div', {
+                id: 'scummTweaks',
+                role: 'dialog',
+                'aria-label': t('scumm_tweaks', 'Ajustes SCUMM'),
+                'aria-hidden': 'true'
+            });
+            panel.innerHTML =
+                '<div class="tw-head">' +
+                    '<span>' + (t('scumm_tweaks', 'Ajustes SCUMM')) + '</span>' +
+                    '<button type="button" class="tw-close" aria-label="' +
+                        (t('close', 'Cerrar')) + '">x</button>' +
+                '</div>' +
+                '<div class="tw-body">' +
+                    '<div class="tw-row">' +
+                        '<span class="tw-label">' + t('scumm_tweak_panel', 'Panel SCUMM') + '</span>' +
+                        '<button type="button" class="tw-toggle" data-key="panel" data-on="true">' +
+                            t('on', 'ON') + '</button>' +
+                    '</div>' +
+                    '<div class="tw-row">' +
+                        '<span class="tw-label">' + t('scumm_tweak_scan', 'Scanlines') + '</span>' +
+                        '<button type="button" class="tw-toggle" data-key="scanlines" data-on="true">' +
+                            t('on', 'ON') + '</button>' +
+                    '</div>' +
+                    '<div class="tw-row">' +
+                        '<span class="tw-label">' + t('scumm_tweak_night', 'Modo noche') + '</span>' +
+                        '<button type="button" class="tw-toggle" data-key="dark" data-on="false">' +
+                            t('off', 'OFF') + '</button>' +
+                    '</div>' +
+                '</div>';
+            document.body.appendChild(panel);
+
+            // Wire toggles
+            var toggles = panel.querySelectorAll('.tw-toggle');
+            for (var i = 0; i < toggles.length; i++) {
+                toggles[i].addEventListener('click', function () {
+                    var key = this.getAttribute('data-key');
+                    if (!key) return;
+                    tweaks.state[key] = !tweaks.state[key];
+                    // Espejo con la llave existente del modo oscuro
+                    if (key === 'dark') {
+                        darkMode.setMode(tweaks.state.dark ? 'on' : 'off');
+                    } else {
+                        applyTweaksToBody(tweaks.state);
+                    }
+                    saveTweaks(tweaks.state);
+                    tweaks.render();
+                });
+            }
+            var closeBtn = panel.querySelector('.tw-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                });
+            }
+            // ESC cierra
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && panel.classList.contains('open')) {
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                }
+            });
+            tweaks.render();
+        },
+
+        render: function () {
+            var panel = document.getElementById('scummTweaks');
+            if (!panel) return;
+            var map = panel.querySelectorAll('.tw-toggle');
+            for (var i = 0; i < map.length; i++) {
+                var key = map[i].getAttribute('data-key');
+                var on = !!tweaks.state[key];
+                map[i].setAttribute('data-on', on ? 'true' : 'false');
+                map[i].textContent = on ? t('on', 'ON') : t('off', 'OFF');
+            }
+        },
+
+        togglePanel: function () {
+            var panel = document.getElementById('scummTweaks');
+            if (!panel) return;
+            var open = !panel.classList.contains('open');
+            panel.classList.toggle('open', open);
+            panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        },
+
+        // Reconcilia cuando el usuario cambia el modo oscuro por otro canal
+        syncFromDom: function () {
+            tweaks.state.dark = document.documentElement.classList.contains('exe-dark-mode');
+            saveTweaks(tweaks.state);
+            tweaks.render();
+        },
+
+        init: function () {
+            // Asegura que el estado leído temprano queda aplicado (por si <body> no existía)
+            applyTweaksToBody(tweaks.state);
+            tweaks.injectToggler();
+            tweaks.buildPanel();
+        }
+    };
+
+    /* --------------- Day-of-the-Tentacle fade entre páginas ---------- */
+    var fade = {
+        overlay: null,
+
+        ensure: function () {
+            if (fade.overlay && document.body.contains(fade.overlay)) return fade.overlay;
+            var o = document.getElementById('scummFadeOverlay');
+            if (!o) {
+                o = el('div', { id: 'scummFadeOverlay', class: 'scumm-fade-overlay', 'aria-hidden': 'true' });
+                document.body.appendChild(o);
+            }
+            fade.overlay = o;
+            return o;
+        },
+
+        enter: function () {
+            // Al cargar: overlay al 100% -> fade a 0 en ~600ms
+            if (prefersReducedMotion()) return;
+            var o = fade.ensure();
+            o.classList.add('is-entering');
+            // Siguiente frame: quitar la clase para disparar el fade
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    o.classList.remove('is-entering');
+                });
+            });
+        },
+
+        isInternalAnchor: function (a) {
+            if (!a || !a.href) return false;
+            if (a.hasAttribute('download')) return false;
+            if (a.target && a.target !== '' && a.target !== '_self') return false;
+            var href = a.getAttribute('href') || '';
+            if (!href || href.charAt(0) === '#') return false;          // anclas puras
+            if (/^(mailto:|tel:|javascript:)/i.test(href)) return false;
+            // Mismo origen
+            var url;
+            try { url = new URL(a.href, global.location.href); }
+            catch (e) { return false; }
+            if (url.origin !== global.location.origin) return false;
+            // Misma página, distinto hash -> no forzamos fade (navegación anchor)
+            if (url.pathname === global.location.pathname &&
+                url.search === global.location.search &&
+                url.hash !== '' && url.hash !== global.location.hash) return false;
+            return true;
+        },
+
+        wireLinks: function () {
+            if (prefersReducedMotion()) return;
+            document.addEventListener('click', function (e) {
+                if (e.defaultPrevented) return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                if (e.button !== 0) return;
+                var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+                if (!a) return;
+                if (!fade.isInternalAnchor(a)) return;
+                e.preventDefault();
+                var url = a.href;
+                var o = fade.ensure();
+                o.classList.add('is-leaving');
+                var done = false;
+                var go = function () {
+                    if (done) return;
+                    done = true;
+                    global.location.href = url;
+                };
+                o.addEventListener('transitionend', go, { once: true });
+                // Fallback por si transitionend no dispara
+                setTimeout(go, 700);
+            }, true);
+        },
+
+        init: function () {
+            fade.ensure();
+            fade.enter();
+            fade.wireLinks();
+        }
+    };
+
+    /* --------------- Intro LucasArts-style (una vez por sesión) ------ */
+    var intro = {
+        SESSION_KEY: 'scummIntroShown',
+
+        shouldShow: function () {
+            try {
+                return !global.sessionStorage ||
+                    !sessionStorage.getItem(intro.SESSION_KEY);
+            } catch (e) { return true; }
+        },
+
+        markShown: function () {
+            try { sessionStorage.setItem(intro.SESSION_KEY, '1'); }
+            catch (e) {}
+        },
+
+        // SVG inline: figura con linterna (silueta pixel, estilo LucasArts)
+        figureSVG: function () {
+            // 32x48 píxeles, escalado por CSS. Silueta oscura con un halo cálido
+            // en el "foco" de la linterna para remitir al logo original.
+            return '' +
+                '<svg class="intro-figure" viewBox="0 0 32 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+                    '<defs>' +
+                        '<radialGradient id="scummIntroLamp" cx="50%" cy="50%" r="50%">' +
+                            '<stop offset="0%"  stop-color="#fff2bf" stop-opacity="0.95"/>' +
+                            '<stop offset="60%" stop-color="#ffd070" stop-opacity="0.5"/>' +
+                            '<stop offset="100%" stop-color="#ffb040" stop-opacity="0"/>' +
+                        '</radialGradient>' +
+                    '</defs>' +
+                    // Halo cálido de la linterna
+                    '<circle cx="24" cy="22" r="11" fill="url(#scummIntroLamp)"/>' +
+                    // Silueta del personaje (pixel blocks, negro sólido)
+                    '<g fill="#0a0a0a">' +
+                        // cabeza
+                        '<rect x="10" y="4"  width="6"  height="6"/>' +
+                        // cuerpo + capa
+                        '<rect x="8"  y="10" width="10" height="4"/>' +
+                        '<rect x="6"  y="14" width="14" height="10"/>' +
+                        // brazo izquierdo (hacia arriba, sosteniendo la linterna)
+                        '<rect x="18" y="14" width="4"  height="2"/>' +
+                        '<rect x="20" y="16" width="4"  height="2"/>' +
+                        '<rect x="22" y="18" width="3"  height="4"/>' +
+                        // linterna (base y marco)
+                        '<rect x="21" y="20" width="6"  height="4"/>' +
+                        // piernas
+                        '<rect x="8"  y="24" width="4"  height="10"/>' +
+                        '<rect x="14" y="24" width="4"  height="10"/>' +
+                        // pies
+                        '<rect x="6"  y="34" width="6"  height="3"/>' +
+                        '<rect x="14" y="34" width="6"  height="3"/>' +
+                    '</g>' +
+                    // Llama de la linterna (detalle)
+                    '<rect x="23" y="19" width="2" height="2" fill="#fff2bf"/>' +
+                    '<rect x="24" y="21" width="1" height="1" fill="#ffd070"/>' +
+                '</svg>';
+        },
+
+        build: function () {
+            if (document.getElementById('scummIntro')) return null;
+            var root = el('div', { id: 'scummIntro', 'aria-hidden': 'true' });
+            var stage = el('div', { class: 'intro-stage' });
+            stage.appendChild(el('div', { class: 'intro-planet', 'aria-hidden': 'true' }));
+            // figura SVG (como nodo)
+            var wrap = document.createElement('div');
+            wrap.innerHTML = intro.figureSVG();
+            var svgNode = wrap.firstChild;
+            if (svgNode) stage.appendChild(svgNode);
+            stage.appendChild(el('h1', { class: 'intro-wordmark' }, 'eXeLearning'));
+            stage.appendChild(el('p', { class: 'intro-subtitle' },
+                t('scumm_intro_company', 'eXeLearning Entertainment Company')));
+            root.appendChild(stage);
+            root.appendChild(el('p', { class: 'intro-skip' },
+                t('scumm_intro_skip', 'Haz clic para saltar')));
+            return root;
+        },
+
+        show: function () {
+            if (!intro.shouldShow()) return;
+            var root = intro.build();
+            if (!root) return;
+            document.body.classList.add('scumm-intro-on');
+            document.body.appendChild(root);
+
+            var reduce = prefersReducedMotion();
+            var fadeInMs  = reduce ? 0   : 300;
+            var holdMs    = reduce ? 500 : 2000;
+            var fadeOutMs = reduce ? 0   : 500;
+
+            var dismissed = false;
+            var dismiss = function () {
+                if (dismissed) return;
+                dismissed = true;
+                intro.markShown();
+                if (reduce) {
+                    cleanup();
+                } else {
+                    root.classList.add('is-leaving');
+                    var done = false;
+                    var finish = function () {
+                        if (done) return;
+                        done = true;
+                        cleanup();
+                    };
+                    root.addEventListener('transitionend', finish, { once: true });
+                    setTimeout(finish, fadeOutMs + 200);
+                }
+            };
+            var cleanup = function () {
+                if (root.parentNode) root.parentNode.removeChild(root);
+                document.body.classList.remove('scumm-intro-on');
+            };
+
+            // Fade in
+            if (reduce) {
+                root.classList.add('is-visible');
+                root.style.opacity = '1';
+                setTimeout(dismiss, holdMs);
+            } else {
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        root.classList.add('is-visible');
+                        setTimeout(dismiss, fadeInMs + holdMs);
+                    });
+                });
+            }
+
+            // Click-to-skip
+            root.addEventListener('click', dismiss);
+            // ESC también salta
+            var onKey = function (e) {
+                if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+                    dismiss();
+                    document.removeEventListener('keydown', onKey);
+                }
+            };
+            document.addEventListener('keydown', onKey);
+        }
+    };
+
     /* --------------- Inicialización --------------- */
     function init() {
         if (inIframe()) document.body.classList.add('in-iframe');
+
+        // Reaplica el estado tweaks ahora que <body> existe seguro
+        applyTweaksToBody(tweaks.state);
 
         injectDarkModeToggler();
         darkMode.init();
@@ -317,6 +740,12 @@
         wireBoxToggles();
         mountPanel();
         wireHotspots();
+
+        tweaks.init();
+        // Fade solo fuera de iframes (dentro de un LMS el fade molesta)
+        if (!inIframe()) fade.init();
+        // Intro solo fuera de iframes y respetando la sesión
+        if (!inIframe()) intro.show();
     }
 
     // Aplica el modo oscuro guardado lo antes posible para evitar
