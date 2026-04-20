@@ -960,24 +960,22 @@ button.toggler span {
 #siteNavToggler {
     top: 6px;
     left: 10px;
-    background:
-        linear-gradient(to bottom,
-            var(--scumm-ink) 0 6px,
-            transparent 6px 14px,
-            var(--scumm-ink) 14px 20px,
-            transparent 20px 28px,
-            var(--scumm-ink) 28px 34px) no-repeat 8px center / 24px 34px,
-        var(--scumm-accent);
+    background: var(--scumm-accent) url("images/icon_hamburger.svg") no-repeat center / 26px 26px;
+    image-rendering: pixelated;
 }
 #searchBarToggler {
     top: 6px;
     left: 56px;
-    background: var(--scumm-accent) url("images/icon_eye.png") no-repeat center / 24px 24px;
+    background: var(--scumm-accent) url("images/icon_search.svg") no-repeat center / 26px 26px;
     image-rendering: pixelated;
 }
 #searchBarToggler[aria-pressed="true"] {
     background-color: var(--scumm-verb-cyan);
 }
+#siteNavToggler:hover,
+#siteNavToggler:focus,
+#searchBarToggler:hover,
+#searchBarToggler:focus { background-color: var(--scumm-ui-bright); outline: none; }
 
 /* El botón de modo oscuro — icono de sol (inspirado en el tema universal) */
 #darkModeToggler {
@@ -987,7 +985,7 @@ button.toggler span {
     width: 40px;
     height: 40px;
     background-color: var(--scumm-accent);
-    background-image: url("images/sun.png");
+    background-image: url("images/icon_sun.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 26px 26px;
@@ -1007,10 +1005,10 @@ button.toggler span {
     position: absolute; clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
-/* En modo oscuro: el sol se atenúa (hay "luna") */
+/* Modo oscuro: sol → luna. Mantenemos el cassette amarillo para que siga
+   siendo legible como botón (mismo rol que el sol/luna del tema universal). */
 html.exe-dark-mode #darkModeToggler {
-    background-color: var(--scumm-ui-dark);
-    filter: grayscale(0.5) brightness(0.95);
+    background-image: url("images/icon_moon.svg");
 }
 .exe-web-site #darkModeToggler {
     position: fixed;
@@ -1501,7 +1499,7 @@ body.in-iframe #darkModeToggler { position: absolute; }
     right: 62px;
     width: 40px;
     height: 40px;
-    background-color: var(--scumm-accent);
+    background: var(--scumm-accent) url("images/icon_gear.svg") no-repeat center / 26px 26px;
     color: var(--scumm-ink);
     border: 2px solid var(--scumm-ink);
     box-shadow:
@@ -1512,18 +1510,6 @@ body.in-iframe #darkModeToggler { position: absolute; }
     z-index: 20;
     image-rendering: pixelated;
     border-radius: 0;
-    font-family:var(--scumm-font-head);
-    font-size: 22px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#scummTweaksToggler::before {
-    content: "\2699"; /* ⚙ */
-    display: block;
-    line-height: 1;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
 }
 #scummTweaksToggler:hover,
 #scummTweaksToggler:focus {
@@ -1545,11 +1531,8 @@ body.in-iframe #darkModeToggler { position: absolute; }
     top: 6px;
     right: 60px;
 }
-html.exe-dark-mode #scummTweaksToggler {
-    background-color: var(--scumm-ui-dark);
-    color: var(--scumm-accent);
-    filter: grayscale(0.3) brightness(0.95);
-}
+/* Modo oscuro: el engranaje conserva el cassette amarillo (consistente con
+   sol/luna) para mantener los 4 botones de la barra visualmente alineados. */
 
 /* El panel flotante — caja de diálogo con marco madera + papel beige */
 #scummTweaks {
