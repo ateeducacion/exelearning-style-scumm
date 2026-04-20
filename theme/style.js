@@ -474,7 +474,7 @@
                             t('off', 'OFF') + '</button>' +
                     '</div>' +
                     '<div class="tw-row tw-row-action">' +
-                        '<span class="tw-label">' + t('scumm_tweak_intro', 'Intro LucasArts') + '</span>' +
+                        '<span class="tw-label">' + t('scumm_tweak_intro', 'Intro') + '</span>' +
                         '<button type="button" class="tw-toggle tw-replay-intro">' +
                             t('scumm_tweak_intro_replay', 'reproducir') + '</button>' +
                     '</div>' +
