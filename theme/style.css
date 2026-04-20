@@ -1083,6 +1083,14 @@ html.exe-dark-mode #darkModeToggler {
     letter-spacing: 0.08em;
 }
 #siteFooter a { color: var(--scumm-accent); border-bottom-color: var(--scumm-accent); }
+#siteFooterContent .license {
+    margin: 0;
+    line-height: 1.6;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#siteFooterContent .license a { font-weight: bold; }
 #made-with-eXe {
     display: inline-block;
     margin: 16px 0 0;
@@ -1372,7 +1380,11 @@ html.exe-dark-mode #darkModeToggler {
     display: none;
     text-align: center;
 }
-.exe-search-on #exe-client-search { display: block; }
+/* eXeLearning's exe_export.js adds `exe-search-on` to <body> on init and
+   never removes it, which would leave the search bar always expanded.
+   The theme governs visibility via its own `scumm-search-on` class so the
+   engranaje/cassette toggler actually controls the panel. */
+body.scumm-search-on #exe-client-search { display: block; }
 #exe-client-search-text {
     display: inline-block;
     max-width: 600px;

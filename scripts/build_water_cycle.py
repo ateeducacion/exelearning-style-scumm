@@ -525,7 +525,8 @@ root = f'''<?xml version="1.0" encoding="utf-8"?>
   <odeProperty><key>pp_title</key><value>El ciclo del agua · SCUMM Adventure</value></odeProperty>
   <odeProperty><key>pp_lang</key><value>es</value></odeProperty>
   <odeProperty><key>pp_author</key><value>Área de Tecnología Educativa · Gobierno de Canarias</value></odeProperty>
-  <odeProperty><key>license</key><value>creative commons: attribution - share alike 4.0</value></odeProperty>
+  <odeProperty><key>pp_license</key><value>creative commons: attribution - share alike 4.0</value></odeProperty>
+  <odeProperty><key>pp_rightsInfo</key><value>© Área de Tecnología Educativa · Gobierno de Canarias, 2026. Contenido y tema publicados bajo Creative Commons Reconocimiento-CompartirIgual 4.0 (CC BY-SA 4.0). Tipografías LucasArts SCUMM (scummbar.com, uso no comercial) y VT323 (SIL OFL 1.1).</value></odeProperty>
   <odeProperty><key>pp_description</key><value>Unidad didáctica de ejemplo sobre el ciclo del agua, presentada con el estilo retro SCUMM Adventure.</value></odeProperty>
   <odeProperty><key>pp_theme</key><value>scumm</value></odeProperty>
   <odeProperty><key>pp_addExeLink</key><value>true</value></odeProperty>
@@ -534,7 +535,7 @@ root = f'''<?xml version="1.0" encoding="utf-8"?>
   <odeProperty><key>pp_addSearchBox</key><value>true</value></odeProperty>
   <odeProperty><key>pp_addAccessibilityToolbar</key><value>false</value></odeProperty>
   <odeProperty><key>pp_extraHeadContent</key><value/></odeProperty>
-  <odeProperty><key>footer</key><value/></odeProperty>
+  <odeProperty><key>footer</key><value>&lt;p class=&quot;license&quot;&gt;© &lt;a href=&quot;https://www3.gobiernodecanarias.org/medusa/edublog/cprofestenerifesur/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Área de Tecnología Educativa&lt;/a&gt; · Gobierno de Canarias, 2026. Contenido bajo licencia &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/4.0/deed.es&quot; rel=&quot;license noopener&quot; target=&quot;_blank&quot;&gt;Creative Commons Reconocimiento-CompartirIgual 4.0 (CC BY-SA 4.0)&lt;/a&gt;.&lt;/p&gt;</value></odeProperty>
   <odeProperty><key>exportSource</key><value>true</value></odeProperty>
 </odeProperties>
 <odeNavStructures>

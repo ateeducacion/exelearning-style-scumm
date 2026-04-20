@@ -265,9 +265,11 @@
             document.body.appendChild(btn);
         }
 
-        // Show/hide via `.exe-search-on` on <body> (matches existing CSS).
+        // Closed by default — exe_export.js unconditionally sets `exe-search-on`
+        // on <body>, so the theme owns visibility via its own class.
+        btn.setAttribute('aria-pressed', 'false');
         btn.addEventListener('click', function () {
-            var on = document.body.classList.toggle('exe-search-on');
+            var on = document.body.classList.toggle('scumm-search-on');
             btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             if (on) {
                 var input = document.getElementById('exe-client-search-text');

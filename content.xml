@@ -43,8 +43,20 @@
     <value>scumm</value>
   </odeProperty>
   <odeProperty>
+    <key>pp_license</key>
+    <value>creative commons: attribution - share alike 4.0</value>
+  </odeProperty>
+  <odeProperty>
+    <key>pp_rightsInfo</key>
+    <value>© Área de Tecnología Educativa · Gobierno de Canarias, 2026. Contenido y tema publicados bajo Creative Commons Reconocimiento-CompartirIgual 4.0 (CC BY-SA 4.0). Tipografías LucasArts SCUMM (scummbar.com, uso no comercial) y VT323 (SIL OFL 1.1).</value>
+  </odeProperty>
+  <odeProperty>
+    <key>footer</key>
+    <value>&lt;p class=&quot;license&quot;&gt;© &lt;a href=&quot;https://www3.gobiernodecanarias.org/medusa/edublog/cprofestenerifesur/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Área de Tecnología Educativa&lt;/a&gt; · Gobierno de Canarias, 2026. Contenido bajo licencia &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/4.0/deed.es&quot; rel=&quot;license noopener&quot; target=&quot;_blank&quot;&gt;Creative Commons Reconocimiento-CompartirIgual 4.0 (CC BY-SA 4.0)&lt;/a&gt;.&lt;/p&gt;</value>
+  </odeProperty>
+  <odeProperty>
     <key>pp_modified</key>
-    <value>2026-04-19T11:31:12.532Z</value>
+    <value>2026-04-20T22:30:00.000Z</value>
   </odeProperty>
   <odeProperty>
     <key>pp_addExeLink</key>
