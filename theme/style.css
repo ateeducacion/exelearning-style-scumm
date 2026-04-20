@@ -29,28 +29,28 @@
 /* TIPOGRAFÍAS SCUMM (100% locales, sin @import remoto)             */
 /* ---------------------------------------------------------------- */
 @font-face {
-    font-family: "ScummSolid";
+    font-family:"ScummSolid";
     src: url("fonts/lucasarts-scumm-solid.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: "ScummMenu";
+    font-family:"ScummMenu";
     src: url("fonts/lucasarts-scumm-menu.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: "ScummMenuSolid";
+    font-family:"ScummMenuSolid";
     src: url("fonts/lucasarts-scumm-menu-solid.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: "ScummRoman";
+    font-family:"ScummRoman";
     src: url("fonts/lucasarts-scumm-subtitle-roman.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
@@ -61,7 +61,7 @@
    hace glyph-fallback a VT323 (SIL OFL 1.1) para los caracteres españoles
    que faltan, manteniendo estética pixel. */
 @font-face {
-    font-family: "ScummPixelFallback";
+    font-family:"ScummPixelFallback";
     src: url("fonts/VT323-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
@@ -132,7 +132,7 @@
 
     /* Layout */
     --scumm-sidebar-w:   280px;
-    --scumm-panel-h:     180px;
+    --scumm-panel-h:     132px;
 
     /* Formas — pixel art: sin esquinas redondeadas */
     --scumm-radius:      0;
@@ -179,7 +179,7 @@ html, body {
     min-height: 100%;
     background: var(--scumm-sea-deep);
     color: var(--scumm-ui-text);
-    font-family: var(--scumm-font);
+    font-family:var(--scumm-font);
     font-size: var(--scumm-fs-body);
     line-height: 1.55;
     -webkit-font-smoothing: none;
@@ -242,14 +242,14 @@ body::before {
 /* ---------------------------------------------------------------- */
 .exe-content,
 body#tinymce {
-    font-family: var(--scumm-font);
+    font-family:var(--scumm-font);
     font-size: var(--scumm-fs-body);
     line-height: 1.55;
     color: var(--scumm-ui-text);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-weight: normal;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -298,7 +298,7 @@ html.exe-dark-mode .exe-content a { color: var(--scumm-accent); }
 strong, b { color: var(--scumm-dialog-player); font-weight: normal; }
 em, i    { color: var(--scumm-dialog-item); font-style: normal; }
 code, pre, kbd, samp {
-    font-family: var(--scumm-font-ui);
+    font-family:var(--scumm-font-ui);
     background: var(--scumm-ink);
     color: var(--scumm-accent);
     padding: 2px 6px;
@@ -387,7 +387,7 @@ body.exe-single-page main,
 }
 .exe-content .package-title {
     margin: 0 0 6px;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 16px;
     color: var(--scumm-dialog-narr);
     text-transform: uppercase;
@@ -407,7 +407,7 @@ body.exe-single-page main,
 }
 .exe-content .page-title {
     margin: 0;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: var(--scumm-fs-title);
     color: var(--scumm-accent);
     text-transform: uppercase;
@@ -492,7 +492,7 @@ body.exe-single-page main,
 .exe-content .box-title,
 .exe-content .box-head h2 {
     margin: 0;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: var(--scumm-fs-large);
     color: var(--scumm-accent);
     text-transform: uppercase;
@@ -517,7 +517,7 @@ body.exe-single-page main,
         inset -2px -2px 0 var(--scumm-sand-dark),
         inset  2px  2px 0 #fff5c2;
     color: var(--scumm-ink);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 18px;
     font-weight: bold;
     line-height: 1;
@@ -603,7 +603,7 @@ html.exe-dark-mode .exe-block-alert   { background: #5a1818; color: var(--scumm-
 .exe-block-alert::before,
 .exe-block-success::before {
     display: block;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 6px;
@@ -625,7 +625,7 @@ blockquote,
     color: var(--scumm-dialog-narr);
     padding: 16px 22px 16px 56px;
     margin: 24px 0;
-    font-family: var(--scumm-font);
+    font-family:var(--scumm-font);
     font-style: normal;
     position: relative;
     box-shadow: var(--scumm-shadow-soft);
@@ -638,7 +638,7 @@ blockquote::before,
     top: 6px;
     font-size: 48px;
     color: var(--scumm-accent);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     line-height: 1;
 }
 blockquote cite,
@@ -671,7 +671,7 @@ blockquote cite::before,
     caption-side: top;
     padding: 8px 0 10px;
     color: var(--scumm-accent);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     text-align: left;
@@ -688,7 +688,7 @@ blockquote cite::before,
     text-shadow: none;
     border: 2px solid var(--scumm-ink);
     font-weight: normal;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
 }
 .exe-content .exe-table td,
 .exe-content .exe-table th {
@@ -734,7 +734,7 @@ html.exe-dark-mode .exe-content .exe-table tbody tr:nth-child(2n-1) td { backgro
 .exe-content .iDevice_buttons button,
 .exe-content .idevice-btn,
 .exe-content button.idevice-btn {
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -778,7 +778,7 @@ html.exe-dark-mode .exe-content .exe-table tbody tr:nth-child(2n-1) td { backgro
 .exe-content input[type="search"],
 .exe-content textarea,
 .exe-content select {
-    font-family: var(--scumm-font-ui);
+    font-family:var(--scumm-font-ui);
     font-size: 14px;
     color: var(--scumm-accent);
     background: var(--scumm-ink);
@@ -830,7 +830,7 @@ html.exe-dark-mode .exe-content .exe-table tbody tr:nth-child(2n-1) td { backgro
     padding: 64px 0 calc(var(--scumm-panel-h) + 16px);
     overflow-y: auto;
     z-index: 30;
-    font-family: var(--scumm-font-ui);
+    font-family:var(--scumm-font-ui);
     transition: transform 0.15s steps(3);
 }
 #siteNav::before {
@@ -842,7 +842,7 @@ html.exe-dark-mode .exe-content .exe-table tbody tr:nth-child(2n-1) td { backgro
     right: 0;
     text-align: center;
     color: var(--scumm-accent);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 14px;
     letter-spacing: 0.1em;
     padding-bottom: 10px;
@@ -915,7 +915,7 @@ body.siteNav-off.exe-web-site #siteFooter { padding-left: 24px; }
     color: var(--scumm-ink);
     text-decoration: none;
     border: 2px solid var(--scumm-ink);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1089,7 +1089,7 @@ html.exe-dark-mode #darkModeToggler {
     background: var(--scumm-accent);
     color: var(--scumm-ink);
     border: 3px solid var(--scumm-ink);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 11px;
     padding: 0;
 }
@@ -1156,7 +1156,7 @@ html.exe-dark-mode #darkModeToggler {
     padding: 12px 16px;
     border: 0;
     border-bottom: 3px solid var(--scumm-ink);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     text-transform: uppercase;
     position: relative;
     cursor: inherit;
@@ -1167,7 +1167,7 @@ html.exe-dark-mode #darkModeToggler {
     top: 10px;
     right: 14px;
     color: var(--scumm-accent);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     transition: none;
 }
 .exe-content .fx-accordion-title.active::after { content: "▴"; }
@@ -1215,25 +1215,25 @@ html.exe-dark-mode #darkModeToggler {
     max-height: var(--scumm-panel-h);
     z-index: 35;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: minmax(260px, 32%) 1fr;
     background: var(--scumm-wood-dark);
     border-top: 4px solid var(--scumm-ink);
     box-shadow:
         inset 0 4px 0 var(--scumm-wood-hi),
         inset 0 8px 0 var(--scumm-ink);
-    font-family: var(--scumm-font-ui);
+    font-family:var(--scumm-font-ui);
     user-select: none;
     color: var(--scumm-paper);
 }
 
-/* Verbos */
+/* Verbos — rejilla compacta 3x3 */
 .scumm-verbs {
-    padding: 14px 14px 12px 20px;
+    padding: 10px 12px 8px 16px;
     border-right: 4px solid var(--scumm-wood-hi);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: min-content;
-    gap: 4px 12px;
+    gap: 1px 10px;
     align-content: start;
     background: var(--scumm-ink);
     position: relative;
@@ -1241,7 +1241,7 @@ html.exe-dark-mode #darkModeToggler {
 .scumm-verbs::before {
     content: "";
     position: absolute;
-    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    top: 4px; left: 4px; right: 4px; bottom: 4px;
     border: 2px solid var(--scumm-wood-hi);
     pointer-events: none;
 }
@@ -1250,15 +1250,15 @@ html.exe-dark-mode #darkModeToggler {
     color: var(--scumm-verb-idle);
     border: 0;
     box-shadow: none;
-    font-family: var(--scumm-font-head);
-    font-size: 16px;
+    font-family:var(--scumm-font-head);
+    font-size: 13px;
     text-transform: uppercase;
     text-align: left;
-    padding: 3px 2px;
+    padding: 1px 2px;
     letter-spacing: 0.04em;
     cursor: inherit;
     text-shadow: 2px 2px 0 var(--scumm-ink);
-    line-height: 1.15;
+    line-height: 1.1;
 }
 .scumm-verb:hover {
     color: var(--scumm-verb-hover);
@@ -1277,19 +1277,18 @@ html.exe-dark-mode #darkModeToggler {
 .scumm-middle {
     display: flex;
     flex-direction: column;
-    border-right: 4px solid var(--scumm-wood-hi);
     background: var(--scumm-ink);
 }
 .scumm-sentence {
-    padding: 10px 16px;
+    padding: 6px 14px;
     background: var(--scumm-ink);
     color: var(--scumm-accent);
     border-bottom: 2px solid var(--scumm-wood-hi);
-    font-family: var(--scumm-font-head);
-    font-size: 16px;
+    font-family:var(--scumm-font-head);
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    min-height: 40px;
+    min-height: 28px;
     display: flex;
     align-items: center;
 }
@@ -1308,10 +1307,11 @@ html.exe-dark-mode #darkModeToggler {
 
 .scumm-inventory {
     flex: 1;
-    padding: 10px 14px;
+    padding: 6px 12px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+    gap: 4px;
     overflow-y: auto;
     min-height: 0;
     background: var(--scumm-wood-dark);
@@ -1320,8 +1320,9 @@ html.exe-dark-mode #darkModeToggler {
     background: url("images/inventory_slot.png") no-repeat center / 100% 100%;
     background-color: var(--scumm-wood);
     width: 100%;
+    height: 100%;
     aspect-ratio: 1 / 1;
-    min-height: 40px;
+    min-height: 0;
     padding: 0;
     border: 0;
     box-shadow: none;
@@ -1388,12 +1389,12 @@ body.in-iframe #darkModeToggler { position: absolute; }
 /* RESPONSIVE                                                       */
 /* ---------------------------------------------------------------- */
 @media (max-width: 992px) {
-    :root { --scumm-panel-h: 220px; }
+    :root { --scumm-panel-h: 150px; }
     .nav-buttons .nav-button-left  { right: 180px; }
 }
 
 @media (max-width: 768px) {
-    :root { --scumm-sidebar-w: 0px; --scumm-panel-h: 240px; }
+    :root { --scumm-sidebar-w: 0px; --scumm-panel-h: 180px; }
     .exe-web-site main.page,
     .exe-web-site #siteFooter,
     .exe-content {
@@ -1404,22 +1405,22 @@ body.in-iframe #darkModeToggler { position: absolute; }
     body.siteNav-on #siteNav { transform: translateX(0); }
     .scumm-panel {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto 1fr;
         height: auto;
-        max-height: 60vh;
+        max-height: 50vh;
     }
     .scumm-verbs {
         border-right: 0;
         border-bottom: 3px solid var(--scumm-wood-hi);
     }
-    .scumm-middle { border-right: 0; border-bottom: 3px solid var(--scumm-wood-hi); }
-    .scumm-inventory { grid-template-columns: repeat(6, 1fr); max-height: 120px; }
+    .scumm-middle { border-right: 0; }
+    .scumm-inventory { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); max-height: 90px; }
 }
 
 @media (max-width: 560px) {
-    :root { --scumm-fs-body: 15px; --scumm-fs-title: 22px; --scumm-panel-h: 260px; }
-    .scumm-verbs { grid-template-columns: repeat(2, 1fr); font-size: 13px; }
-    .scumm-inventory { grid-template-columns: repeat(5, 1fr); }
+    :root { --scumm-fs-body: 15px; --scumm-fs-title: 22px; --scumm-panel-h: 200px; }
+    .scumm-verbs { grid-template-columns: repeat(2, 1fr); font-size: 12px; }
+    .scumm-inventory { grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); }
     .exe-content .box-head { flex-wrap: wrap; padding: 12px 14px; }
     .exe-content .box-title { font-size: 17px; }
 }
@@ -1495,7 +1496,7 @@ body.in-iframe #darkModeToggler { position: absolute; }
     z-index: 20;
     image-rendering: pixelated;
     border-radius: 0;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 22px;
     line-height: 1;
     display: flex;
@@ -1546,7 +1547,7 @@ html.exe-dark-mode #scummTweaksToggler {
     box-shadow:
         inset 0 0 0 2px var(--scumm-wood-hi),
         var(--scumm-shadow-hard);
-    font-family: var(--scumm-font-ui);
+    font-family:var(--scumm-font-ui);
     z-index: 200;
     display: none;
     border-radius: 0;
@@ -1570,7 +1571,7 @@ html.exe-dark-mode #scummTweaksToggler {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -1589,7 +1590,7 @@ html.exe-dark-mode #scummTweaksToggler {
     box-shadow:
         inset -2px -2px 0 var(--scumm-sand-dark),
         inset  2px  2px 0 #fff5c2;
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 14px;
     line-height: 1;
     cursor: inherit;
@@ -1622,7 +1623,7 @@ html.exe-dark-mode #scummTweaks .tw-body { background: var(--scumm-paper); color
 }
 #scummTweaks .tw-row:last-child { border-bottom: 0; }
 #scummTweaks .tw-label {
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 14px;
     letter-spacing: 0.04em;
     color: var(--scumm-dialog-npc);
@@ -1632,7 +1633,7 @@ html.exe-dark-mode #scummTweaks .tw-body { background: var(--scumm-paper); color
 #scummTweaks .tw-toggle {
     background: transparent;
     border: 2px solid var(--scumm-ink);
-    font-family: var(--scumm-font-head);
+    font-family:var(--scumm-font-head);
     font-size: 13px;
     padding: 4px 10px;
     cursor: inherit;
@@ -1812,7 +1813,7 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
 /* Wordmark "eXeLearning" — usamos ScummSolid (la fuente retro LucasArts)
    con italic sintético para evocar el logo manuscrito original. */
 #scummIntro .intro-wordmark {
-    font-family: "ScummSolid", "ScummMenuSolid", "Brush Script MT", "Segoe Script", cursive;
+    font-family:"ScummSolid", "ScummMenuSolid", "ScummPixelFallback", "Brush Script MT", "Segoe Script", cursive;
     font-style: italic;
     font-size: clamp(52px, 10vw, 120px);
     color: #f6f0e0;
@@ -1830,7 +1831,7 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
 
 #scummIntro .intro-subtitle {
     margin: 28px 0 0;
-    font-family: var(--scumm-font-head, "ScummSolid"), "Courier New", monospace;
+    font-family:var(--scumm-font-head, "ScummSolid"), "Courier New", monospace;
     font-size: clamp(12px, 1.8vw, 18px);
     color: #ffffff;
     letter-spacing: 0.3em;
@@ -1846,7 +1847,7 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: var(--scumm-font-ui, monospace);
+    font-family:var(--scumm-font-ui, monospace);
     font-size: 11px;
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.2em;

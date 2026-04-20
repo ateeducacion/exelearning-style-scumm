@@ -262,11 +262,11 @@ DOWNLOAD_STYLE_URL = f'{REPO_URL}/releases/latest'
 def action_buttons_html() -> str:
     return f'''<p style="text-align:center;margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
     <a href="{OPEN_IN_EXE_URL}" target="_blank" rel="noopener"
-       style="display:inline-block;background:#D7D700;color:#000;padding:10px 18px;border:3px solid #000;box-shadow:4px 4px 0 #D700D7;font-family:'VT323',monospace;font-size:22px;text-decoration:none;letter-spacing:0.5px;">
+       style="display:inline-block;background:#ffd24a;color:#0a0f1a;padding:8px 16px;border:2px solid #0a0f1a;box-shadow:inset -2px -2px 0 #b88a3c,inset 2px 2px 0 #fff5c2,4px 4px 0 #0a0f1a;font-family:'ScummSolid','ScummMenuSolid','ScummPixelFallback','Courier New',monospace;font-size:16px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
       ▶ abrir en eXeLearning
     </a>
     <a href="{DOWNLOAD_STYLE_URL}" target="_blank" rel="noopener"
-       style="display:inline-block;background:#00D7D7;color:#000;padding:10px 18px;border:3px solid #000;box-shadow:4px 4px 0 #D700D7;font-family:'VT323',monospace;font-size:22px;text-decoration:none;letter-spacing:0.5px;">
+       style="display:inline-block;background:#4ed6d6;color:#0a0f1a;padding:8px 16px;border:2px solid #0a0f1a;box-shadow:inset -2px -2px 0 #2a7e7e,inset 2px 2px 0 #c8f3f3,4px 4px 0 #0a0f1a;font-family:'ScummSolid','ScummMenuSolid','ScummPixelFallback','Courier New',monospace;font-size:16px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
       ↓ descargar estilo
     </a>
     </p>'''

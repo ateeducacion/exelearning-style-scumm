@@ -1,0 +1,183 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1776716049412,
+  "projectRoot": "/Users/ernesto/Downloads/git/exelearning-style-scumm",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "content": {
+      "path": "content",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1776716049404,
+      "keyFiles": []
+    },
+    "html": {
+      "path": "html",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1776716049405,
+      "keyFiles": [
+        "condensacion.html",
+        "creditos.html",
+        "debate.html",
+        "evaporacion.html",
+        "infiltracion.html"
+      ]
+    },
+    "reference": {
+      "path": "reference",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776716049405,
+      "keyFiles": [
+        "README.md"
+      ]
+    },
+    "sample": {
+      "path": "sample",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776716049405,
+      "keyFiles": [
+        "README.md"
+      ]
+    },
+    "theme": {
+      "path": "theme",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1776716049405,
+      "keyFiles": [
+        "README.md",
+        "config.xml",
+        "demo.html",
+        "screenshot.png",
+        "style.css"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "theme/style.css",
+      "accessCount": 25,
+      "lastAccessed": 1776720414049,
+      "type": "file"
+    },
+    {
+      "path": "theme/style.js",
+      "accessCount": 19,
+      "lastAccessed": 1776720424633,
+      "type": "file"
+    },
+    {
+      "path": "theme",
+      "accessCount": 6,
+      "lastAccessed": 1776719130532,
+      "type": "directory"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 5,
+      "lastAccessed": 1776718871974,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 5,
+      "lastAccessed": 1776720300585,
+      "type": "directory"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 4,
+      "lastAccessed": 1776716644267,
+      "type": "file"
+    },
+    {
+      "path": "theme/config.xml",
+      "accessCount": 4,
+      "lastAccessed": 1776716748444,
+      "type": "file"
+    },
+    {
+      "path": "libs/exe_export.js",
+      "accessCount": 4,
+      "lastAccessed": 1776720144083,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 4,
+      "lastAccessed": 1776720295780,
+      "type": "directory"
+    },
+    {
+      "path": "theme/README.md",
+      "accessCount": 2,
+      "lastAccessed": 1776716653276,
+      "type": "file"
+    },
+    {
+      "path": "theme/demo.html",
+      "accessCount": 2,
+      "lastAccessed": 1776719221469,
+      "type": "file"
+    },
+    {
+      "path": "html/el-ciclo-del-agua.html",
+      "accessCount": 2,
+      "lastAccessed": 1776719966171,
+      "type": "directory"
+    },
+    {
+      "path": "libs",
+      "accessCount": 2,
+      "lastAccessed": 1776719972923,
+      "type": "directory"
+    },
+    {
+      "path": "GITARCHIVE.md",
+      "accessCount": 1,
+      "lastAccessed": 1776626385346,
+      "type": "file"
+    },
+    {
+      "path": "sample/README.md",
+      "accessCount": 1,
+      "lastAccessed": 1776626392885,
+      "type": "file"
+    },
+    {
+      "path": "reference/README.md",
+      "accessCount": 1,
+      "lastAccessed": 1776626398549,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

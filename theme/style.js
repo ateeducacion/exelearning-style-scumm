@@ -352,7 +352,7 @@
             slot.appendChild(img);
             inv.appendChild(slot);
         });
-        for (var i = SCUMM.inventory.length; i < 8; i++) {
+        for (var i = SCUMM.inventory.length; i < 16; i++) {
             inv.appendChild(el('span', { class: 'scumm-inv-slot', 'aria-hidden': 'true' }));
         }
         middle.appendChild(inv);
@@ -386,8 +386,12 @@
     // slideDown. Sólo cableamos nuestro handler si ese código no está
     // presente (p. ej. en theme/demo.html, que no carga libs/).
     function exeHandlesBoxToggles() {
+        // exe_export.js's addBoxToggleEvent requires jQuery. If either piece
+        // is missing (e.g. demo.html loads only the theme, not libs/), fall
+        // back to the vanilla handler below.
         return !!(global.$exeExport &&
-                  typeof global.$exeExport.addBoxToggleEvent === 'function');
+                  typeof global.$exeExport.addBoxToggleEvent === 'function' &&
+                  typeof global.jQuery === 'function');
     }
     function wireBoxToggles() {
         if (exeHandlesBoxToggles()) return;
