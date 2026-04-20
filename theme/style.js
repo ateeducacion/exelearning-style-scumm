@@ -227,8 +227,9 @@
             type: 'button',
             id: 'siteNavToggler',
             class: 'toggler',
-            title: t('menu', 'Menú')
-        }, el('span', null, t('menu', 'Menú')));
+            title: t('menu', 'Mostrar u ocultar menú'),
+            'aria-label': t('menu', 'Mostrar u ocultar menú')
+        }, el('span', null, t('menu', 'Mostrar u ocultar menú')));
         nav.parentNode.insertBefore(btn, nav);
 
         btn.addEventListener('click', function () {
@@ -241,6 +242,38 @@
         if (q.indexOf('nav=false') !== -1) {
             document.body.classList.add('siteNav-off');
         }
+    }
+
+    /* Search toggler: reveals eXeLearning's native #exe-client-search */
+    function wireSearchToggler() {
+        var search = document.getElementById('exe-client-search');
+        if (!search) return;
+        if (document.getElementById('searchBarToggler')) return;
+
+        var btn = el('button', {
+            type: 'button',
+            id: 'searchBarToggler',
+            class: 'toggler',
+            title: t('search', 'Buscar'),
+            'aria-label': t('search', 'Buscar')
+        }, el('span', null, t('search', 'Buscar')));
+
+        var navTog = document.getElementById('siteNavToggler');
+        if (navTog && navTog.parentNode) {
+            navTog.parentNode.insertBefore(btn, navTog.nextSibling);
+        } else {
+            document.body.appendChild(btn);
+        }
+
+        // Show/hide via `.exe-search-on` on <body> (matches existing CSS).
+        btn.addEventListener('click', function () {
+            var on = document.body.classList.toggle('exe-search-on');
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            if (on) {
+                var input = document.getElementById('exe-client-search-text');
+                if (input && input.focus) setTimeout(function () { input.focus(); }, 30);
+            }
+        });
     }
 
     /* --------------- Panel SCUMM --------------- */
@@ -324,24 +357,8 @@
         }
         middle.appendChild(inv);
 
-        // --- Brújula ---
-        var compass = el('div', { class: 'scumm-compass', 'aria-label': t('scumm_compass', 'Brújula') });
-        var arrows = [
-            ['spacer', ''], ['↑', t('up', 'Arriba')], ['spacer', ''],
-            ['←', t('left', 'Izquierda')], ['●', t('act', 'Usar')], ['→', t('right', 'Derecha')],
-            ['spacer', ''], ['↓', t('down', 'Abajo')], ['spacer', '']
-        ];
-        arrows.forEach(function (a) {
-            var cls = 'arrow' + (a[0] === 'spacer' ? ' spacer' : '');
-            var b = a[0] === 'spacer'
-                ? el('span', { class: cls, 'aria-hidden': 'true' })
-                : el('button', { class: cls, type: 'button', title: a[1] }, a[0]);
-            compass.appendChild(b);
-        });
-
         panel.appendChild(verbs);
         panel.appendChild(middle);
-        panel.appendChild(compass);
         return panel;
     }
 
@@ -437,11 +454,16 @@
                         '<button type="button" class="tw-toggle" data-key="dark" data-on="false">' +
                             t('off', 'OFF') + '</button>' +
                     '</div>' +
+                    '<div class="tw-row tw-row-action">' +
+                        '<span class="tw-label">' + t('scumm_tweak_intro', 'Intro LucasArts') + '</span>' +
+                        '<button type="button" class="tw-toggle tw-replay-intro">' +
+                            t('scumm_tweak_intro_replay', 'reproducir') + '</button>' +
+                    '</div>' +
                 '</div>';
             document.body.appendChild(panel);
 
-            // Wire toggles
-            var toggles = panel.querySelectorAll('.tw-toggle');
+            // Wire toggles (data-key rows only)
+            var toggles = panel.querySelectorAll('.tw-toggle[data-key]');
             for (var i = 0; i < toggles.length; i++) {
                 toggles[i].addEventListener('click', function () {
                     var key = this.getAttribute('data-key');
@@ -455,6 +477,18 @@
                     }
                     saveTweaks(tweaks.state);
                     tweaks.render();
+                });
+            }
+
+            // Wire "replay intro" — clears the session flag and re-plays the loader
+            var replay = panel.querySelector('.tw-replay-intro');
+            if (replay) {
+                replay.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    try { sessionStorage.removeItem(intro.SESSION_KEY); } catch (err) {}
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                    intro.show();
                 });
             }
             var closeBtn = panel.querySelector('.tw-close');
@@ -477,7 +511,7 @@
         render: function () {
             var panel = document.getElementById('scummTweaks');
             if (!panel) return;
-            var map = panel.querySelectorAll('.tw-toggle');
+            var map = panel.querySelectorAll('.tw-toggle[data-key]');
             for (var i = 0; i < map.length; i++) {
                 var key = map[i].getAttribute('data-key');
                 var on = !!tweaks.state[key];
@@ -737,6 +771,7 @@
         injectDarkModeToggler();
         darkMode.init();
         wireNavToggler();
+        wireSearchToggler();
         wireBoxToggles();
         mountPanel();
         wireHotspots();

@@ -534,13 +534,13 @@ body.exe-single-page main,
     position: absolute; clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
-.exe-content .box-head .box-toggle::after { content: "−"; display: block; }
-.exe-content .box.minimized .box-head .box-toggle::after,
-.exe-content .box.collapsed .box-head .box-toggle::after { content: "+"; }
-.exe-content .box.minimized .box-content,
-.exe-content .box.collapsed .box-content { display: none; }
-.exe-content .box.minimized { box-shadow: var(--scumm-shadow-soft); }
-.exe-content .box.minimized .box-head { border-bottom-width: 2px; }
+.box-head .box-toggle::after { content: "−"; display: block; }
+.box.minimized .box-head .box-toggle::after,
+.box.collapsed .box-head .box-toggle::after { content: "+"; }
+.box.minimized .box-content,
+.box.collapsed .box-content { display: none !important; }
+.box.minimized { box-shadow: var(--scumm-shadow-soft); }
+.box.minimized .box-head { border-bottom-width: 2px; }
 
 .exe-content .box-content {
     padding: 20px 24px;
@@ -969,10 +969,14 @@ button.toggler span {
             var(--scumm-ink) 28px 34px) no-repeat 8px center / 24px 34px,
         var(--scumm-accent);
 }
-#searchBarTogger {
+#searchBarToggler {
     top: 6px;
     left: 56px;
-    background: var(--scumm-accent) url("images/icon_observe.png") no-repeat center / 24px;
+    background: var(--scumm-accent) url("images/icon_eye.png") no-repeat center / 24px 24px;
+    image-rendering: pixelated;
+}
+#searchBarToggler[aria-pressed="true"] {
+    background-color: var(--scumm-verb-cyan);
 }
 
 /* El botón de modo oscuro — icono de sol (inspirado en el tema universal) */
@@ -1354,46 +1358,6 @@ html.exe-dark-mode #darkModeToggler {
     outline-offset: -2px;
 }
 
-/* Brújula (flechas) */
-.scumm-compass {
-    padding: 10px 14px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 4px;
-    align-items: center;
-    justify-items: center;
-    background: var(--scumm-ink);
-}
-.scumm-compass .arrow {
-    background: var(--scumm-wood);
-    color: var(--scumm-accent);
-    border: 2px solid var(--scumm-ink);
-    width: 100%;
-    height: 100%;
-    font-family: var(--scumm-font-head);
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: inherit;
-    min-height: 28px;
-    box-shadow:
-        inset -2px -2px 0 var(--scumm-wood-dark),
-        inset  2px  2px 0 var(--scumm-wood-hi);
-    border-radius: 0;
-}
-.scumm-compass .arrow:hover {
-    background: var(--scumm-accent);
-    color: var(--scumm-ink);
-}
-.scumm-compass .arrow.spacer {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    cursor: default;
-}
-
 /* ---------------------------------------------------------------- */
 /* BARRA DE BÚSQUEDA                                                */
 /* ---------------------------------------------------------------- */
@@ -1450,7 +1414,6 @@ body.in-iframe #darkModeToggler { position: absolute; }
     }
     .scumm-middle { border-right: 0; border-bottom: 3px solid var(--scumm-wood-hi); }
     .scumm-inventory { grid-template-columns: repeat(6, 1fr); max-height: 120px; }
-    .scumm-compass { display: none; }
 }
 
 @media (max-width: 560px) {
