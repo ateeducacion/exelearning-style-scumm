@@ -52,7 +52,7 @@
   </odeProperty>
   <odeProperty>
     <key>footer</key>
-    <value>&lt;p class=&quot;license&quot;&gt;© &lt;a href=&quot;https://www3.gobiernodecanarias.org/medusa/edublog/cprofestenerifesur/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Área de Tecnología Educativa&lt;/a&gt; · Gobierno de Canarias, 2026. Contenido bajo licencia &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/4.0/deed.es&quot; rel=&quot;license noopener&quot; target=&quot;_blank&quot;&gt;Creative Commons Reconocimiento-CompartirIgual 4.0 (CC BY-SA 4.0)&lt;/a&gt;.&lt;/p&gt;</value>
+    <value>&lt;p class=&quot;license&quot;&gt;© &lt;a href=&quot;https://www3.gobiernodecanarias.org/medusa/edublog/cprofestenerifesur/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Área de Tecnología Educativa&lt;/a&gt; · Gobierno de Canarias — Licencia &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/4.0/deed.es&quot; rel=&quot;license noopener&quot; target=&quot;_blank&quot;&gt;Creative Commons BY-SA 4.0&lt;/a&gt;&lt;/p&gt;</value>
   </odeProperty>
   <odeProperty>
     <key>pp_modified</key>
