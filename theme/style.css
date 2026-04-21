@@ -915,11 +915,20 @@ body.siteNav-off.exe-web-site #siteFooter { padding-left: 24px; }
     z-index: 40;
     transition: left 0.15s steps(3);
 }
-/* Cuando el sidebar está desplegado en escritorio, la barra superior
-   (y por tanto los chevrons Anterior/Siguiente que viven en ella) se
-   recoloca a la derecha del menú para no solaparse con él. */
+/* Sidebar desplegado en escritorio: la barra superior (.nav-buttons
+   position:fixed) se desplaza junto al menú. */
 body.exe-web-site:not(.siteNav-off) .nav-buttons {
     left: var(--scumm-sidebar-w);
+}
+/* En exportaciones reales, además de la barra fija superior, existe
+   una .nav-buttons en el flujo (prev/next al final del contenido). Es
+   HERMANA de main.page — sibling directo de .exe-content — así que el
+   margin-left de main no la arrastra. La ajustamos aquí. */
+.exe-content > .nav-buttons {
+    transition: margin-left 0.15s steps(3);
+}
+body.exe-web-site:not(.siteNav-off) .exe-content > .nav-buttons {
+    margin-left: var(--scumm-sidebar-w);
 }
 .nav-buttons a,
 .nav-buttons span.nav-button {
