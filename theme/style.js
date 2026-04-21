@@ -3,7 +3,7 @@
  * SCUMM Adventure — eXeLearning theme script
  * -----------------------------------------------------------------
  * Autor:    Área de Tecnología Educativa
- * Versión:  1.0.0
+ * Versión:  1.1.0
  * Licencia: Creative Commons BY-SA 4.0
  *
  * Responsabilidades del script:

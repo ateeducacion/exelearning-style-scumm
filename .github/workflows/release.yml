@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build-and-release:
-    name: Build theme ZIP and sample .elpx
+    name: Build theme ZIP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,16 +35,6 @@ jobs:
           zip -r "../exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip" . \
             -x "demo.html" "*.DS_Store" "__MACOSX/*"
 
-      - name: Build sample .elpx (el-ciclo-del-agua.elpx)
-        run: |
-          # eXeLearning 3.x ODE .elpx = ZIP with content.xml + content.dtd at
-          # the root plus the content/ media folder. No theme is embedded;
-          # when the user opens the .elpx, they select the SCUMM theme in
-          # "Propiedades → Estilo".
-          zip -r "el-ciclo-del-agua.elpx" \
-            content.xml content.dtd content \
-            -x "*.DS_Store" "__MACOSX/*"
-
       - name: Publish release assets
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
@@ -56,21 +46,21 @@ jobs:
             Tema visual para eXeLearning 3.x inspirado en las aventuras
             gráficas clásicas de LucasArts (Monkey Island, Maniac Mansion).
 
-            **Artefactos de esta release:**
+            **Artefacto de esta release:**
 
             - `exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip`
               Contenido de `theme/` listo para importar desde *Herramientas
               → Gestor de estilos → Importar estilo*.
-            - `el-ciclo-del-agua.elpx`
-              Recurso de ejemplo sobre el ciclo del agua. Se abre
-              directamente en el runtime estático:
 
-              https://static.exelearning.dev/?url=https://github.com/ateeducacion/exelearning-style-scumm/releases/latest/download/el-ciclo-del-agua.elpx
+            El recurso de ejemplo ("El ciclo del agua") se sirve
+            directamente desde la raíz del repo a través de
+            `github-proxy.exelearning.dev`:
+
+            https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-scumm&branch=main
 
             Elaborado por el **Área de Tecnología Educativa**.
           files: |
             exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip
-            el-ciclo-del-agua.elpx
           draft: false
           prerelease: false
 
@@ -81,5 +71,4 @@ jobs:
           name: scumm-${{ steps.ver.outputs.version }}
           path: |
             exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip
-            el-ciclo-del-agua.elpx
           if-no-files-found: error
