@@ -179,13 +179,23 @@ html, body {
     min-height: 100%;
     background: var(--scumm-sea-deep);
     color: var(--scumm-ui-text);
-    font-family:var(--scumm-font);
+    /* OJO: la tipografía pixel NO se asigna en html/body para que en el
+       editor de eXeLearning (workarea) la UI externa (menús, panel de
+       iDevices, árbol de nodos) conserve su fuente de sistema. La
+       tipografía SCUMM sólo se aplica dentro de .exe-content / en
+       exportaciones reales (body.exe-export) — ver §TIPOGRAFÍA abajo. */
     font-size: var(--scumm-fs-body);
     line-height: 1.55;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
     overflow-x: hidden;
+}
+body.exe-export,
+body.exe-web-site,
+body#tinymce,
+.exe-content {
+    font-family: var(--scumm-font);
 }
 
 /* Cursor pixel art */
@@ -248,7 +258,10 @@ body#tinymce {
     color: var(--scumm-ui-text);
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Cabeceras y prosa — scoped a .exe-content para no pisar la tipografía
+   de los paneles del editor (iDevices, árbol de nodos, barra toolbar). */
+.exe-content h1, .exe-content h2, .exe-content h3,
+.exe-content h4, .exe-content h5, .exe-content h6 {
     font-family:var(--scumm-font-head);
     font-weight: normal;
     letter-spacing: 0.05em;
@@ -258,12 +271,13 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0.8em 0 0.4em;
     line-height: 1.2;
 }
-h1 { font-size: var(--scumm-fs-title); }
-h2 { font-size: 22px; color: var(--scumm-dialog-player); }
-h3 { font-size: 19px; color: var(--scumm-dialog-npc); }
-h4 { font-size: 17px; color: var(--scumm-dialog-text); }
+.exe-content h1 { font-size: var(--scumm-fs-title); }
+.exe-content h2 { font-size: 22px; color: var(--scumm-dialog-player); }
+.exe-content h3 { font-size: 19px; color: var(--scumm-dialog-npc); }
+.exe-content h4 { font-size: 17px; color: var(--scumm-dialog-text); }
 
-p, li, td, th, label, dt, dd, figcaption {
+.exe-content p, .exe-content li, .exe-content td, .exe-content th,
+.exe-content label, .exe-content dt, .exe-content dd, .exe-content figcaption {
     color: var(--scumm-dialog-text);
     text-shadow: 1px 1px 0 rgba(0,0,0,0.12);
 }
