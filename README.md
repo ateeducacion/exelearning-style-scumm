@@ -8,9 +8,8 @@ Creado por el **Área de Tecnología Educativa** de la Consejería de Educación
 
 ## Estructura
 
-- **`theme/`** — el estilo SCUMM Adventure (lo que se empaqueta en cada release).
-- **`el-ciclo-del-agua.elpx`** (release asset) — unidad de ejemplo sobre el ciclo del agua, 11 nodos.
-- **Raíz** — ELPX descomprimido con el ejemplo, previsualizable con cualquier servidor estático (`python3 -m http.server`) y servido en directo por `github-proxy.exelearning.dev` al abrir el enlace de arriba.
+- **`theme/`** — el estilo SCUMM Adventure (lo único que se empaqueta en cada release como ZIP).
+- **Raíz** — ELPX descomprimido con la unidad *El ciclo del agua* (11 nodos). Previsualizable con cualquier servidor estático (`python3 -m http.server`) y servido en directo por `github-proxy.exelearning.dev` al abrir el enlace de arriba.
 
 ## Panel de tweaks
 
