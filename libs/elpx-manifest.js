@@ -5,6 +5,8 @@
 window.__ELPX_MANIFEST__={
   "version": 1,
   "files": [
+    "content.xml",
+    "content.dtd",
     "search_index.js",
     "content/css/base.css",
     "content/img/exe_powered_logo.png",
