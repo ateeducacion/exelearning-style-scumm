@@ -86,7 +86,7 @@
 .pre-code {
     background: #112C4A;
     color: #E7ECF1;
-    font-family:Monaco, Courier, monospace;
+    font-family: Monaco, Courier, monospace;
     border-radius: 9px;
     font-size: 12px;
     margin: 2em 1em;
@@ -116,7 +116,7 @@
 }
 
 .exe-dl .icon {
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
     display: block;
     width: 20px;
     height: 20px;
@@ -594,7 +594,7 @@ ol.auto-numbered {
 
 /* Quote With Authorship */
 .styled-qc {
-    font-family:Georgia, serif;
+    font-family: Georgia, serif;
     font-style: italic;
     margin: 1.5em 2.5em;
     padding: 0.25em 3.5em;
@@ -665,7 +665,7 @@ video {
     border-top-left-radius: 4px;
     color: #222;
     font-size: 11px;
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 35px;
     width: 35px;
     height: 35px;
