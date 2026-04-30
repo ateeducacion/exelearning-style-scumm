@@ -32,7 +32,7 @@ Two things coexist in the same repo, by design:
 ├── libs/                        ← eXeLearning libraries (from extracted ELPX)
 ├── content/, html/, content.xml,
 │   content.dtd, index.html, …   ← unzipped ELPX for static browser preview
-├── LICENSE                      ← CC0 for repo infrastructure
+├── LICENSE                      ← CC0 for original repo content
 ├── README.md                    ← user-facing README (short)
 └── AGENTS.md                    ← this file
 ```
@@ -144,7 +144,7 @@ What the builder produces:
 4. **`localStorage` and `sessionStorage` keys to know:** `exeDarkMode` (value `on` if enabled); `exeScummTweaks` (JSON `{panel, scanlines, dark}`, planned tweaks panel); `scummIntroShown` (sessionStorage, planned intro loader). Tests/screenshots must clear all three before asserting visual state.
 5. **Biome lints `style.js` loudly** (`var`, `$`, etc.). Every eXeLearning theme script is in this legacy style; this is expected and is not a CI blocker.
 6. **The extracted ELPX duplicates eXeLearning libs** (`libs/`, `idevices/`, `content/`). Regenerating the example refreshes those — they are intentionally committed so `git clone && python3 -m http.server` gives a live preview without a build step.
-7. **CC0 `LICENSE` is for the repository infrastructure** (README, CI configs, example prose). The **theme itself and the example illustrations are CC BY-SA 4.0** per `theme/config.xml` and the credits page — do not conflate the two.
+7. **Use one license for original content.** The repository's original content is CC0: the theme, README/project prose, example unit and generated illustrations. Third-party runtime files, fonts and bundled libraries keep their own declared licenses.
 8. **LucasArts OTFs don't cover Spanish characters.** `lucasarts-scumm-*.otf` cover English + some French/German accents (à, è, é, ê, ë, ï, ü). **ñ, á, í, ó, ú, ¿, ¡** and their uppercase forms are missing. The fix: a `@font-face "ScummPixelFallback"` pointing at `fonts/VT323-Regular.woff2` is listed before `"Courier New"` in every `--scumm-font*` stack so the browser's glyph-fallback lands on a pixel font instead of a serif. When adding any new LucasArts OTF, verify coverage with `fc-scan --format "%{charset}\n" <font.otf>` and add a `unicode-range` descriptor if needed.
 9. **Bottom panel z-index must stay below `#scummTweaks` and `#scummIntro`.** `.scumm-panel` is `z-index: 35`; the planned tweaks panel and intro overlay must be assigned higher values (suggested: `#scummTweaks` at 60, `#scummIntro` at 100).
 10. **`localStorage` key is `exeScummTweaks` (JSON `{panel, scanlines, dark}`), `sessionStorage` key is `scummIntroShown` — tests/screenshots should clear both before asserting visual state** (see also gotcha 4).

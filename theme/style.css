@@ -4,8 +4,8 @@
  * -----------------------------------------------------------------
  * Autor:        Área de Tecnología Educativa
  * Versión:      1.0.0
- * Licencia:     Creative Commons BY-SA 4.0
- *               http://creativecommons.org/licenses/by-sa/4.0/
+ * Licencia:     Creative Commons CC0 1.0 Universal
+ *               https://creativecommons.org/publicdomain/zero/1.0/
  *
  * Inspirado en las aventuras gráficas clásicas de LucasArts con
  * motor SCUMM (Monkey Island, Maniac Mansion). Toda la paleta, los
@@ -1134,7 +1134,7 @@ html.exe-dark-mode #darkModeToggler {
 }
 #siteFooter a { color: var(--scumm-accent); border-bottom-color: var(--scumm-accent); }
 
-/* Footer: licencia CC BY-SA 4.0 — línea compacta, sin uppercase heredado */
+/* Footer: licencia CC0 1.0 Universal — línea compacta, sin uppercase heredado */
 #siteFooter { padding: 12px 16px; font-size: 11px; }
 #siteFooterContent .license {
     margin: 0;

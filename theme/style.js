@@ -4,7 +4,7 @@
  * -----------------------------------------------------------------
  * Autor:    Área de Tecnología Educativa
  * Versión:  1.1.0
- * Licencia: Creative Commons BY-SA 4.0
+ * Licencia: Creative Commons CC0 1.0 Universal
  *
  * Responsabilidades del script:
  *   1. Inyecta el panel inferior SCUMM (verbos, frase, inventario,

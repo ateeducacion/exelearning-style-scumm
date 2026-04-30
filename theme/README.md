@@ -19,4 +19,4 @@ images/             ← sprites pixel art (escena, UI, iconos iDevice, inventari
 
 `config.xml` debe quedar en la raíz del ZIP — no dentro de un subdirectorio. El repositorio [`exelearning-style-scumm`](https://github.com/ateeducacion/exelearning-style-scumm) genera el ZIP automáticamente en cada tag `v*`.
 
-Licencia: **CC BY-SA 4.0**. Fuentes LucasArts: uso no comercial (scummbar.com). VT323: SIL OFL 1.1.
+Licencia: **CC0 1.0 Universal**. Fuentes LucasArts: uso no comercial (scummbar.com). VT323: SIL OFL 1.1.
