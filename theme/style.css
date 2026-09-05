@@ -1950,7 +1950,7 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
     }
     .exe-content p, .exe-content li { color: #000 !important; text-shadow: none !important; }
 }
-.exe-open-exelearning { position: fixed; z-index: 10000; bottom: 90px; right: -5px; width: 235px; padding: 8px 6px; display: flex; align-items: center; justify-content: center; gap: 9px; transform: rotate(-45deg); background: #26ddc7; color: #000 !important; border: 2px solid #000; box-shadow: 3px 3px 0 #000; font: 16px/1 monospace; text-align: center; text-decoration: none !important; }
+.exe-open-exelearning { position: fixed; z-index: 10000; bottom: 90px; right: -5px; width: 235px; padding: 8px 6px; display: flex; align-items: center; justify-content: center; gap: 9px; transform: rotate(-45deg); background: #26ddc7; color: #000 !important; border: 2px solid #000; box-shadow: 3px 3px 0 #000; font: bold 13px/1.2 Helvetica, Arial, sans-serif; text-align: center; text-decoration: none !important; }
 .exe-open-logo { width: 22px; height: 22px; object-fit: contain; filter: brightness(0); }
 .exe-open-exelearning:focus, .exe-open-exelearning:hover { background: #20b8a6; color: #000 !important; outline: 3px solid #000; }
-.exe-open-close { position: fixed; z-index: 10001; right: 8px; bottom: 8px; width: 22px; height: 22px; padding: 0; border: 1px solid #000; border-radius: 50%; background: #26ddc7; color: #000; font: bold 17px/19px sans-serif; cursor: pointer; }
+.exe-open-close { position: fixed; z-index: 10001; right: 8px; bottom: 8px; width: 22px; height: 22px; padding: 0; border: 1px solid #000; border-radius: 50%; background: #26ddc7; color: #000; font: bold 14px/19px Helvetica, Arial, sans-serif; cursor: pointer; }
