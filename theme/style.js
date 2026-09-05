@@ -38,7 +38,7 @@ function addOpenInExe() {
     link.target = '_blank'; link.rel = 'noopener'; link.innerHTML = '<img class="exe-open-logo" src="icons/exe-logo.svg" alt=""><span>Edit with eXeLearning</span>';
     link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning'); document.body.appendChild(link);
     var close = document.createElement('button'); close.className = 'exe-open-close'; close.type = 'button'; close.textContent = '×';
-    close.setAttribute('aria-label', 'Ocultar enlace de eXeLearning'); close.addEventListener('click', function () { link.remove(); close.remove(); }); document.body.appendChild(close);
+    close.setAttribute('aria-label', 'Ocultar enlace de eXeLearning'); close.addEventListener('click', function (event) { event.preventDefault(); event.stopPropagation(); link.remove(); }); link.appendChild(close);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addOpenInExe);
 else addOpenInExe();
