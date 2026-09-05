@@ -1954,3 +1954,5 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
 .exe-open-logo { width: 20px; height: 20px; object-fit: contain; filter: brightness(0) !important; }
 .exe-open-exelearning:focus, .exe-open-exelearning:hover { background: #20b8a6; color: #000 !important; outline: 3px solid #000; }
 .exe-open-close { position: absolute; z-index: 10001; right: -9px; top: -9px; width: 22px; height: 22px; padding: 0; border: 1px solid #000; border-radius: 50%; background: #26ddc7; color: #000; font: bold 14px/19px Helvetica, Arial, sans-serif; cursor: pointer; }
+
+@media (max-width: 600px) { .exe-open-exelearning, .exe-open-close { display: none !important; } }
