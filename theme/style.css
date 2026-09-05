@@ -1951,6 +1951,6 @@ body.scumm-intro-on #siteNav { visibility: hidden; }
     .exe-content p, .exe-content li { color: #000 !important; text-shadow: none !important; }
 }
 .exe-open-exelearning { position: fixed; z-index: 10000; right: 42px; bottom: 14px; width: auto; max-width: calc(100vw - 74px); padding: 7px 12px; display: flex; align-items: center; justify-content: center; gap: 7px; transform: none; border-radius: 4px; background: #26ddc7; color: #000 !important; border: 2px solid #000; box-shadow: 3px 3px 0 #000; font: bold 13px/1.2 Helvetica, Arial, sans-serif; text-align: center; text-decoration: none !important; }
-.exe-open-logo { width: 20px; height: 20px; object-fit: contain; filter: brightness(0); }
+.exe-open-logo { width: 20px; height: 20px; object-fit: contain; filter: brightness(0) !important; }
 .exe-open-exelearning:focus, .exe-open-exelearning:hover { background: #20b8a6; color: #000 !important; outline: 3px solid #000; }
 .exe-open-close { position: absolute; z-index: 10001; right: -9px; top: -9px; width: 22px; height: 22px; padding: 0; border: 1px solid #000; border-radius: 50%; background: #26ddc7; color: #000; font: bold 14px/19px Helvetica, Arial, sans-serif; cursor: pointer; }

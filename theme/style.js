@@ -31,11 +31,12 @@
  *   - No tira abajo la UI si algún contenedor no existe.
  * =================================================================
  */
+var exeThemeAssetBase = document.currentScript ? new URL('.', document.currentScript.src) : null;
 function addOpenInExe() {
     if (!document.querySelector('.exe-export') || document.querySelector('.exe-open-exelearning')) return;
     var link = document.createElement('a'); link.className = 'exe-open-exelearning';
     link.href = 'https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-scumm&branch=main';
-    link.target = '_blank'; link.rel = 'noopener'; link.innerHTML = '<img class="exe-open-logo" src="icons/exe-logo.svg" alt=""><span>Edit with eXeLearning</span>';
+    link.target = '_blank'; link.rel = 'noopener'; link.innerHTML = '<img class="exe-open-logo" src="' + new URL('icons/exe-logo.svg', exeThemeAssetBase || location.href) + '" alt=""><span>Edit with eXeLearning</span>';
     link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning'); document.body.appendChild(link);
     var close = document.createElement('button'); close.className = 'exe-open-close'; close.type = 'button'; close.textContent = '×';
     close.setAttribute('aria-label', 'Ocultar enlace de eXeLearning'); close.addEventListener('click', function (event) { event.preventDefault(); event.stopPropagation(); link.remove(); }); link.appendChild(close);
