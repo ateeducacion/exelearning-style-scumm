@@ -35,7 +35,7 @@ function addOpenInExe() {
     if (!document.querySelector('.exe-export') || document.querySelector('.exe-open-exelearning')) return;
     var link = document.createElement('a'); link.className = 'exe-open-exelearning';
     link.href = 'https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-scumm&branch=main';
-    link.target = '_blank'; link.rel = 'noopener'; link.innerHTML = '<strong class="exe-open-logo">eXe</strong><span>Edit with eXeLearning</span>';
+    link.target = '_blank'; link.rel = 'noopener'; link.innerHTML = '<img class="exe-open-logo" src="icons/exe-logo.svg" alt="eXe"><span>Edit with eXeLearning</span>';
     link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning'); document.body.appendChild(link);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addOpenInExe);
