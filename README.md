@@ -17,7 +17,7 @@ Licencia del contenido propio del repositorio: [Creative Commons CC0 1.0 Univers
 ## Estructura
 
 - **`theme/`** — el estilo SCUMM Adventure (lo único que se empaqueta en cada release como ZIP).
-- **Raíz** — ELPX descomprimido con la unidad *El ciclo del agua* (11 nodos). Previsualizable con cualquier servidor estático (`python3 -m http.server`) y servido en directo por `github-proxy.exelearning.dev` al abrir el enlace de arriba.
+- **Raíz** — ELPX descomprimido con el recurso de ejemplo *El ciclo del agua* (11 nodos). Previsualizable con cualquier servidor estático (`python3 -m http.server`) y servido en directo por `github-proxy.exelearning.dev` al abrir el enlace de arriba.
 
 ## Panel de tweaks
 

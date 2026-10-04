@@ -171,7 +171,7 @@ def download_source_idevice(page_id: str, block_id: str, idv_id: str) -> str:
         '<table class="exe-table"><caption>Información general de este recurso educativo</caption>'
         '<tbody>'
         '<tr><th>Título</th><td>El ciclo del agua · SCUMM Adventure</td></tr>'
-        '<tr><th>Descripción</th><td>Unidad didáctica de ejemplo sobre el ciclo del agua, en estilo SCUMM Adventure.</td></tr>'
+        '<tr><th>Descripción</th><td>Recurso educativo de ejemplo sobre el ciclo del agua, en estilo SCUMM Adventure.</td></tr>'
         '<tr><th>Autor</th><td>Área de Tecnología Educativa · Gobierno de Canarias</td></tr>'
         '<tr><th>Licencia</th><td>'
         '<a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license" class="cc cc-0"><span></span>Creative Commons: CC0 1.0 Universal (dominio público)</a>'
@@ -303,7 +303,7 @@ def page_intro() -> str:
         'style="width:100%;max-width:240px;image-rendering:pixelated;border:3px solid #D700D7;display:block;" />'
         '</div>'
         '<div style="flex:1 1 280px;min-width:0;">'
-        '<p><strong>Bienvenido</strong> a esta unidad didáctica sobre el <em>ciclo del agua</em>, preparada por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias.</p>'
+        '<p><strong>Bienvenido</strong> a este recurso educativo de ejemplo sobre el <em>ciclo del agua</em>, preparada por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias.</p>'
         '<p>Aquí aprenderás las cuatro fases principales del ciclo — <strong>evaporación</strong>, <strong>condensación</strong>, <strong>precipitación</strong> y <strong>recogida</strong> — y podrás poner a prueba lo aprendido con un par de actividades.</p>'
         '<p>El estilo visual retro está inspirado en las aventuras gráficas clásicas de LucasArts con motor <strong>SCUMM</strong> (Monkey Island, Maniac Mansion). Activa el modo oscuro con el botón del sol y abre el engranaje de la derecha para mostrar u ocultar el panel SCUMM, activar los <em>scanlines</em> o alternar el modo noche.</p>'
         '</div>'
@@ -433,14 +433,14 @@ def page_credits() -> str:
     IMAGE_BINDINGS[idv] = '11-creditos-y-descargas.png'
     intro = text_idevice(pid, bid, idv, 1, '',
         illustration_html(idv, '11-creditos-y-descargas.png', 'Créditos y descargas') +
-        '''<p>Esta unidad de ejemplo ha sido creada por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del <strong>Gobierno de Canarias</strong>, para mostrar el estilo <em>SCUMM Adventure</em>.</p>
+        '''<p>Este recurso de ejemplo ha sido creado por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del <strong>Gobierno de Canarias</strong>, para mostrar el estilo <em>SCUMM Adventure</em>.</p>
         <p><strong>Agradecimientos:</strong> comunidad de <a href="https://exelearning.net/" target="_blank" rel="noopener">eXeLearning</a>, mantenida por el <a href="https://cedec.intef.es/" target="_blank" rel="noopener">CEDEC</a> y las diferentes administraciones educativas del Estado.</p>
         <p><strong>Licencia:</strong> Creative Commons CC0 1.0 Universal (dominio público). Puedes reutilizar este recurso sin restricciones de derechos de autor.</p>''' +
         action_buttons_html())
     bid2 = nid()
     dl = download_source_idevice(pid, bid2, nid())
     return nav_page(pid, '', 'Créditos y descargas', 5,
-                    block(pid, bid, 1, intro, icon='info', block_name='Sobre esta unidad')
+                    block(pid, bid, 1, intro, icon='info', block_name='Sobre este recurso')
                     + block(pid, bid2, 2, dl, icon='download', block_name='Descarga el archivo fuente'))
 
 
@@ -455,7 +455,7 @@ def page_resources() -> str:
         <ul>
           <li><a href="https://es.wikipedia.org/wiki/Ciclo_hidrol%C3%B3gico" target="_blank" rel="noopener">Wikipedia · Ciclo hidrológico</a></li>
           <li><a href="https://www.juntadeandalucia.es/educacion/permanente/materiales/" target="_blank" rel="noopener">Materiales de educación permanente</a></li>
-          <li><a href="https://exelearning.net/" target="_blank" rel="noopener">exelearning.net</a> — la herramienta con la que se ha creado esta unidad</li>
+          <li><a href="https://exelearning.net/" target="_blank" rel="noopener">exelearning.net</a> — la herramienta con la que se ha creado este recurso</li>
         </ul>
         <p><em>Licencia: CC0 1.0 Universal (dominio público). Puedes reutilizar y modificar este material sin restricciones de derechos de autor.</em></p>''')
     return nav_page(pid, '', 'Recursos', 4,
@@ -528,7 +528,7 @@ root = f'''<?xml version="1.0" encoding="utf-8"?>
   <odeProperty><key>pp_license</key><value>creative commons: cc0 1.0</value></odeProperty>
   <odeProperty><key>pp_licenseUrl</key><value>https://creativecommons.org/publicdomain/zero/1.0/</value></odeProperty>
   <odeProperty><key>pp_rightsInfo</key><value>© Área de Tecnología Educativa · Gobierno de Canarias, 2026. Contenido y tema publicados bajo Creative Commons CC0 1.0 Universal (dominio público). Tipografías LucasArts SCUMM (scummbar.com, uso no comercial) y VT323 (SIL OFL 1.1).</value></odeProperty>
-  <odeProperty><key>pp_description</key><value>Unidad didáctica de ejemplo sobre el ciclo del agua, presentada con el estilo retro SCUMM Adventure.</value></odeProperty>
+  <odeProperty><key>pp_description</key><value>Recurso educativo de ejemplo sobre el ciclo del agua, presentado con el estilo retro SCUMM Adventure.</value></odeProperty>
   <odeProperty><key>pp_theme</key><value>scumm</value></odeProperty>
   <odeProperty><key>pp_addExeLink</key><value>true</value></odeProperty>
   <odeProperty><key>pp_exportElp</key><value>true</value></odeProperty>
