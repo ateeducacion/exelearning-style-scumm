@@ -303,7 +303,7 @@ def page_intro() -> str:
         'style="width:100%;max-width:240px;image-rendering:pixelated;border:3px solid #D700D7;display:block;" />'
         '</div>'
         '<div style="flex:1 1 280px;min-width:0;">'
-        '<p><strong>Bienvenido</strong> a este recurso educativo de ejemplo sobre el <em>ciclo del agua</em>, preparada por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias.</p>'
+        '<p><strong>Bienvenido</strong> a este recurso educativo de ejemplo sobre el <em>ciclo del agua</em>, preparado por el <strong>Área de Tecnología Educativa</strong> de la Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias.</p>'
         '<p>Aquí aprenderás las cuatro fases principales del ciclo — <strong>evaporación</strong>, <strong>condensación</strong>, <strong>precipitación</strong> y <strong>recogida</strong> — y podrás poner a prueba lo aprendido con un par de actividades.</p>'
         '<p>El estilo visual retro está inspirado en las aventuras gráficas clásicas de LucasArts con motor <strong>SCUMM</strong> (Monkey Island, Maniac Mansion). Activa el modo oscuro con el botón del sol y abre el engranaje de la derecha para mostrar u ocultar el panel SCUMM, activar los <em>scanlines</em> o alternar el modo noche.</p>'
         '</div>'
