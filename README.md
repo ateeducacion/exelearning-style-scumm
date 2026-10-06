@@ -18,6 +18,7 @@ Licencia del contenido propio del repositorio: [Creative Commons CC0 1.0 Univers
 
 - **`theme/`** — el estilo SCUMM Adventure (lo único que se empaqueta en cada release como ZIP).
 - **Raíz** — ELPX descomprimido con el recurso de ejemplo *El ciclo del agua* (11 nodos). Previsualizable con cualquier servidor estático (`python3 -m http.server`) y servido en directo por `github-proxy.exelearning.dev` al abrir el enlace de arriba.
+- **`edit-in-exelearning.js`** — el botón «Edit with eXeLearning» del ejemplo publicado. Queda fuera de `theme/`, así que no aparece en los recursos exportados con el estilo; al regenerar el HTML del ejemplo se vuelve a enlazar con el paso 4 de §6 en `AGENTS.md`.
 
 ## Panel de tweaks
 
