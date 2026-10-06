@@ -1,7 +1,7 @@
 /* "Edit with eXeLearning" link of the published example. Not part of the style:
    it is added to the example's HTML only, so exported resources never carry it. */
 (function () {
-    if (window.self !== window.top || document.querySelector('.exe-open-exelearning')) return;
+    if (document.querySelector('.exe-open-exelearning')) return;
     var style = document.createElement('style');
     style.textContent = '.exe-open-exelearning { position: fixed; z-index: 10000; right: 42px; bottom: 14px; width: auto; max-width: calc(100vw - 74px); padding: 7px 12px; display: flex; align-items: center; justify-content: center; gap: 7px; transform: none; border-radius: 4px; background: #26ddc7; color: #000 !important; border: 2px solid #000; box-shadow: 3px 3px 0 #000; font: bold 13px/1.2 Helvetica, Arial, sans-serif; text-align: center; text-decoration: none !important; }'
         + '.exe-open-exelearning svg { width: 20px; height: 20px; }'
