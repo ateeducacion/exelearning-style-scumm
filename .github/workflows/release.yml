@@ -29,6 +29,8 @@ jobs:
       - name: Build theme ZIP (exelearning-style-scumm-${{ steps.ver.outputs.version }}.zip)
         run: |
           cd theme
+          # The "Edit with eXeLearning" link belongs to the published example only.
+          if grep -q exe-open-exelearning style.js style.css; then echo "::error::The edit link must not ship in the style"; exit 1; fi
           # demo.html and README.md stay in-tree for dev, but don't ship in the
           # style ZIP — eXeLearning only needs config.xml + style.css + style.js
           # + assets. The style ZIP's root is the contents of theme/ itself.

@@ -125,6 +125,10 @@ make -C /path/to/exelearning export-elpx \
 cd /Users/ernesto/Downloads/git/exelearning-style-scumm
 rm -rf content content.dtd content.xml html idevices index.html libs search_index.js
 unzip -q -o /tmp/water-cycle.elpx -x "theme/*"
+
+# 4. Add the example-only "Edit with eXeLearning" link (idempotent, see §7)
+perl -0777 -pi -e 's#</head>#<script src="edit-in-exelearning.js" defer></script>\n</head># unless /edit-in-exelearning\.js/' index.html
+perl -0777 -pi -e 's#</head>#<script src="../edit-in-exelearning.js" defer></script>\n</head># unless /edit-in-exelearning\.js/' html/*.html
 ```
 
 What the builder produces:
@@ -148,6 +152,7 @@ What the builder produces:
 8. **LucasArts OTFs don't cover Spanish characters.** `lucasarts-scumm-*.otf` cover English + some French/German accents (à, è, é, ê, ë, ï, ü). **ñ, á, í, ó, ú, ¿, ¡** and their uppercase forms are missing. The fix: a `@font-face "ScummPixelFallback"` pointing at `fonts/VT323-Regular.woff2` is listed before `"Courier New"` in every `--scumm-font*` stack so the browser's glyph-fallback lands on a pixel font instead of a serif. When adding any new LucasArts OTF, verify coverage with `fc-scan --format "%{charset}\n" <font.otf>` and add a `unicode-range` descriptor if needed.
 9. **Bottom panel z-index must stay below `#scummTweaks` and `#scummIntro`.** `.scumm-panel` is `z-index: 35`; the planned tweaks panel and intro overlay must be assigned higher values (suggested: `#scummTweaks` at 60, `#scummIntro` at 100).
 10. **`localStorage` key is `exeScummTweaks` (JSON `{panel, scanlines, dark}`), `sessionStorage` key is `scummIntroShown` — tests/screenshots should clear both before asserting visual state** (see also gotcha 4).
+11. **The "Edit with eXeLearning" link is for the published example only.** It lives in `edit-in-exelearning.js` at the repo root and step 4 of §6 adds it to `index.html` and `html/*.html`. Never put it in `theme/`, or every resource exported with the style would show it; the release workflow fails if `exe-open-exelearning` appears in `style.js` or `style.css`.
 
 ## 8. Open work items
 
